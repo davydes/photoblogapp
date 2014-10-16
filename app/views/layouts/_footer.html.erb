@@ -1,0 +1,19 @@
+<footer class="footer">
+  <div class="container">
+  <nav>
+    <ul>
+      <li>
+        <p>
+          <%= link_to_unless I18n.locale == :en, "ENG", locale_english_path %>
+          |
+          <%= link_to_unless I18n.locale == :ru, "RUS", locale_russian_path %>
+        </p>
+      </li>
+      <li>
+        <%= link_to t('mobile_version'), switch_format_sessions_path(preferred_format: 'mobile') %>
+      </li>
+      <li><%= link_to t('footer.contacts'), '#' %></li>
+    </ul>
+  </nav>
+  </div>
+</footer>

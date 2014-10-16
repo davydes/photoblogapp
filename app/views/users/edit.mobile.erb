@@ -1,0 +1,9 @@
+<%= provide(:title, "Edit "+@user.name) %>
+<%- model_class = User -%>
+<div data-role="page" id="users">
+  <%= render partial: "shared/header", locals: {title: model_class.model_name.human} %>
+  <div data-role="content">
+    <%= render :partial => 'form' %>
+  </div>
+  <%= render partial: "shared/footer"%>
+</div>

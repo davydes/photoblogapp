@@ -1,0 +1,27 @@
+ru:
+  root_page: "Главная"
+  full_version: "Полная версия"
+  mobile_version: "Мобильная"
+  to_russian: "По-русски"
+  to_english: "In English"
+
+  sessions:
+    user: "Пользователь"
+    need_to_signin: "Необходимо войти для продолжения!"
+    login: "Вход"
+    logout: "Выход"
+    signup: "Регистрация"
+    account: "Мой профиль"
+    profile: "Профиль"
+    settings: "Настройки"
+
+  time:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+  footer:
+    contacts: "Контакты"
+    map: "Карта"
+    rates: "Курсы"

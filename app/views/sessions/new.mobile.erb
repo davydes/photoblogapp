@@ -1,0 +1,18 @@
+<div data-role="dialog" id="signin" class="seesion-signin">
+<div data-role="header">
+<h3><%=t 'sessions.login'%></h3>
+</div>
+
+<div data-role="content">
+<div id="client-side-alert-error"></div>
+<%= form_for(:session, url: sessions_path, html: {id: "login-form", "data-rel" => "dialog"}) do |f| %>
+  <fieldset data-role="control-group">
+    <%= f.text_field :email, :class => 'form-control' %>
+  </fieldset>
+  <fieldset data-role="control-group">
+    <%= f.password_field :password, :class => 'form-control' %>
+  </fieldset>
+  <%= f.submit t('sessions.login'), class: "btn-primary"%>
+<% end %>
+</div>
+</div>

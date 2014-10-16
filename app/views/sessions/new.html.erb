@@ -1,0 +1,25 @@
+<% provide(:title, "Sign in") %>
+
+<div class="wrap-user">
+<div class="page-header">
+  <h1><%=t('sessions.login')%></h1>
+</div>
+
+    <div class="control-group" style="width: 300px; margin: 0 auto">
+      <%= form_for(:session, url: sessions_path) do |f| %>
+        <%= f.label t('users.email'), :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :email, :class => 'form-control' %>
+        </div>
+        <%= f.label t('users.password'), :class => 'control-label' %>
+        <div class="controls">
+          <%= f.password_field :password, :class => 'form-control' %>
+        </div>
+        <div class="controls">
+          <%= f.submit t('sessions.login'), class: "btn btn-primary form-control",
+                                  style: "margin: 5px auto 5px" %>
+        </div>
+      <% end %>
+    <p><%=t('users.new_user?')%> <%= link_to t('users.signup_now'), signup_path %></p>
+    </div>
+  </div>

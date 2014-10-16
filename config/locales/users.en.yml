@@ -1,0 +1,18 @@
+en:
+
+  helpers:
+    submit:
+      user:
+        create: "Sign up"
+        update: "Save"
+
+  users:
+    edit_user: "Edit %{name}"
+    new_user?: "New user?"
+    signup_now: "Sign up now!"
+    label: "Users"
+    name: "Name"
+    email: "E-mail"
+    password: "Password"
+    password_confirmation: "Confirmation"
+    create_button: "Sign Up"

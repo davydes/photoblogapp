@@ -1,0 +1,30 @@
+ru:
+
+  helpers:
+    submit:
+      user:
+        create: "Регистрация"
+        update: "Сохранить"
+
+  activerecord:
+    models:
+      user:
+        one: "Пользователь"
+        other: "Пользователей"
+    attributes:
+      user:
+        name: "Имя"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        created_at: "Создан"
+
+  users:
+    edit_user: "Изменение %{name}"
+    new_user?: "Нету логина?"
+    signup_now: "Зарегестрируйся!"
+    label: "Пользователи"
+    name: "Имя"
+    email: "E-mail"
+    password: "Пароль"
+    password_confirmation: "Подтверждение"

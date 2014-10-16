@@ -1,0 +1,44 @@
+<%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div data-role="control-group" style="width: 300px; margin: 0 auto">
+    <%= f.label t('users.name'), :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@user[:name]) %>
+    <%= f.label t('users.email'), :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%= error_span(@user[:email]) %>
+    <%= f.label t('users.password'), :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'form-control' %>
+    </div>
+    <%= error_span(@user[:password]) %>
+    <%= f.label t('users.password_confirmation'), :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'form-control' %>
+    </div>
+    <%= error_span(@user[:password_confirmation ]) %>
+    <div class="controls">
+      <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 7px 0" %>
+    </div>
+  </div>
+
+<% end %>
