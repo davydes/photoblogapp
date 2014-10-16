@@ -16,8 +16,14 @@
 // Font Awesome
 @import "fontawesome/font-awesome";
 
-// Glyphicons
-//@import "twitter/bootstrap/glyphicons.less";
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-url('glyphicons-halflings-regular.eot');
+  src: font-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  font-url('glyphicons-halflings-regular.woff') format('woff'),
+  font-url('glyphicons-halflings-regular.ttf') format('truetype'),
+  font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 // Your custom LESS stylesheets goes here
 //
@@ -30,23 +36,14 @@
 // Example:
 // @link-color: #ff0000;
 
-/* header */
+body { min-width: 300px }
 
-#logo {
-    float: left;
-    margin-right: 10px;
-    font-size: 1.7em;
-    color: @gray-lighter;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    padding-top: 9px;
-    font-weight: bold;
-    line-height: 1;
-}
-
-#logo:hover {
-    color: @gray-light;
-    text-decoration: none;
+#logo-icon {
+  background: url('camera-lens-icon.png') 100% 100% no-repeat;
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin: 0 10px;
 }
 
 /* footer */
