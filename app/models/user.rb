@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
 
-  before_save { self.email = email.downcase }
-  before_create :create_remember_token
-
-  has_secure_password
   validates :password, :presence => true,
                        :length   => { :within => 6..40 },
                        :if       => :password_changed?
+
+  has_secure_password
+  before_save { self.email = email.downcase }
+  before_create :create_remember_token
 
   has_many :articles
 
