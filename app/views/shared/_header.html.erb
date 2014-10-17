@@ -19,8 +19,9 @@
           <% if signed_in? %>
               <li><%= link_to t('users.label'), users_path %></li>
               <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a id="loggedin_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%=current_user.name %> <b class="caret"></b>
+                  <%= image_tag current_user.avatar.url(:thumb) %>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to t('sessions.profile'), current_user %></li>

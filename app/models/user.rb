@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
                        :length   => { :within => 6..40 },
                        :if       => :password_changed?
 
+  has_attached_file :avatar, :styles => { :thumb => "32x32>" }, :default_url => "avatar.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   has_secure_password
   before_save { self.email = email.downcase }
   before_create :create_remember_token

@@ -45,3 +45,5 @@ gem 'russian'
 gem 'therubyracer', '0.12.1'
 gem 'less-rails', '2.5.0'
 gem 'twitter-bootstrap-rails', '3.2.0'
+
+gem "paperclip", "~> 4.2"
