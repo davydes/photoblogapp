@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
+  before_action :set_article, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -42,7 +43,11 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      if current_user.admin?
+        @article = Article.find(params[:id])
+      else
+        @article = current_user.articles.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
