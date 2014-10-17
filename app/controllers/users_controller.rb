@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-
+  before_action :set_user,       only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
 
   def index
     @users = User.all
@@ -12,13 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = "Goodbye "+@user.name
+    flash[:success] = "User #{@user.name} successfully destroyed"
     redirect_to(users_url)
   end
 
@@ -34,14 +33,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
-      flash[:success] = "Edit Successful."
+      flash[:success] = "Profile #{@user.name} saved successfully"
       redirect_to @user
     else
       render 'edit'
@@ -50,13 +47,20 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
 
   def correct_user
-    @user = User.find(params[:id])
-    redirect_to(403) unless current_user?(@user)
+    redirect_to(root_url) unless  admin_or_current?(@user)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end

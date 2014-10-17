@@ -5,7 +5,7 @@ class ArticlesControllerTest < ActionController::TestCase
 
   setup do
     @article = articles(:one)
-    @user = users(:one)
+    @user = users(:user_1)
   end
 
   test "should get index" do

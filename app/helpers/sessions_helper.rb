@@ -23,6 +23,11 @@ module SessionsHelper
     user == current_user
   end
 
+  def admin_or_current?(user)
+    signed_in? and
+        (current_user?(user) or current_user.admin)
+  end
+
   def sign_out
     return if current_user.nil?
     current_user.update_attribute(:remember_token,

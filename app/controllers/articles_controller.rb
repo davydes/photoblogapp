@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -48,4 +49,9 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content)
     end
+
+    def correct_user
+      redirect_to root_path unless admin_or_current?(@article.user)
+    end
+
 end

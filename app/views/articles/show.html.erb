@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1><%= @article.title %>
     <%= link_to @article.user.name, user_path(@article.user), class: "btn btn-warning btn-xs" %>
-    <% if current_user == @article.user %>
+    <% if admin_or_current?(@article.user) %>
       <%= link_to edit_article_path(@article), class: "btn btn-danger btn-xs" do %>
         <span class='glyphicon glyphicon-edit'></span></a>
       <% end %>

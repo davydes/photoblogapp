@@ -4,7 +4,8 @@ class UsersControllerTest < ActionController::TestCase
   include SessionsHelper
 
   setup do
-    @user = users(:one)
+    @user = users(:user_1)
+    @admin = users(:admin_user)
   end
 
   test "should get index" do
@@ -58,14 +59,23 @@ class UsersControllerTest < ActionController::TestCase
     sign_out
   end
 
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
+  test "should not destroy user by himself" do
+    assert_difference('User.count', 0) do
       user = User.find_by_email(@user.email)
-      sign_in(user)
+      sign_in(@user)
       delete :destroy, id: @user
       sign_out
     end
+    assert_redirected_to root_path
+  end
 
+  test "should destroy user by admin" do
+    assert_difference('User.count', -1) do
+      user = User.find_by_email(@user.email)
+      sign_in(@admin)
+      delete :destroy, id: @user
+      sign_out
+    end
     assert_redirected_to users_path
   end
 end

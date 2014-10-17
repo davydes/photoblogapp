@@ -20,7 +20,7 @@
               <li><%= link_to t('users.label'), users_path %></li>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%=t('sessions.account')%> <b class="caret"></b>
+                  <%=current_user.name %> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to t('sessions.profile'), current_user %></li>
