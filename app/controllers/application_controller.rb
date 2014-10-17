@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  before_filter :handle_mobile
-  before_filter :use_preferred_format
+  before_action :handle_mobile
+  before_action :use_preferred_format
 
   # Comment out when use only ajax content for mobile version
 
