@@ -13,8 +13,13 @@ class User < ActiveRecord::Base
                        :length   => { :within => 6..40 },
                        :if       => :password_changed?
 
-  has_attached_file :avatar, :styles => { :thumb => "32x32>" }, :default_url => "avatar.png"
+  has_attached_file :avatar, :styles => { :thumb => "32x32#", :original => "500x500>" },
+                    :processors => [:cropper, :thumbnail],
+                    :default_url => "avatar.png"
+  validates_attachment_presence :avatar
+  validates_attachment_size :avatar, :less_than => 5.megabytes
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   has_secure_password
   before_save { self.email = email.downcase }
@@ -30,6 +35,15 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def cropping?
+    !(crop_x.blank? or crop_y.blank? or crop_w.blank? or crop_h.blank?)
+  end
+
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
+
   private
 
   def password_changed?
@@ -38,5 +52,9 @@ class User < ActiveRecord::Base
 
   def create_remember_token
     self.remember_token = User.digest(User.new_remember_token)
+  end
+
+  def reprocess_avatar
+    avatar.reprocess!
   end
 end

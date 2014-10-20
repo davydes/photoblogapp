@@ -35,10 +35,21 @@
     <div class="controls">
       <%= f.password_field :password_confirmation, :class => 'form-control' %>
     </div>
-
-    <%= f.file_field :avatar %>
-
+    <%= f.label :avatar, "Avatar", :class => 'control-label'%>
+    <div class="control">
+      <%= f.file_field :avatar, id: 'input-avatar'%>
+    </div>
     <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 5px 0" %>
   </div>
+
+    <script type="text/javascript">
+        /* Initialize your widget via javascript as follows */
+        $("#input-avatar").fileinput({
+            browseClass: "btn btn-primary btn-block",
+            showCaption: false,
+            showRemove: false,
+            showUpload: false
+        });
+    </script>
 
 <% end %>

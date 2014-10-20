@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :articles
 
   resources :users
+  match 'users/crop/:id' => 'users#crop', via: [:post]
 
   resources :sessions, only: [:new, :create, :destroy] do
     get :switch_format, on: :collection
