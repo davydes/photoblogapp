@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
+  VALID_NAME_REGEX = /[a-z]/i
   validates :name,
             presence: true,
-            length: { maximum: 50 }
+            format: { with: VALID_NAME_REGEX },
+            length: { maximum: 50 },
+            uniqueness: { case_sensitive: false }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,
@@ -28,7 +31,10 @@ class User < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   has_secure_password
-  before_save { self.email = email.downcase }
+  before_save {
+    self.email = email.downcase
+    self.name = name.downcase
+  }
   before_create :create_remember_token
 
   has_many :articles

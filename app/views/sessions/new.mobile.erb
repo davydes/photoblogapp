@@ -7,7 +7,7 @@
 <div id="client-side-alert-error"></div>
 <%= form_for(:session, url: sessions_path, html: {id: "login-form", "data-rel" => "dialog"}) do |f| %>
   <fieldset data-role="control-group">
-    <%= f.text_field :email, :class => 'form-control' %>
+    <%= f.text_field :login, :class => 'form-control' %>
   </fieldset>
   <fieldset data-role="control-group">
     <%= f.password_field :password, :class => 'form-control' %>
