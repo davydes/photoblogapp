@@ -40,7 +40,7 @@
 body { min-width: 300px }
 
 #logo-icon {
-  background: url('camera-lens-icon.png') 100% 100% no-repeat;
+  background: url(<%= asset_path 'camera-lens-icon.png' %>) 100% 100% no-repeat;
   width: 48px;
   height: 48px;
   float: left;
@@ -108,7 +108,7 @@ pre.debug_dump {
   margin: 0 5px 0 0;
   width: 32px;
   height: 32px;
-  background-image: url(avatar.png);
+  background-image: url(<%= asset_path 'avatar.png' %>);
   overflow: hidden;
   float:left;
 }
