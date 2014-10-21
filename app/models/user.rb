@@ -13,11 +13,17 @@ class User < ActiveRecord::Base
                        :length   => { :within => 6..40 },
                        :if       => :password_changed?
 
-  has_attached_file :avatar, :styles => { :thumb => "32x32#", :original => "500x500>" },
-                    :processors => [:cropper, :thumbnail],
+  has_attached_file :avatar,
+                    :styles => {
+                        :original => {
+                            :processors => [:cropper, :thumbnail],
+                            :geometry => "500x500>"
+                        },
+                        :thumb => "32x32!"
+                    },
                     :default_url => "avatar.png"
   validates_attachment_presence :avatar
-  validates_attachment_size :avatar, :less_than => 5.megabytes
+  validates_attachment_size :avatar, :less_than => 500.kilobytes
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 

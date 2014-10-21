@@ -20,7 +20,12 @@
               <li><%= link_to t('users.label'), users_path %></li>
               <li id="fat-menu" class="dropdown">
                 <a id="loggedin_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= image_tag current_user.avatar.url(:thumb), style: 'margin-right:5px' %><%=current_user.name %><b class="caret"></b>
+                  <div id="panel-avatar">
+                    <img src="<%=current_user.avatar.url(:thumb)%>">
+                  </div>
+                  <div id="panel-login">
+                  <%= current_user.name %><b class="caret"></b>
+                  </div>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to t('sessions.profile'), current_user %></li>
