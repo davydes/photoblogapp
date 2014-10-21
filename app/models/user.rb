@@ -20,9 +20,10 @@ class User < ActiveRecord::Base
                     :styles => {
                         :original => {
                             :processors => [:cropper, :thumbnail],
-                            :geometry => "500x500>"
+                            :geometry => "500x500>",
+                            :format => :png
                         },
-                        :thumb => "32x32!"
+                        :thumb => ["32x32!", :png]
                     },
                     :default_url => "avatar.png"
   validates_attachment_presence :avatar
