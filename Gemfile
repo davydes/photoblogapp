@@ -49,4 +49,6 @@ gem 'twitter-bootstrap-rails', '3.2.0'
 
 gem "paperclip", "~> 4.2"
 
+gem 'rails_12factor', :group => :production
+
 ruby "2.1.3"
