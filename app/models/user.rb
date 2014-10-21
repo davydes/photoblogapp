@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                     },
                     :default_url => "avatar.png"
   validates_attachment_presence :avatar
-  validates_attachment_size :avatar, :less_than => 500.kilobytes
+  validates_attachment_size :avatar, :less_than => 1.megabytes
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_many :articles
+  has_many :photos
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -65,9 +66,5 @@ class User < ActiveRecord::Base
 
   def create_remember_token
     self.remember_token = User.digest(User.new_remember_token)
-  end
-
-  def reprocess_avatar
-    avatar.reprocess!
   end
 end

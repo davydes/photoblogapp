@@ -4,12 +4,7 @@
     <script type="text/javascript">
         $(function() {
             $('#cropbox').Jcrop({
-                addClass: 'jcrop-dark'
-            });
-        });
-
-        $(function() {
-            $('#cropbox').Jcrop({
+                addClass: 'jcrop-dark',
                 onChange: update_crop,
                 onSelect: update_crop,
                 setSelect: [0, 0, 500, 500],
