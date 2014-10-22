@@ -21,7 +21,7 @@
               <li id="fat-menu" class="dropdown">
                 <a id="loggedin_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <div id="panel-avatar">
-                    <img src="<%=current_user.avatar.url(:thumb)%>">
+                    <%= image_tag current_user.avatar.url(:thumb) %>
                   </div>
                   <div id="panel-login">
                   <%= current_user.name %><b class="caret"></b>

@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
                         :thumb => ["32x32!", :png]
                     },
                     :default_url => "avatar.png"
-  validates_attachment_presence :avatar
   validates_attachment_size :avatar, :less_than => 1.megabytes
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
@@ -38,8 +37,8 @@ class User < ActiveRecord::Base
   }
   before_create :create_remember_token
 
-  has_many :articles
-  has_many :photos
+  has_many :articles, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
