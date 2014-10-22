@@ -76,3 +76,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Paperclip::Attachment.default_options.update({
+    :storage => :fog,
+    :fog_credentials => "#{Rails.root}/config/gce.yml",
+    :fog_public => true,
+    :fog_directory => "photoblogapp"
+})

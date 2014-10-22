@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', :group => [:development, :test]
-gem 'pg', :group => [:production]
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,18 +36,19 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
-
+#gem 'debugger', group: [:development, :test]
 
 gem 'jquery_mobile_rails', '1.4.4'
 gem 'russian'
-
 gem 'therubyracer', '0.12.1'
 gem 'less-rails', '2.5.0'
 gem 'twitter-bootstrap-rails', '3.2.0'
-
 gem "paperclip", "~> 4.2"
 
-gem 'rails_12factor', :group => :production
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'fog' , :git => 'https://github.com/fog/fog.git'
+end
 
 ruby "2.1.3"
