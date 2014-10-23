@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users
   match 'users/crop/:id' => 'users#crop', via: [:post]
 
+  resources :photos
+
   resources :sessions, only: [:new, :create, :destroy] do
     get :switch_format, on: :collection
   end

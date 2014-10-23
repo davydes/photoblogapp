@@ -19,12 +19,15 @@ class PhotosController < ApplicationController
   end
 
   def create
+    render plain: params[:photo].class.name unless params[:photo].nil?
+=begin
     @photo = current_user.photos.new(photo_new_params)
     if @photo.save
       redirect_to @photo, notice: 'Photo uploaded successfully.'
     else
       render :new
     end
+=end
   end
 
   def update
