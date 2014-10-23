@@ -8,7 +8,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem "jquery-fileupload-rails"
+gem "jquery.fileupload-rails"
 gem 'jquery_mobile_rails', '1.4.4'
 
 gem 'russian'
