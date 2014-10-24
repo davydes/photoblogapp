@@ -44,19 +44,14 @@
 <script type="application/javascript">
     $(function () {
         $('#fileupload').fileupload({
-            dataType: 'json'
+            dataType: 'json',
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: 5000000, // 5 MB
+            minFileSize: 100000, // 100 KB
+            maxNumberOfFiles: 10
         });
 
         $('#fileupload').addClass('fileupload-processing');
-        $.ajax({
-            dataType: 'json',
-            context: $('#fileupload')[0]
-        }).always(function () {
-            $(this).removeClass('fileupload-processing');
-        }).done(function (result) {
-            $(this).fileupload('option', 'done')
-                    .call(this, $.Event('done'), {result: result});
-        });
     });
 </script>
 

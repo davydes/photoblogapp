@@ -5,13 +5,14 @@ class Photo < ActiveRecord::Base
   has_attached_file :image,
                     :styles => {
                         :original => ["2048x2048>", :jpg],
-                        :medium => ["500x500>", :jpg],
+                        :medium => ["720x720>", :jpg],
                         :thumb => ["150x150#", :jpg]
                     }
 
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  validates_attachment_presence :image
-  validates_attachment_size :image, :less_than => 5.megabytes
+  validates_attachment :image,
+                       presence: true,
+                       content_type: { content_type: /\Aimage\/.*\Z/ },
+                       size: { in: 100.kilobytes..5.megabytes }
 
   belongs_to :user
 end

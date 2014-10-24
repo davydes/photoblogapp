@@ -21,13 +21,12 @@ class PhotosController < ApplicationController
     @photo = current_user.photos.new()
     @photo.title = params[:image][0].original_filename
     @photo.image = params[:image][0]
-
     if @photo.save
       render file: '/photos/photo.json.erb',
              content_type: 'application/json'
     else
-      render json: @photo.errors,
-             status: :unprocessable_entity
+      render file: '/photos/errors.json.erb',
+             content_type: 'application/json'
     end
   end
 
@@ -41,14 +40,18 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo.destroy
-    redirect_to photos_url, notice: 'Photo was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      format.json { render file: '/photos/photo.json.erb',
+                           content_type: 'application/json' }
+    end
   end
 
   private
 
   def set_photo
     if current_user.admin?
-      @photo = Article.find(params[:id])
+      @photo = Photos.find(params[:id])
     else
       @photo = current_user.photos.find(params[:id])
     end
