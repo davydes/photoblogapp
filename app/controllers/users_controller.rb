@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new
+    flash[:alert] = 'Регестрация запрещена!'
+    render :action => :new
+=begin
     @user = User.new(user_params)
     if @user.save
       sign_in @user
@@ -34,6 +38,7 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+=end
   end
 
   def edit
