@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
-//= require fileinput.min
-//= require jquery.fileupload
+
 //= require_directory .

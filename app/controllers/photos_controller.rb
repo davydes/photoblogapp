@@ -12,26 +12,27 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
   end
 
   def edit
   end
 
   def create
-    render plain: params[:photo].class.name unless params[:photo].nil?
-=begin
-    @photo = current_user.photos.new(photo_new_params)
+    @photo = current_user.photos.new()
+    @photo.title = params[:image][0].original_filename
+    @photo.image = params[:image][0]
+
     if @photo.save
-      redirect_to @photo, notice: 'Photo uploaded successfully.'
+      render file: '/photos/photo.json.erb',
+             content_type: 'application/json'
     else
-      render :new
+      render json: @photo.errors,
+             status: :unprocessable_entity
     end
-=end
   end
 
   def update
-    if @photo.update(photo_upd_params)
+    if @photo.update(photo_update_params)
       redirect_to @photo, notice: 'Photo was successfully updated.'
     else
       render :edit
@@ -51,10 +52,6 @@ class PhotosController < ApplicationController
     else
       @photo = current_user.photos.find(params[:id])
     end
-  end
-
-  def photo_new_params
-    params.require(:photo).permit(:title, :description, :image)
   end
 
   def photo_update_params

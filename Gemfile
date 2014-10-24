@@ -8,7 +8,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem "jquery.fileupload-rails"
 gem 'jquery_mobile_rails', '1.4.4'
 
 gem 'russian'
@@ -18,13 +17,11 @@ gem "paperclip", "~> 4.2"
 gem 'spring',  group: :development
 gem 'sqlite3', :group => [:development, :test]
 
-group :assets do
-  gem 'sass-rails', '~> 4.0.3'
-  gem 'uglifier', '>= 1.3.0'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'therubyracer',  platforms: :ruby
-  gem 'less-rails', '2.5.0'
-end
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer',  platforms: :ruby
+gem 'less-rails', '2.5.0'
 
 group :production do
   gem 'pg'
