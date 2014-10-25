@@ -3,6 +3,11 @@ en:
     label:
       last100: "Last 100 photos"
     uploader:
+      messages:
+        uploadLimit:
+         zero: "You can not upload image today"
+         one: "You can upload one image today"
+         other: "You can upload %{count} images today"
       ui:
         b_add_files: "Add files..."
         b_start_upload: "Start Upload"

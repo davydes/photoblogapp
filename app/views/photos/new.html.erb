@@ -78,6 +78,14 @@
   <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 <% end %>
 
+<%if @maxFiles < 1%>
+    <script type="application/javascript">
+        $("#fileupload :button").attr("disabled", true);
+        $("#fileupload :input").attr("disabled", true);
+        $(".fileinput-button").attr("disabled", true);
+    </script>
+<%end%>
+
 <script type="application/javascript">
     $(function () {
         $('#fileupload').fileupload({
@@ -85,7 +93,7 @@
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             maxFileSize: 5000000, // 5 MB
             minFileSize: 100000, // 100 KB
-            maxNumberOfFiles: 10,
+            maxNumberOfFiles: <%= @maxFiles %>,
             messages: {
                 maxNumberOfFiles: '<%=t 'photos.uploader.ui.js_errors.maxNumberOfFiles'%>',
                 acceptFileTypes: '<%=t 'photos.uploader.ui.js_errors.acceptFileTypes'%>',
