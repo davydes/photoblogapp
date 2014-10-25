@@ -1,0 +1,6 @@
+ru:
+  photos:
+    uploader:
+      errors:
+        exceeds_daily_limit: "Превышен дневной лимит"
+        exceeds_weekly_limit: "Превышен недельный лимит"

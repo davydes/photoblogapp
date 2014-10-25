@@ -1,0 +1,6 @@
+en:
+  photos:
+    uploader:
+      errors:
+        exceeds_daily_limit: "Exceeds daily limit"
+        exceeds_weekly_limit: "Exceeds weekly limit"

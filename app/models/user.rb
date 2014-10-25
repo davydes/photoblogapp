@@ -38,7 +38,14 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_many :articles, :dependent => :destroy
-  has_many :photos, :dependent => :destroy
+  has_many :photos, :dependent => :destroy do
+    def today
+      where(:created_at => (Time.now.beginning_of_day..Time.now))
+    end
+    def this_week
+      where(:created_at => (Time.now.beginning_of_week..Time.now))
+    end
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
