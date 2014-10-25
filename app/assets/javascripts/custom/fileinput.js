@@ -1,1 +1,1 @@
-//= require fileinput.min
+//= require fileinput/fileinput

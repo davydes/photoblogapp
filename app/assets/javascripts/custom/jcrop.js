@@ -1,1 +1,1 @@
-//= require jquery.Jcrop.min
+//= require jcrop/jquery.Jcrop.min
