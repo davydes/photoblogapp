@@ -22,12 +22,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
-    flash[:alert] = 'Регестрация запрещена!'
-    render :action => :new
-=begin
     @user = User.new(user_params)
-    if @user.save
+    if @user.valid? && verify_recaptcha(:model => @user) && @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
       if user_params[:avatar].blank?
@@ -36,9 +32,10 @@ class UsersController < ApplicationController
         render 'crop_ava'
       end
     else
+      flash.delete(:recaptcha_error)
       render 'new'
     end
-=end
+
   end
 
   def edit

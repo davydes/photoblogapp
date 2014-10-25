@@ -23,7 +23,7 @@
     </div>
   <% end %>
 
-  <div class="control-group" style="width: 300px; margin: 0 auto">
+  <div class="control-group" style="width: 318px; margin: 0 auto">
     <%= f.label t('users.name'), :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'form-control' %>
@@ -44,6 +44,7 @@
     <div class="control">
       <%= f.file_field :avatar, id: 'input-avatar'%>
     </div>
+    <%= (recaptcha_tags display: { theme: 'blackglass' }) if (mode == 'create') %>
     <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 5px 0" %>
   </div>
 

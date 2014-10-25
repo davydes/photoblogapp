@@ -13,6 +13,7 @@ gem 'jquery_mobile_rails', '1.4.4'
 gem 'russian'
 gem 'twitter-bootstrap-rails', '3.2.0'
 gem "paperclip", "~> 4.2"
+gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'spring',  group: :development
 gem 'sqlite3', :group => [:development, :test]

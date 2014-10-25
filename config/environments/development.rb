@@ -36,3 +36,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+Recaptcha.configure do |config|
+  config.public_key  = '6LfZnPwSAAAAAHvtLLYzUh9Z-Jq-4p8YRtipE3mt'
+  config.private_key = '6LfZnPwSAAAAAI9aGCcfYS8QE6IwMG1qlFcEWH6v'
+  #config.proxy = 'http://myproxy.com.au:8080'
+end
