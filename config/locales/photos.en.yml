@@ -1,6 +1,23 @@
 en:
   photos:
+    label:
+      last100: "Last 100 photos"
     uploader:
+      ui:
+        b_add_files: "Add files..."
+        b_start_upload: "Start Upload"
+        b_cancel_upload: "Cancel Upload"
+        b_delete: "Delete"
+        b_start: "Start"
+        b_cancel: "Cancel"
+        l_error: "Error"
+        l_processing: "Processing..."
+        js_errors:
+          maxNumberOfFiles: 'Maximum number of files exceeded'
+          acceptFileTypes: 'File type not allowed'
+          maxFileSize: 'File is too large'
+          minFileSize: 'File is too small'
+          unknownError: 'Unknown error'
       errors:
         exceeds_daily_limit: "Exceeds daily limit"
         exceeds_weekly_limit: "Exceeds weekly limit"

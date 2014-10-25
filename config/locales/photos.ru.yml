@@ -1,6 +1,23 @@
 ru:
   photos:
+    label:
+      last100: "Последние 100 фотографий"
     uploader:
+      ui:
+        b_add_files: "Добавить файлы..."
+        b_start_upload: "Загрузить"
+        b_cancel_upload: "Оменить"
+        b_delete: "Удалить"
+        b_start: "Загрузить"
+        b_cancel: "Омена"
+        l_error: "Ошибка"
+        l_processing: "Обработка..."
+        js_errors:
+          maxNumberOfFiles: 'Превышено максимальное количество'
+          acceptFileTypes: 'Данный тип файлов запрещен'
+          maxFileSize: 'Файл слишком большой'
+          minFileSize: 'Файл слишком маленький'
+          unknownError: 'Неизвестная ошибка'
       errors:
         exceeds_daily_limit: "Превышен дневной лимит"
         exceeds_weekly_limit: "Превышен недельный лимит"
