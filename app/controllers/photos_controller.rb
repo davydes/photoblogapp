@@ -13,15 +13,15 @@ class PhotosController < ApplicationController
 
   def new
     @maxFiles = [Photo::LIMIT_PHOTOS_DAILY - current_user.photos.today.count, Photo::LIMIT_PHOTOS_WEEKLY - current_user.photos.this_week.count].min
-    flash[@maxFiles > 0 ? :notice : :error] = I18n.t 'photos.uploader.messages.uploadLimit', count: @maxFiles
+    flash.now[@maxFiles > 0 ? :notice : :error] = I18n.t 'photos.uploader.messages.uploadLimit', count: @maxFiles
   end
 
   def edit
   end
 
   def create
-    if (!params[:image].is_a?(Array)) or params[:image].size != 1
-      render plain: 'upload bug'
+    if params[:image].nil? or (!params[:image].is_a?(Array)) or params[:image].size != 1
+      redirect_to new_photo_url
       return
     end
     @photo = current_user.photos.new()
