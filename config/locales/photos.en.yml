@@ -2,6 +2,7 @@ en:
   photos:
     label:
       last100: "Last 100 photos"
+      upload: "Upload photos"
     uploader:
       messages:
         uploadLimit:
