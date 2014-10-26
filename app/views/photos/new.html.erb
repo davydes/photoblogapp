@@ -87,7 +87,8 @@
 <%end%>
 
 <script type="application/javascript">
-    $(function () {
+    var loadPlugin = function () {
+        console.info('Load JQuery FileUpload Plugin');
         $('#fileupload').fileupload({
             dataType: 'json',
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
@@ -104,17 +105,19 @@
         });
 
         // loading animation
-       $('#fileupload').addClass('fileupload-processing');
-       $.ajax({
-           dataType: 'json',
-           context: $('#fileupload')[0]
-       }).always(function () {
-           $(this).removeClass('fileupload-processing');
-       }).done(function (result) {
-           $(this).fileupload('option', 'done')
-                   .call(this, $.Event('done'), {result: result});
-       });
-    });
+        $('#fileupload').addClass('fileupload-processing');
+        $.ajax({
+            dataType: 'json',
+            context: $('#fileupload')[0]
+        }).always(function () {
+            $(this).removeClass('fileupload-processing');
+        }).done(function (result) {
+            $(this).fileupload('option', 'done')
+                    .call(this, $.Event('done'), {result: result});
+        });
+    };
+    $(document).ready(loadPlugin);
+    $(document).on('page:load',loadPlugin);
 </script>
 
 <!-- The template to display files available for upload -->
