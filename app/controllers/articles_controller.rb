@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    @photos = Photo.all
   end
 
   def show
