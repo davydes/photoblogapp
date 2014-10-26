@@ -80,9 +80,13 @@
 
 <%if @maxFiles < 1%>
     <script type="application/javascript">
-        $("#fileupload :button").attr("disabled", true);
-        $("#fileupload :input").attr("disabled", true);
-        $(".fileinput-button").attr("disabled", true);
+        var disableButtons = function () {
+            $("#fileupload :button").attr("disabled", true);
+            $("#fileupload :input").attr("disabled", true);
+            $(".fileinput-button").attr("disabled", true);
+        }
+        $(document).ready(disableButtons);
+        $(document).on('page:load',disableButtons);
     </script>
 <%end%>
 

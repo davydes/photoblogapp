@@ -20,13 +20,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    if params[:image].nil? or (!params[:image].is_a?(Array)) or params[:image].size != 1
-      redirect_to new_photo_url
-      return
-    end
+    image = image_param
     @photo = current_user.photos.new()
-    @photo.title = params[:image][0].original_filename
-    @photo.image = params[:image][0]
+    @photo.title, @photo.image = image.original_filename, image
     if @photo.save
       render file: '/photos/photo.json.erb',
              content_type: 'application/json'
@@ -61,6 +57,11 @@ class PhotosController < ApplicationController
     else
       @photo = current_user.photos.find(params[:id])
     end
+  end
+
+  def image_param
+    image = params.require(:image)
+    image[0] if image.is_a?(Array)
   end
 
   def photo_update_params
