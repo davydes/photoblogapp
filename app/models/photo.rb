@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
   has_attached_file :image,
                     :styles => {
                         :original => ["2048x2048>", :jpg],
-                        :medium => ["720x720>", :jpg],
+                        :medium => ["1280x720>", :jpg],
                         :thumb => ["150x150#", :jpg]
                     }
 
