@@ -15,6 +15,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    @user.drop_password_reset_token
     if @user.update_attributes(user_reset_pwd_params)
       redirect_to signin_url, :notice => t('users.password_reset.password_reset')
     else
@@ -26,6 +27,8 @@ class PasswordResetsController < ApplicationController
 
   def set_user
     @user = User.find_by_password_reset_token!(params[:id])
+  rescue
+    redirect_to new_password_reset_path, :alert => t('users.password_reset.link_expired')
   end
 
   def check_expiration

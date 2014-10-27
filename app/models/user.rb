@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  def drop_password_reset_token
+    update_attribute(:password_reset_token, nil)
+  end
+
   def new_remember_token
     generate_token(:remember_token)
   end
