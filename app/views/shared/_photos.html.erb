@@ -38,6 +38,6 @@
 </div>
 <div id="links">
   <% @photos.each do |photo| %>
-      <a href="<%= photo.image.url(:medium) %>" title="<%= photo.title %>" data-gallery><img src="<%= photo.image.url(:thumb) %>" alt="<%= photo.title %>"></a>
+      <a href="<%= photo.get_url(:medium) %>" title="<%= photo.title %>" data-gallery><img src="<%= photo.get_url(:thumb) %>" alt="<%= photo.title %>"></a>
   <% end %>
 </div>

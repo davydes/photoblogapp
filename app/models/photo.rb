@@ -22,6 +22,18 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
+  def get_url(style)
+    if Rails.env.production?
+      data = "photos/images/#{self.id}"
+      hash_secret = Paperclip::Attachment.default_options[:hash_secret]
+      hash_digest = Paperclip::Attachment.default_options[:hash_digest]
+      hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, data)
+      "https://photoblogapp.storage.googleapis.com/photos/images/#{hash}/#{self.id}_#{style}.jpg"
+    else
+      image.url(style)
+    end
+  end
+
   private
 
   def user_quota
