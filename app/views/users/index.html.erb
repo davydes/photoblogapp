@@ -18,7 +18,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.id, user_path(user) %></td>
-        <td> <%= image_tag user.avatar.url(:thumb), style: "margin-right:5px"%><%= user.name %></td>
+        <td> <%= image_tag user.get_avatar_url(:thumb), style: "margin-right:5px"%><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%=l user.created_at %></td>
         <% if current_user.admin? %>
