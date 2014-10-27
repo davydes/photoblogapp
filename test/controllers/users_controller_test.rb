@@ -2,10 +2,16 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   include SessionsHelper
+  include Recaptcha
 
   setup do
     @user = users(:user_1)
     @admin = users(:admin_user)
+    Recaptcha.configure do |config|
+      config.public_key  = '6Lc6BAAAAAAAAChqRbQZcn_yyyyyyyyyyyyyyyyy'
+      config.private_key = '6Lc6BAAAAAAAAKN3DRm6VA_xxxxxxxxxxxxxxxxx'
+      config.proxy = 'http://myproxy.com.au:8080'
+    end
   end
 
   test "should get index" do
@@ -24,7 +30,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { email: 'test_create@mail.org', name: 'create_test', password: 'password', password_confirmation: 'password' }
+      post :create, user: { email: 'test_create@test.org', name: 'create_test', password: 'password', password_confirmation: 'password' }
     end
 
     assert_redirected_to user_path(assigns(:user))

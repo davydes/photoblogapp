@@ -1,0 +1,4 @@
+ru:
+  user_mailer:
+      password_reset:
+          subject: "Сброс пароля"

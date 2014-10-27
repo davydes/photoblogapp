@@ -1,5 +1,14 @@
 class SessionsController < ApplicationController
+  def index
+    if signed_in?
+      redirect_to :root
+    else
+      render 'new'
+    end
+  end
+
   def new
+    redirect_to current_user if signed_in?
   end
 
   def create
@@ -10,7 +19,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back_or user
     else
-      flash.now[:error] = 'Invalid login/password combination'
+      flash.now[:error] = t('users.login_incorrect')
       render 'new'
     end
   end

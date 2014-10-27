@@ -1,5 +1,4 @@
 ru:
-
   helpers:
     submit:
       user:
@@ -33,3 +32,12 @@ ru:
     email: "E-mail"
     password: "Пароль"
     password_confirmation: "Подтверждение"
+    login_incorrect: "Пароль или Имя введено неверно"
+
+    password_reset:
+      label: "Смена пароля"
+      forgot_password: "Забыли пароль?"
+      email_sent: "Вам отправлен email с дальнейшими инструкциями"
+      password_reset: "Пароль успешно установлен"
+      link_expired: "Ссылка больше не действительна"
+

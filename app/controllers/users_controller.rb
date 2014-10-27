@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    redirect_to current_user if signed_in?
     @user = User.new
   end
 
@@ -25,7 +26,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid? && verify_recaptcha(:model => @user) && @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
       if user_params[:avatar].blank?
         redirect_to @user
       else

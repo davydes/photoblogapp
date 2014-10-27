@@ -21,3 +21,11 @@ en:
     password: "Password"
     password_confirmation: "Confirmation"
     create_button: "Sign Up"
+    login_incorrect: "Invalid Password or Username"
+
+    password_reset:
+      label: "Reset password"
+      forgot_password: "forgotten password?"
+      email_sent: "Email sent with password reset instructions"
+      password_reset: "Password has been reset"
+      link_expired: "Password reset has expired."

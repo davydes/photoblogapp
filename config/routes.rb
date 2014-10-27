@@ -1,22 +1,20 @@
 Rails.application.routes.draw do
-  resources :articles
 
   resources :users
   match 'users/crop/:id' => 'users#crop', via: [:post]
 
-  resources :photos
-
-  resources :sessions, only: [:new, :create, :destroy] do
+  resources :sessions, only: [:index, :new, :create, :destroy] do
     get :switch_format, on: :collection
   end
-
+  resources :password_resets
   get '/signup', to: 'users#new'
   get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'
-
   get '/locale/english'
   get '/locale/russian'
 
+  resources :photos
+  resources :articles
   root 'articles#index'
 
   # Example of regular route:

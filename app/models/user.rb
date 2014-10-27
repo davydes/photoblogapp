@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
     self.email = email.downcase
     self.name = name.downcase
   }
-  before_create :create_remember_token
 
   has_many :articles, :dependent => :destroy
   has_many :photos, :dependent => :destroy do
@@ -45,10 +44,6 @@ class User < ActiveRecord::Base
     def this_week
       where(:created_at => (Time.now.beginning_of_week..Time.now))
     end
-  end
-
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
   end
 
   def User.digest(token)
@@ -64,13 +59,28 @@ class User < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
   end
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    update_attribute(:password_reset_sent_at, Time.zone.now)
+    UserMailer.password_reset(self).deliver
+  end
+
+  def new_remember_token
+    generate_token(:remember_token)
+  end
+
   private
 
   def password_changed?
     !@password.blank? or password_digest.blank?
   end
 
-  def create_remember_token
-    self.remember_token = User.digest(User.new_remember_token)
+  def generate_token(column)
+    begin
+      token = SecureRandom.urlsafe_base64
+      digest_token =  User.digest(token)
+    end while User.exists?(column => digest_token)
+    update_attribute(column, digest_token)
+    return token
   end
 end

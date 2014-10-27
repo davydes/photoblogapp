@@ -12,4 +12,5 @@ user_<%= n %>:
   name:  <%= "User #{n+1}" %>
   email: <%= "user-#{n+1}@example.com" %>
   password_digest: <%= User.digest('password') %>
+  password_reset_token: <%= User.digest(SecureRandom.urlsafe_base64) %>
 <% end %>
