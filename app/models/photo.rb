@@ -24,6 +24,9 @@ class Photo < ActiveRecord::Base
 
   def get_url(style)
     if Rails.env.production?
+      # default url
+      return image.url(style) unless image.exests?
+      # get GAPI Url
       data = "photos/images/#{self.id}"
       hash_secret = Paperclip::Attachment.default_options[:hash_secret]
       hash_digest = Paperclip::Attachment.default_options[:hash_digest]

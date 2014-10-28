@@ -75,13 +75,16 @@ class User < ActiveRecord::Base
 
   def get_avatar_url(style)
     if Rails.env.production?
+      # default url
+      return avatar.url(style) unless avatar.exists?
+      # get GAPI url
       data = "users/avatars/#{self.id}"
       hash_secret = Paperclip::Attachment.default_options[:hash_secret]
       hash_digest = Paperclip::Attachment.default_options[:hash_digest]
       hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, data)
       "https://photoblogapp.storage.googleapis.com/users/avatars/#{hash}/#{self.id}_#{style}.png"
     else
-      image.url(style)
+      avatar.url(style)
     end
   end
 
