@@ -36,10 +36,23 @@
     </div>
   </div>
 </div>
-<div id="links">
-  <% @photos.each do |photo| %>
-      <%= link_to photo_url photo do %>
-        <img src="<%= photo.get_url(:thumb) %>" alt="<%= photo.title %>"></a>
+
+<div class="page-header">
+  <h1><%= @photo.title %>
+    <%= link_to @photo.user.name, user_path(@photo.user), class: "btn btn-warning btn-xs" %>
+    <% if admin_or_current?(@photo.user) %>
+      <%= link_to edit_photo_path(@photo), class: "btn btn-danger btn-xs" do %>
+        <span class='glyphicon glyphicon-edit'></span></a>
       <% end %>
+      <%= link_to photo_path(@photo), data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
+        <span class='glyphicon glyphicon-trash'></span>
+      <% end %>
+    <% end %>
+  </h1>
+</div>
+
+<div class="span7 text-center">
+  <%= link_to @photo.get_url(:original), :title => @photo.title, 'data-gallery' => '' do %>
+    <%= image_tag @photo.get_url(:medium), :alt => @photo.title %>
   <% end %>
 </div>
