@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-    @photos = Photo.all
+    @photos = Photo.all.order('created_at DESC').limit(100)
   end
 
   def show
