@@ -6,17 +6,16 @@
 <script type="text/javascript" charset="utf-8">
     var loadGallery = function () {
         jQuery("#nanoGallery").nanoGallery({
-          thumbnailWidth: 100,
-          thumbnailHeight: 100,
-          thumbnailLabel: {display: false},
-          thumbnailDisplayInterval: 10,
-          thumbnailDisplayTransition: true,
-          paginationMaxLinesPerPage: 1,
-          thumbnailHoverEffect: [{'name': 'scale120'}]
-      });
-  }
-  $(document).ready(loadGallery);
-  $(document).on('load', loadGallery);
+            thumbnailWidth: 100,
+            thumbnailHeight: 100,
+            thumbnailLabel: {display: false},
+            thumbnailDisplayInterval: 10,
+            thumbnailDisplayTransition: true,
+            paginationMaxLinesPerPage: 1,
+            thumbnailHoverEffect: [{'name': 'scale120'}]
+        });
+    }
+    $(document).ready(loadGallery);
 </script>
 
 <div class="page-header"><h1><%= t 'photos.label.last100' %></h1></div>
