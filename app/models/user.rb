@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
   def get_avatar_url(style)
     if Rails.env.production?
       # default url
-      return avatar.url(style) unless avatar.exists?
+      return avatar.url(style) unless avatar?
       # get GAPI url
       data = "users/avatars/#{self.id}"
       hash_secret = Paperclip::Attachment.default_options[:hash_secret]
