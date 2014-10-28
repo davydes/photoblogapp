@@ -6,7 +6,7 @@
 <script type="application/javascript">
     var loadGallery = function () {
         $(document).ready(function () {
-            $("#nanoGallery").nanoGallery({
+            $("#gallery").nanoGallery({
                 thumbnailWidth: 'auto',
                 thumbnailHeight: 250,
                 thumbnailHoverEffect: [
@@ -22,14 +22,13 @@
         });
     }
     $(document).ready(loadGallery);
-    $(document).on('page:load', loadGallery);
 </script>
 
 <div class="page-header">
   <h1><%=t 'photos.label.last100'%></h1>
 </div>
 
-<div id="nanoGallery">
+<div id="gallery">
   <% @photos.each do |photo| %>
     <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:medium), 'data-ngdesc' => photo.user.name %>
   <% end %>

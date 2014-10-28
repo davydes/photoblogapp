@@ -4,8 +4,9 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-    var loadGallery = function () {
-        jQuery("#nanoGallery").nanoGallery({
+    var loadLastFilm = function () {
+        console.log('Load Last Film');
+        jQuery("#lastFilm").nanoGallery({
             thumbnailWidth: 100,
             thumbnailHeight: 100,
             thumbnailLabel: {display: false},
@@ -15,11 +16,11 @@
             thumbnailHoverEffect: [{'name': 'scale120'}]
         });
     }
-    $(document).ready(loadGallery);
+    $(document).ready(loadLastFilm);
 </script>
 
 <div class="page-header"><h1><%= t 'photos.label.last100' %></h1></div>
-<div id="nanoGallery">
+<div id="lastFilm">
   <% @photos.each do |photo| %>
       <%= link_to photo.title, photo.get_url(:original), 'data-ngdest' => photo_url(photo) ,'data-ngThumb' => photo.get_url(:thumb) %>
   <% end %>

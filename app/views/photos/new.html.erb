@@ -86,7 +86,6 @@
             $(".fileinput-button").attr("disabled", true);
         }
         $(document).ready(disableButtons);
-        $(document).on('page:load',disableButtons);
     </script>
 <%end%>
 
@@ -121,7 +120,6 @@
         });
     };
     $(document).ready(loadPlugin);
-    $(document).on('page:load',loadPlugin);
 </script>
 
 <!-- The template to display files available for upload -->

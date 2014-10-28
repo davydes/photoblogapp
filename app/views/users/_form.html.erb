@@ -50,13 +50,15 @@
 
   <script type="text/javascript">
     /* Initialize your widget via javascript as follows */
-    $("#input-avatar").fileinput({
-        browseClass: "btn btn-primary btn-block",
-        showCaption: false,
-        showRemove: false,
-        showUpload: false,
-        maxFileSize: 1024
+    $(document).ready(function () {
+      $("#input-avatar").fileinput({
+          browseClass: "btn btn-primary btn-block",
+          showCaption: false,
+          showRemove: false,
+          showUpload: false,
+          maxFileSize: 1024
+      });
     });
-   </script>
+  </script>
 
 <% end %>
