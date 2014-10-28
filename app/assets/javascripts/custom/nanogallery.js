@@ -1,0 +1,1 @@
+//= require nanogallery/jquery.nanogallery

@@ -1,5 +1,36 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+<% end %>
+
+<script type="application/javascript">
+$(document).ready(function () {
+  $("#nanoGallery").nanoGallery({
+    thumbnailWidth: 'auto',
+    thumbnailHeight: 250,
+    thumbnailHoverEffect: [
+        { name: 'labelAppear75', duration: 300 }
+    ],
+    thumbnailGutterWidth : 0,
+    thumbnailGutterHeight : 0,
+    theme: 'clean',
+    i18n: {
+        thumbnailImageDescription: 'View Photo',
+        thumbnailAlbumDescription: 'Open Album'
+    },
+    thumbnailLabel: {
+        position:'overImageOnBottom',
+        hideIcons:true}
+    });
+});
+</script>
+
 <div class="page-header">
   <h1><%=t 'photos.label.last100'%></h1>
 </div>
 
-<%= render 'shared/photos' %>
+<div id="nanoGallery">
+  <% @photos.each do |photo| %>
+    <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:medium) %>
+  <% end %>
+</div>
