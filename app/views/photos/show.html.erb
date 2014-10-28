@@ -53,6 +53,6 @@
 
 <div class="span7 text-center">
   <%= link_to @photo.get_url(:original), :title => @photo.title, 'data-gallery' => '' do %>
-    <%= image_tag @photo.get_url(:medium), :alt => @photo.title %>
+    <%= image_tag @photo.get_url(:medium), :alt => @photo.title, :id => 'main-photo' %>
   <% end %>
 </div>
