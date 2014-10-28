@@ -4,25 +4,25 @@
 <% end %>
 
 <script type="application/javascript">
-$(document).ready(function () {
-  $("#nanoGallery").nanoGallery({
-    thumbnailWidth: 'auto',
-    thumbnailHeight: 250,
-    thumbnailHoverEffect: [
-        { name: 'labelAppear75', duration: 300 }
-    ],
-    thumbnailGutterWidth : 0,
-    thumbnailGutterHeight : 0,
-    theme: 'clean',
-    i18n: {
-        thumbnailImageDescription: 'View Photo',
-        thumbnailAlbumDescription: 'Open Album'
-    },
-    thumbnailLabel: {
-        position:'overImageOnBottom',
-        hideIcons:true}
-    });
-});
+    var loadGallery = function () {
+        $(document).ready(function () {
+            $("#nanoGallery").nanoGallery({
+                thumbnailWidth: 'auto',
+                thumbnailHeight: 250,
+                thumbnailHoverEffect: [
+                    { name: 'labelAppear75', duration: 300 }
+                ],
+                thumbnailGutterWidth: 0,
+                thumbnailGutterHeight: 0,
+                theme: 'clean',
+                thumbnailLabel: {
+                    position: 'overImageOnBottom',
+                    hideIcons: true}
+            });
+        });
+    }
+    $(document).ready(loadGallery);
+    $(document).on('load', loadGallery);
 </script>
 
 <div class="page-header">
@@ -31,6 +31,6 @@ $(document).ready(function () {
 
 <div id="nanoGallery">
   <% @photos.each do |photo| %>
-    <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:medium) %>
+    <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:medium), 'data-ngdesc' => photo.user.name %>
   <% end %>
 </div>
