@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
                         },
                         :thumb => ["32x32!", :png]
                     },
-                    :default_url => "avatar.png"
+                    :default_url => "avatar_:style.png"
   validates_attachment_size :avatar, :less_than => 1.megabytes
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

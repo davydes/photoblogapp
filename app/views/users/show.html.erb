@@ -1,16 +1,56 @@
 <%= provide(:title, @user.name) %>
 <%- model_class = User -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %> "<%=@user.name%>"</h1>
-</div>
 
-<dl class="dl-horizontal">
-  <dt></dt>
-  <dd><%= image_tag @user.avatar.url(:original) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @user.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @user.email %></dd>
-  <dt><strong><%= Article.model_name.human.titleize %>:</strong></dt>
-  <dd><%= @user.articles.count %></dd>
-</dl>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @user.name %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"><%= image_tag @user.get_avatar_url(:original), alt: "User Pic", class: "img-circle user-avatar"%></div>
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td><%= model_class.human_attribute_name(:name) %>:</td>
+                  <td><%= @user.name %></td>
+                </tr>
+                <tr>
+                  <td><%= model_class.human_attribute_name(:email) %>:</td>
+                  <td><%= mail_to @user.email %></td>
+                </tr>
+                <tr>
+                  <td><%= t 'activerecord.models.photo', :count => @user.photos.count %>:</td>
+                  <td><%= @user.photos.count %></td>
+                </tr>
+                <tr>
+                  <td><%= t 'activerecord.models.article', :count => @user.articles.count %>:</td>
+                  <td><%= @user.articles.count %></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class  ="panel-footer">
+          <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+          <%# if current_user.admin? %>
+          <span class="pull-right">
+            <%= link_to edit_user_path(@user), {type: 'button', :class => "btn btn-sm btn-warning"} do %>
+                <i class="glyphicon glyphicon-edit"></i>
+            <% end %>
+            <%= link_to user_path(@user),
+                        {:method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-sm btn-danger'} do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+          </span>
+          <%# end %>
+        </div>
+
+      </div>
+  </div>
+</div>
