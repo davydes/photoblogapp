@@ -19,7 +19,7 @@
     $(document).ready(loadLastFilm);
 </script>
 
-<div class="page-header"><h1><%= t 'photos.label.last100' %></h1></div>
+<div class="page-header"><h1><%= link_to (t 'photos.label.last100'), photos_url %></h1></div>
 <div id="lastFilm">
   <% @photos.each do |photo| %>
       <%= link_to photo.title, photo.get_url(:original), 'data-ngdest' => photo_url(photo) ,'data-ngThumb' => photo.get_url(:thumb) %>
