@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   }
 
   has_many :articles, :dependent => :destroy
+  has_many :albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy do
     def today
       where(:created_at => (Time.now.beginning_of_day..Time.now))

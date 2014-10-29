@@ -2,6 +2,8 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   validate :user_quota, :on => :create
 
+  has_and_belongs_to_many :photos
+
   LIMIT_PHOTOS_DAILY = 5
   LIMIT_PHOTOS_WEEKLY = 15
   LIMIT_PHOTO_SIZE_UP = 5.megabytes

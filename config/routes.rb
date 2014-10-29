@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :albums
+
   resources :users
   match 'users/crop/:id' => 'users#crop', via: [:post]
 

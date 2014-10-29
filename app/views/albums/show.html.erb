@@ -1,0 +1,37 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+<% end %>
+
+<script type="application/javascript">
+    var loadGallery = function () {
+        $(document).ready(function () {
+            $("#gallery").nanoGallery({
+                thumbnailWidth: 'auto',
+                thumbnailHeight: 240,
+                thumbnailHoverEffect: [
+                    { name: 'labelAppear75', duration: 300 }
+                ],
+                thumbnailGutterWidth: 4,
+                thumbnailGutterHeight: 4,
+                theme: 'clean',
+                thumbnailLabel: {
+                    position: 'overImageOnBottom',
+                    hideIcons: true}
+            });
+        });
+    }
+    $(document).ready(loadGallery);
+</script>
+
+<div class="wrap-container">
+  <div class="page-header">
+    <h3>Album "<%= @album.title %>"</h3>
+  </div>
+
+  <div id="gallery">
+    <% @album.  photos.each do |photo| %>
+        <%= link_to photo.title, photo.get_url(:medium), 'data-ngThumb' => photo.get_url(:small), 'data-ngdesc' => photo.user.name %>
+    <% end %>
+  </div>
+</div>
