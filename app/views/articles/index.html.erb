@@ -2,7 +2,7 @@
 <% if !@articles.empty? %>
 <% first_article = @articles.first %>
 <div class="jumbotron">
-  <h1><%= first_article.title%></h1>
+  <h2><%= first_article.title%></h2>
   <p><%= first_article.content %></p>
   <p><%= link_to "more", article_path(first_article), class: "btn btn-primary btn-lg", role: "button" %></p>
 </div>
