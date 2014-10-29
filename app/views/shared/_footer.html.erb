@@ -1,5 +1,5 @@
 <footer class="footer">
-  <div class="container">
+  <div style="margin: 0 20px">
   <nav>
     &copy; evgeny davydov 2014
     <ul>
@@ -10,9 +10,9 @@
           <%= link_to_unless I18n.locale == :ru, "RUS", locale_russian_path %>
         </p>
       </li>
-      <li>
+      <!--li>
         <%= link_to t('mobile_version'), switch_format_sessions_path(preferred_format: 'mobile') %>
-      </li>
+      </li-->
       <li><%= link_to t('footer.contacts'), 'mailto:davydes@gmail.com' %></li>
     </ul>
   </nav>

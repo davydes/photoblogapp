@@ -11,10 +11,8 @@
 </head>
 <body>
   <%= render 'shared/header' %>
-  <div class="container">
-    <%= render partial: "shared/flashmsgs", flash: flash %>
-    <%= yield %>
-  </div>
+  <%= render partial: "shared/flashmsgs", flash: flash %>
+  <%= yield %>
   <%= render 'shared/footer' %>
 </body>
 </html>

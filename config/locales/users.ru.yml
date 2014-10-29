@@ -29,6 +29,7 @@ ru:
     password: "Пароль"
     password_confirmation: "Подтверждение"
     login_incorrect: "Пароль или Имя введено неверно"
+    crop_avatar: "Изменить аватар"
 
     password_reset:
       label: "Смена пароля"

@@ -1,6 +1,6 @@
 @import "twitter/bootstrap/bootstrap";
-@import "bootswatch/slate/variables";
-@import "bootswatch/slate/bootswatch";
+@import "bootswatch/yeti/variables";
+@import "bootswatch/yeti/bootswatch";
 
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
@@ -39,8 +39,13 @@
 
 body { min-width: 300px }
 
+.navbar {
+    margin-bottom: 0;
+}
+
 a, a:hover, a:active, a:focus {
     outline: 0;
+    text-decoration: none;
 }
 
 #logo-icon {
@@ -56,18 +61,8 @@ a, a:hover, a:active, a:focus {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid @gray-dark;
+  border-top: 1px solid @gray-lighter;
 
-}
-
-footer a {
-  text-decoration: none;
-  color: @gray-light;
-}
-
-footer a:hover {
-  text-decoration: none;
-  color: #fff;
 }
 
 footer small {
@@ -89,10 +84,6 @@ div.wrap-user {
   margin: auto;
 }
 
-pre.debug_dump {
-  margin-top: 20px;
-}
-
 .selectpicker {
   width: 200px;
 }
@@ -103,8 +94,7 @@ pre.debug_dump {
 }
 
 .file-input .file-preview .close {
-  color: red;
-  text-shadow: none;
+  color: @gray;
   opacity: 1;
 }
 
@@ -124,4 +114,8 @@ pre.debug_dump {
 
 #recaptcha_area {
     margin-top: 10px;
+}
+
+.wrap-container {
+    margin: 0 20px;
 }

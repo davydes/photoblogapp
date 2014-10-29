@@ -22,6 +22,7 @@ en:
     password_confirmation: "Confirmation"
     create_button: "Sign Up"
     login_incorrect: "Invalid Password or Username"
+    crop_avatar: "Crop avatar"
 
     password_reset:
       label: "Reset password"

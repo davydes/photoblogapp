@@ -16,6 +16,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right ">
+          <li><%= link_to t('activerecord.models.photo.few'), photos_path %></li>
           <% if signed_in? %>
               <li><%= link_to t('users.label'), users_path %></li>
               <li id="fat-menu" class="dropdown">
@@ -41,12 +42,12 @@
               <li><%= link_to t('sessions.login'), signin_path %></li>
           <% end %>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <!--form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </form-->
     </div><!-- /.navbar-collapse -->
     </div>
   </div>

@@ -43,7 +43,7 @@
     <div class="control">
       <%= f.file_field :avatar, id: 'input-avatar'%>
     </div>
-    <%= (recaptcha_tags display: { theme: 'blackglass' }, :ajax => :true) if (mode == 'create') %>
+    <%= (recaptcha_tags display: { theme: 'white' }, :ajax => :true) if (mode == 'create') %>
     <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 5px 0" %>
   </div>
 

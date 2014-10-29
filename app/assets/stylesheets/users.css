@@ -14,7 +14,6 @@
     border-top: 0;
 }
 
-
 .table-user-information > tbody > tr > td {
     border-top: 0;
 }
@@ -24,4 +23,8 @@
     max-height: 200px;
     width: 200px;
     height: 200px;
+}
+
+#user-profile-container {
+    margin-top: 20px;
 }

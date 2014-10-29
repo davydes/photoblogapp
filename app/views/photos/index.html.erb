@@ -12,8 +12,8 @@
                 thumbnailHoverEffect: [
                     { name: 'labelAppear75', duration: 300 }
                 ],
-                thumbnailGutterWidth: 0,
-                thumbnailGutterHeight: 0,
+                thumbnailGutterWidth: 4,
+                thumbnailGutterHeight: 4,
                 theme: 'clean',
                 thumbnailLabel: {
                     position: 'overImageOnBottom',
@@ -24,12 +24,14 @@
     $(document).ready(loadGallery);
 </script>
 
+<div class="wrap-container">
 <div class="page-header">
-  <h1><%=t 'photos.label.last100'%></h1>
+  <h3><%=t 'photos.label.last100'%></h3>
 </div>
 
 <div id="gallery">
   <% @photos.each do |photo| %>
     <%= link_to photo.title, photo.get_url(:medium), 'data-ngThumb' => photo.get_url(:small), 'data-ngdesc' => photo.user.name %>
   <% end %>
+</div>
 </div>

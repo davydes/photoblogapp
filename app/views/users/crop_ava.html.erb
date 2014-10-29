@@ -21,17 +21,19 @@
     </script>
 <% end %>
 
-<div class="page-header"><h1>Crop avatar</h1></div>
-
-<div class="span7 text-center">
-<p style="width:500px; margin: 0 auto">
-<%= image_tag @user.avatar.url(:original), :id => "cropbox" %>
-</p>
-
-<%= form_for @user, url: {action: 'crop', id: @user.id}, method: 'post' do |form| %>
-    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+<div class="wrap-user">
+  <div class="page-header">
+    <h1><%= t 'users.crop_avatar' %></h1>
+  </div>
+  <div class="span7 text-center">
+    <p style="width:500px; margin: 0 auto 20px">
+      <%= image_tag @user.avatar.url(:original), :id => "cropbox" %>
+    </p>
+    <%= form_for @user, url: {action: 'crop', id: @user.id}, method: 'post' do |form| %>
+      <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
         <%= form.hidden_field attribute, :id => attribute %>
+      <% end %>
+      <p><%= form.submit t('helpers.submit.user.update'), class: 'btn btn-primary btn-lg' %></p>
     <% end %>
-    <p><%= form.submit "crop", class: 'btn btn-primary btn-lg' %></p>
-<% end %>
+  </div>
 </div>

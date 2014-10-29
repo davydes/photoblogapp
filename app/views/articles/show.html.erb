@@ -1,3 +1,4 @@
+<div class="container">
 <div class="page-header">
   <h1><%= @article.title %>
     <%= link_to @article.user.name, user_path(@article.user), class: "btn btn-warning btn-xs" %>
@@ -13,3 +14,5 @@
 </div>
 
 <%= @article.content %>
+
+</div>

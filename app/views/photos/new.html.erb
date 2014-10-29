@@ -40,6 +40,7 @@
   </div>
 </div>
 
+<div class="wrap-container">
 <%= form_tag({action: :create}, method: "post", id: "fileupload", multipart: :true)  do %>
   <div class="row fileupload-buttonbar">
     <div class="col-lg-7">
@@ -77,6 +78,7 @@
   <!-- The table listing the files available for upload/download -->
   <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 <% end %>
+</div>
 
 <%if @maxFiles < 1%>
     <script type="application/javascript">
