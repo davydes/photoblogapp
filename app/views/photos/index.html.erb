@@ -8,7 +8,7 @@
         $(document).ready(function () {
             $("#gallery").nanoGallery({
                 thumbnailWidth: 'auto',
-                thumbnailHeight: 250,
+                thumbnailHeight: 240,
                 thumbnailHoverEffect: [
                     { name: 'labelAppear75', duration: 300 }
                 ],
@@ -30,6 +30,6 @@
 
 <div id="gallery">
   <% @photos.each do |photo| %>
-    <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:medium), 'data-ngdesc' => photo.user.name %>
+    <%= link_to photo.title, photo.get_url(:original), 'data-ngThumb' => photo.get_url(:small), 'data-ngdesc' => photo.user.name %>
   <% end %>
 </div>

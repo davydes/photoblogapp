@@ -14,8 +14,15 @@ class Photo < ActiveRecord::Base
                     :styles => {
                         :original => ["2048x2048>", :jpg],
                         :medium => ["1280x720>", :jpg],
-                        :thumb => ["150x150#", :jpg]
+                        :small => ["x240>", :jpg],
+                        :thumb => ["100x100#", :jpg]
+                    },
+                    :convert_options => {
+                        :medium => "-strip",
+                        :small => "-quality 75 -strip",
+                        :thumb => "-quality 75 -strip"
                     }
+
 
   validates_attachment :image,
                        presence: true,
