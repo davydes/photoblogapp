@@ -15,12 +15,12 @@ class Photo < ActiveRecord::Base
                         :original => ["2048x2048>", :jpg],
                         :medium => ["1280x720>", :jpg],
                         :small => ["x240>", :jpg],
-                        :thumb => ["100x100#", :jpg]
+                        :thumb => ["120x120#", :jpg]
                     },
                     :convert_options => {
                         :medium => "-strip",
-                        :small => "-quality 75 -strip",
-                        :thumb => "-quality 75 -strip"
+                        :small => "-quality 80 -strip",
+                        :thumb => "-quality 80 -strip"
                     }
 
 
