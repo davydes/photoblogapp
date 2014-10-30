@@ -38,14 +38,14 @@
 </div>
 
 <div class="span7 text-center" id="photo-container">
-  <%= link_to @photo.get_url(:original), :title => @photo.title, 'data-gallery' => '' do %>
-    <%= image_tag @photo.get_url(:medium), :alt => @photo.title, :id => 'main-photo' %>
+  <%= link_to get_photo(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
+    <%= image_tag get_photo(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
   <% end %>
 </div>
 
 <div class="description-panel">
 <div class="panel-heading">
-  <%= image_tag @photo.user.get_avatar_url(:thumb), :class => "[ img-circle pull-left ]" %>
+  <%= image_tag get_avatar(@photo.user), :class => "[ img-circle pull-left ]" %>
   <h3><%= @photo.user.name %></h3>
   <h5><span><%= @photo.title %></span> - <span><%= @photo.created_at %></span> </h5>
 </div>

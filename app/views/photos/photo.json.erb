@@ -1,8 +1,8 @@
 {"files":[{
 "name": "<%= @photo.title %>",
 "size": "<%= @photo.image_file_size %>",
-"url": "<%= @photo.image.url %>",
-"thumbnailUrl": "<%= @photo.image.url(:thumb) %>",
+"url": "<%= get_photo(@photo, :medium) %>",
+"thumbnailUrl": "<%= get_photo(@photo, :thumb) %>",
 "deleteUrl": "<%= photo_path @photo %>",
 "deleteType": "DELETE"
 }]}

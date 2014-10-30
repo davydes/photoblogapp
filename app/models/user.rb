@@ -1,21 +1,5 @@
 class User < ActiveRecord::Base
-  VALID_NAME_REGEX = /[a-z]/i
-  validates :name,
-            presence: true,
-            format: { with: VALID_NAME_REGEX },
-            length: { maximum: 50 },
-            uniqueness: { case_sensitive: false }
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email,
-            presence: true,
-            format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-
-  validates :password, :presence => true,
-                       :length   => { :within => 6..40 },
-                       :if       => :password_changed?
-
+  has_secure_password
   has_attached_file :avatar,
                     :styles => {
                         :original => {
@@ -26,16 +10,6 @@ class User < ActiveRecord::Base
                         :thumb => ["32x32!", :png]
                     },
                     :default_url => "avatar_:style.png"
-  validates_attachment_size :avatar, :less_than => 1.megabytes
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-
-  has_secure_password
-  before_save {
-    self.email = email.downcase
-    self.name = name.downcase
-  }
-
   has_many :articles, :dependent => :destroy
   has_many :albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy do
@@ -46,6 +20,30 @@ class User < ActiveRecord::Base
       where(:created_at => (Time.now.beginning_of_week..Time.now))
     end
   end
+
+  VALID_NAME_REGEX = /[a-z]/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :name,
+            presence: true,
+            format: { with: VALID_NAME_REGEX },
+            length: { maximum: 50 },
+            uniqueness: { case_sensitive: false }
+  validates :email,
+            presence: true,
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false }
+  validates :password, :presence => true,
+                       :length   => { :within => 6..40 },
+                       :if       => :password_changed?
+  validates_attachment :avatar,
+                       less_than: 1.megabytes,
+                       content_type: { content_type: /\Aimage\/.*\Z/ }
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  before_save {
+    self.email = email.downcase
+    self.name = name.downcase
+  }
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
@@ -72,21 +70,6 @@ class User < ActiveRecord::Base
 
   def new_remember_token
     generate_token(:remember_token)
-  end
-
-  def get_avatar_url(style)
-    if Rails.env.production?
-      # default url
-      return avatar.url(style) unless avatar?
-      # get GAPI url
-      data = "users/avatars/#{self.id}"
-      hash_secret = Paperclip::Attachment.default_options[:hash_secret]
-      hash_digest = Paperclip::Attachment.default_options[:hash_digest]
-      hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, data)
-      "https://photoblogapp.storage.googleapis.com/users/avatars/#{hash}/#{self.id}_#{style}.png"
-    else
-      avatar.url(style)
-    end
   end
 
   private

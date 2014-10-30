@@ -16,12 +16,12 @@ class AlbumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create album" do
-    assert_difference('Album.count') do
+  test "should not create album" do
+    assert_no_difference('Album.count') do
       post :create, album: { title: @album.title }
     end
 
-    assert_redirected_to album_path(assigns(:album))
+    assert_response :success
   end
 
   test "should show album" do
@@ -34,9 +34,9 @@ class AlbumsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update album" do
+  test "should not update album" do
     patch :update, id: @album, album: { title: @album.title }
-    assert_redirected_to album_path(assigns(:album))
+    assert_response :success
   end
 
   test "should destroy album" do

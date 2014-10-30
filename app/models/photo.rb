@@ -1,17 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
-  validate :user_quota, :on => :create
-
-  has_and_belongs_to_many :photos
-
-  LIMIT_PHOTOS_DAILY = 5
-  LIMIT_PHOTOS_WEEKLY = 15
-  LIMIT_PHOTO_SIZE_UP = 5.megabytes
-  LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes
-
-  validates :title,
-            length: { maximum: 100 }
-
+  has_and_belongs_to_many :albums
   has_attached_file :image,
                     :styles => {
                         :original => ["2048x2048>", :jpg],
@@ -25,26 +14,19 @@ class Photo < ActiveRecord::Base
                         :thumb => "-quality 80 -strip"
                     }
 
+  LIMIT_PHOTOS_DAILY = 5
+  LIMIT_PHOTOS_WEEKLY = 15
+  LIMIT_PHOTO_SIZE_UP = 5.megabytes
+  LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes
 
+  validate :user_quota, :on => :create
+  validates :user, presence: true
+  validates :title,
+            length: { maximum: 100 }
   validates_attachment :image,
                        presence: true,
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
-
-  def get_url(style)
-    if Rails.env.production?
-      # default url
-      return image.url(style) unless image?
-      # get GAPI Url
-      data = "photos/images/#{self.id}"
-      hash_secret = Paperclip::Attachment.default_options[:hash_secret]
-      hash_digest = Paperclip::Attachment.default_options[:hash_digest]
-      hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, data)
-      "https://photoblogapp.storage.googleapis.com/photos/images/#{hash}/#{self.id}_#{style}.jpg"
-    else
-      image.url(style)
-    end
-  end
 
   private
 

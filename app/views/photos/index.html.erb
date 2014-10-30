@@ -31,7 +31,7 @@
 
 <div id="gallery">
   <% @photos.each do |photo| %>
-    <%= link_to photo.title, photo.get_url(:medium), 'data-ngThumb' => photo.get_url(:small), 'data-ngdesc' => photo.user.name %>
+    <%= link_to photo.title, get_photo(photo, :medium), 'data-ngThumb' => get_photo(photo, :small), 'data-ngdesc' => photo.user.name %>
   <% end %>
 </div>
 </div>
