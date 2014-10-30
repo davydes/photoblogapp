@@ -1,21 +1,18 @@
 en:
   activerecord:
+    error:
+      one: "The form has %{count} error :"
+      other: "The form has %{count} errors :"
     models:
       article:
-        zero: "Article"
         one: "Article"
-        few: "Articles"
-        many: "Articles"
         other: "Articles"
       photo:
-        zero: "Photo"
         one: "Photo"
-        few: "Photos"
-        many: "Photos"
         other: "Photos"
       user:
-        zero: "User"
         one: "User"
-        few: "Users"
-        many: "Users"
         other: "Users"
+      album:
+        one: "Album"
+        other: "Albums"

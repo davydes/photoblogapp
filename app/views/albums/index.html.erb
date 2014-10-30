@@ -3,6 +3,10 @@
     <%= album.title %>
     <%= link_to 'Show', user_album_path(album.user, album) %>
     <%= link_to 'Edit', edit_user_album_path(album.user, album) %>
-    <%= link_to 'Destroy', user_albums_path(album.user, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Destroy', user_album_path(album.user, album), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+
+  <div class="span7 text-center">
+    <%= link_to 'New', new_user_album_path(current_user), :class => 'btn btn-primary btn-lg' %>
+  </div>
 </div>

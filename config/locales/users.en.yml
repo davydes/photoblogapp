@@ -1,21 +1,17 @@
 en:
-
   helpers:
     submit:
       user:
         create: "Sign up"
         update: "Save"
-
-  activerecord:
-    error:
-      one: "The form has %{count} error :"
-      other: "The form has %{count} errors :"
-
   users:
+    label:
+      users: "Пользователи"
     edit_user: "Edit %{name}"
     new_user?: "New user?"
     signup_now: "Sign up now!"
-    label: "Users"
+    label:
+      users: "Users"
     name: "Name"
     email: "E-mail"
     password: "Password"

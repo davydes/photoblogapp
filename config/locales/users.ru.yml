@@ -4,26 +4,12 @@ ru:
       user:
         create: "Регистрация"
         update: "Сохранить"
-
-  activerecord:
-    error:
-      one: "%{count} ошибку необходимо исправить:"
-      few: "%{count} ошибки  необходимо исправить:"
-      many: "%{count} ошибок  необходимо исправить:"
-      other: "%{count} ошибок  необходимо исправить:"
-    attributes:
-      user:
-        name: "Имя"
-        email: "Email"
-        password: "Пароль"
-        password_confirmation: "Подтверждение пароля"
-        created_at: "Создан"
-
   users:
+    label:
+      users: "Пользователи"
     edit_user: "Изменение %{name}"
     new_user?: "Нету логина?"
     signup_now: "Зарегестрируйся!"
-    label: "Пользователи"
     name: "Имя"
     email: "E-mail"
     password: "Пароль"
