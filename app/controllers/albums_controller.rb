@@ -4,7 +4,8 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    user = User.find(params[:user_id])
+    @albums = user.albums.all
   end
 
   # GET /albums/1
@@ -14,7 +15,7 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
-    @album = Album.new
+    @album = Album.new()
   end
 
   # GET /albums/1/edit
@@ -24,8 +25,7 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(album_params)
-
+    @album = current_user.albums.new(album_params)
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
@@ -64,7 +64,7 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = Album.find(params[:id])
+      @album = User.find(params[:user_id]).albums.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
