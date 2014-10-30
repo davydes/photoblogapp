@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :albums
-
-  resources :users
-  match 'users/crop/:id' => 'users#crop', via: [:post]
+  resources :users do
+    member do
+      post :crop
+    end
+    resources :albums
+  end
 
   resources :sessions, only: [:index, :new, :create, :destroy] do
     get :switch_format, on: :collection
