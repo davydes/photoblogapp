@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
 
     # todo: force desktop format while mobile version not supported
-    request.format = :html
+    request.format = :html if request.format == :mobile
   end
 
   def force_mobile_format

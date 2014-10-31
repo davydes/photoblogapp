@@ -57,7 +57,7 @@ class AlbumsController < ApplicationController
 
   def set_album
     if current_user.admin?
-      @album = User.find(param[:user_id]).albums.find(params[:id])
+      @album = User.find(params[:user_id]).albums.find(params[:id])
     else
       @album = current_user.albums.find(params[:id])
     end

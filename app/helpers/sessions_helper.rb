@@ -25,6 +25,10 @@ module SessionsHelper
         (current_user?(user) or current_user.admin)
   end
 
+  def admin?
+    signed_in? and current_user.admin
+  end
+
   def sign_out
     return if current_user.nil?
     current_user.new_remember_token

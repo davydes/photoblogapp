@@ -54,7 +54,7 @@ class PhotosController < ApplicationController
 
   def set_photo
     if current_user.admin?
-      @photo = User.find(param[:user_id]).photos.find(params[:id])
+      @photo = User.find(params[:user_id]).photos.find(params[:id])
     else
       @photo = current_user.photos.find(params[:id])
     end
