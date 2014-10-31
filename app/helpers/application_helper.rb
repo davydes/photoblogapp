@@ -9,4 +9,9 @@ module ApplicationHelper
     }[flash_type] || flash_type.to_s
   end
 
+  def badge (count)
+    html = "<span class=\"badge pull-right\">#{count}</span>"
+    html.html_safe
+  end
+
 end

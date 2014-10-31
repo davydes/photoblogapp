@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   get '/format/desktop'
   get '/format/mobile'
 
+  get '/explorer/index'
   get '/explorer/articles'
   get '/explorer/photos'
 
-  root 'explorer#articles'
+  root 'explorer#index'
 
   # Example resource route with concerns:
   #   concern :toggleable do

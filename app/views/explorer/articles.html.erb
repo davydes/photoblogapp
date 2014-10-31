@@ -1,21 +1,14 @@
 <div class="wrap-container">
   <% if !@articles.empty? %>
-      <% first_article = @articles.first %>
-      <div class="jumbotron">
-        <h2><%= first_article.title%></h2>
-        <p><%= first_article.content %></p>
-        <p><%= link_to "more", [first_article.user, first_article], class: "btn btn-primary btn-lg", role: "button" %></p>
-      </div>
-
-      <div class="row">
-        <% @articles.drop(1).each do |article| %>
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2><%= article.title%></h2>
-              <p><%= article.content %></p>
-              <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
-            </div>
-        <% end %>
-      </div>
+    <div class="row">
+      <% @articles.each do |article| %>
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2><%= article.title%></h2>
+            <p><%= article.content %></p>
+            <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
+          </div>
+      <% end %>
+    </div>
   <% end %>
 
   <% if signed_in? %>
@@ -23,6 +16,4 @@
         <%= link_to 'New Article', new_user_article_path(current_user), class: "btn btn-success btn-lg" %>
       </div>
   <% end %>
-
-  <%= render partial: 'shared/photos' %>
 </div>
