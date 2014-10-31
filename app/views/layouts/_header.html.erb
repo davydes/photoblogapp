@@ -17,8 +17,8 @@
       <ul class="nav navbar-nav navbar-right ">
           <li><%= link_to t('articles.label.articles'), explorer_articles_path %></li>
           <li><%= link_to t('photos.label.photos'), explorer_photos_path %></li>
+          <li><%= link_to t('users.label.users'), users_path %></li>
           <% if signed_in? %>
-              <li><%= link_to t('users.label.users'), users_path %></li>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%= image_tag get_avatar(current_user), class: "img-circle", id: "panel-avatar" %>
