@@ -3,10 +3,10 @@
   <h1><%= @article.title %>
     <%= link_to @article.user.name, user_path(@article.user), class: "btn btn-warning btn-xs" %>
     <% if admin_or_current?(@article.user) %>
-      <%= link_to edit_article_path(@article), class: "btn btn-danger btn-xs" do %>
+      <%= link_to edit_user_article_path(@article.user, @article), class: "btn btn-danger btn-xs" do %>
         <span class='glyphicon glyphicon-edit'></span></a>
       <% end %>
-      <%= link_to article_path(@article), data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
+      <%= link_to [@article.user, @article], data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
         <span class='glyphicon glyphicon-trash'></span>
       <% end %>
     <% end %>

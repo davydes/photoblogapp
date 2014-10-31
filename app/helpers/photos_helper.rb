@@ -1,4 +1,4 @@
-module PhotoHelper
+module PhotosHelper
   def get_photo(photo, style = :medium)
     if Rails.env.production?
       # default url

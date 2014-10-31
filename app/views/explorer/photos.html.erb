@@ -25,13 +25,13 @@
 </script>
 
 <div class="wrap-container">
-<div class="page-header">
-  <h3><%=t 'photos.label.photos'%> - "<%= @user.name %>"</h3>
-</div>
+  <div class="page-header">
+    <h3><%=t 'photos.label.last100'%></h3>
+  </div>
 
-<div id="gallery">
-  <% @photos.each do |photo| %>
-    <%= link_to photo.title, get_photo(photo, :medium), 'data-ngThumb' => get_photo(photo, :small), 'data-ngdest' => user_photo_path(photo.user, photo), 'data-ngdesc' => photo.user.name %>
-  <% end %>
-</div>
+  <div id="gallery">
+    <% @photos.each do |photo| %>
+        <%= link_to photo.title, get_photo(photo, :medium), 'data-ngThumb' => get_photo(photo, :small), 'data-ngdest' => user_photo_path(photo.user, photo), 'data-ngdesc' => photo.user.name %>
+    <% end %>
+  </div>
 </div>

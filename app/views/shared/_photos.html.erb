@@ -23,9 +23,9 @@
     $(document).ready(loadLastFilm);
 </script>
 
-<h3><%= link_to (t 'photos.label.last100'), photos_url %></h3>
+<h3><%= link_to (t 'photos.label.last100'), explorer_photos_path %></h3>
 <div id="lastFilm">
   <% @photos.each do |photo| %>
-      <%= link_to photo.title, get_photo(photo, :original), 'data-ngdest' => photo_url(photo) ,'data-ngThumb' => get_photo(photo, :thumb) %>
+      <%= link_to photo.title, get_photo(photo, :original), 'data-ngdest' => user_photo_path(photo.user ,photo) ,'data-ngThumb' => get_photo(photo, :thumb) %>
   <% end %>
 </div>

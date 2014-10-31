@@ -80,7 +80,7 @@
 <% end %>
 </div>
 
-<%if @maxFiles < 1%>
+<%if @max_files < 1%>
     <script type="application/javascript">
         var disableButtons = function () {
             $("#fileupload :button").attr("disabled", true);
@@ -98,7 +98,7 @@
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             maxFileSize: 5000000, // 5 MB
             minFileSize: 100000, // 100 KB
-            maxNumberOfFiles: <%= @maxFiles %>,
+            maxNumberOfFiles: <%= @max_files %>,
             messages: {
                 maxNumberOfFiles: '<%=t 'photos.uploader.ui.js_errors.maxNumberOfFiles'%>',
                 acceptFileTypes: '<%=t 'photos.uploader.ui.js_errors.acceptFileTypes'%>',

@@ -1,26 +1,14 @@
 <div class="wrap-container">
 <% if !@articles.empty? %>
-<% first_article = @articles.first %>
-<div class="jumbotron">
-  <h2><%= first_article.title%></h2>
-  <p><%= first_article.content %></p>
-  <p><%= link_to "more", article_path(first_article), class: "btn btn-primary btn-lg", role: "button" %></p>
-</div>
 
 <div class="row">
-  <% @articles.drop(1).each do |article| %>
+  <% @articles.all.each do |article| %>
   <div class="col-6 col-sm-6 col-lg-4">
     <h2><%= article.title%></h2>
     <p><%= article.content %></p>
-    <p><%= link_to "more", article_path(article), class: "btn btn-default", role: "button" %></p>
+    <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
   </div>
   <% end %>
 </div>
 <% end %>
-
-<div class="span7 text-center">
-  <%= link_to 'New Article', new_article_path, class: "btn btn-success btn-lg" %>
-</div>
-
-<%= render 'shared/photos' %>
 </div>

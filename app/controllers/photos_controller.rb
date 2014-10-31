@@ -4,16 +4,17 @@ class PhotosController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @photos = Photo.all.order('created_at DESC').limit(100)
+    @user = User.find(params[:user_id]);
+    @photos = @user.photos.all.order('created_at DESC').limit(100)
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @photo = User.find(params[:user_id]).photos.find(params[:id])
   end
 
   def new
-    @maxFiles = [Photo::LIMIT_PHOTOS_DAILY - current_user.photos.today.count, Photo::LIMIT_PHOTOS_WEEKLY - current_user.photos.this_week.count].min
-    flash.now[@maxFiles > 0 ? :notice : :error] = I18n.t 'photos.uploader.messages.uploadLimit', count: @maxFiles
+    @max_files = [Photo::LIMIT_PHOTOS_DAILY - current_user.photos.today.count, Photo::LIMIT_PHOTOS_WEEKLY - current_user.photos.this_week.count].min
+    flash.now[@max_files > 0 ? :notice : :error] = I18n.t 'photos.uploader.messages.uploadLimit', count: @max_files
   end
 
   def edit
@@ -34,7 +35,7 @@ class PhotosController < ApplicationController
 
   def update
     if @photo.update(photo_update_params)
-      redirect_to @photo, notice: 'Photo was successfully updated.'
+      redirect_to [@photo.user, @photo], notice: 'Photo was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +44,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to user_photos_url(@photo.user), notice: 'Photo was successfully destroyed.' }
       format.json { render file: '/photos/photo.json.erb',
                            content_type: 'application/json' }
     end
@@ -53,7 +54,7 @@ class PhotosController < ApplicationController
 
   def set_photo
     if current_user.admin?
-      @photo = Photo.find(params[:id])
+      @photo = User.find(param[:user_id]).photos.find(params[:id])
     else
       @photo = current_user.photos.find(params[:id])
     end

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def crop
+  def crop_avatar
     @user.update_attributes(crop_ava_params)
     @user.avatar.reprocess!
     redirect_to @user

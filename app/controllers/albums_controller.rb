@@ -1,29 +1,25 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
+  before_action :set_album, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # GET /albums
-  # GET /albums.json
   def index
     user = User.find(params[:user_id])
     @albums = user.albums.all
   end
 
-  # GET /albums/1
-  # GET /albums/1.json
   def show
+    user = User.find(params[:user_id])
+    @album = user.albums.find(params[:id])
   end
 
-  # GET /albums/new
   def new
     @album = current_user.albums.new()
   end
 
-  # GET /albums/1/edit
   def edit
   end
 
-  # POST /albums
-  # POST /albums.json
   def create
     @album = current_user.albums.new(album_params)
     respond_to do |format|
@@ -37,8 +33,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /albums/1
-  # PATCH/PUT /albums/1.json
   def update
     respond_to do |format|
       if @album.update(album_params)
@@ -51,8 +45,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # DELETE /albums/1
-  # DELETE /albums/1.json
   def destroy
     @album.destroy
     respond_to do |format|
@@ -62,13 +54,20 @@ class AlbumsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_album
-      @album = User.find(params[:user_id]).albums.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def album_params
-      params.require(:album).permit(:title)
+  def set_album
+    if current_user.admin?
+      @album = User.find(param[:user_id]).albums.find(params[:id])
+    else
+      @album = current_user.albums.find(params[:id])
     end
+  end
+
+  def album_params
+    params.require(:album).permit(:title)
+  end
+
+  def correct_user
+    redirect_to root_path unless admin_or_current?(@album.user)
+  end
 end

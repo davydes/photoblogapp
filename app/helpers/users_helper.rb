@@ -1,4 +1,4 @@
-module UserHelper
+module UsersHelper
   def get_avatar(user, style = :thumb)
     if Rails.env.production?
       # default url

@@ -31,7 +31,7 @@ class ArticlesControllerTest < ActionController::TestCase
       post :create, article: { content: @article.content, title: @article.title }
     end
 
-    assert_redirected_to article_path(assigns(:article))
+    assert_redirected_to user_article_path(assigns(:article))
     sign_out
   end
 
