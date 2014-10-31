@@ -7,15 +7,17 @@ Rails.application.routes.draw do
     resources :albums
   end
 
-  resources :sessions, only: [:index, :new, :create, :destroy] do
-    get :switch_format, on: :collection
-  end
+  resources :sessions, only: [:index, :new, :create, :destroy]
+
   resources :password_resets
   get '/signup', to: 'users#new'
   get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'
+
   get '/locale/english'
   get '/locale/russian'
+  get '/format/desktop'
+  get '/format/mobile'
 
   resources :photos
   resources :articles

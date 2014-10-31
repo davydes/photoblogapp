@@ -1,4 +1,4 @@
-class LocaleController < ApplicationController
+class LocaleController < ActionController::Base
   def english
     I18n.locale = :en
     set_session_and_redirect
@@ -10,6 +10,7 @@ class LocaleController < ApplicationController
   end
 
   private
+
   def set_session_and_redirect
     session[:locale] = I18n.locale
     redirect_to :back || :root

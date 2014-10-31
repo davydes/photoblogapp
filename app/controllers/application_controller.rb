@@ -10,9 +10,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SessionsHelper
-  include ApplicationHelper
 
   private
+
+  def mobile_user_agent?
+    request.env["HTTP_USER_AGENT"].try :match, /(iphone|ipod|android)/i
+  end
 
   def handle_mobile
     request.format = :mobile if mobile_user_agent?

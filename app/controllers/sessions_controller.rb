@@ -28,11 +28,4 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_url
   end
-
-  def switch_format
-    session[:preferred_format] = params[:preferred_format]
-    redirect_to :back
-  rescue ActionController::RedirectBackError
-    redirect_to :root
-  end
 end
