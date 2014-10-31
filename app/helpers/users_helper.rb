@@ -4,7 +4,7 @@ module UsersHelper
       # default url
       return user.avatar.url(style) unless user.avatar?
       # get GAPI url
-      data = "users/avatars/#{self.id}"
+      data = "users/avatars/#{user.id}"
       hash_secret = Paperclip::Attachment.default_options[:hash_secret]
       hash_digest = Paperclip::Attachment.default_options[:hash_digest]
       hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, data)
