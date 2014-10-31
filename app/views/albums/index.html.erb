@@ -1,25 +1,12 @@
-<h1>Listing albums</h1>
+<div class="wrap-container">
+  <% @albums.each do |album| %>
+    <%= album.title %>
+    <%= link_to 'Show', user_album_path(album.user, album) %>
+    <%= link_to 'Edit', edit_user_album_path(album.user, album) %>
+    <%= link_to 'Destroy', user_album_path(album.user, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.title %></td>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Album', new_album_path %>
+  <div class="span7 text-center">
+    <%= link_to 'New', new_user_album_path(current_user), :class => 'btn btn-primary btn-lg' %>
+  </div>
+</div>

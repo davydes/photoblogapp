@@ -1,6 +1,7 @@
 ru:
   photos:
     label:
+      photos: "Фотографии"
       last100: "Последние 100 фотографий"
       upload: "Загрузить фото"
     uploader:

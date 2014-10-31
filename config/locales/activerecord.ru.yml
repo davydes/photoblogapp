@@ -1,21 +1,39 @@
 ru:
   activerecord:
+    error:
+      one: "%{count} ошибку необходимо исправить:"
+      few: "%{count} ошибки  необходимо исправить:"
+      many: "%{count} ошибок  необходимо исправить:"
+      other: "%{count} ошибок  необходимо исправить:"
     models:
       article:
         zero: "Статей"
-        one: "Статья"
+        one: "Статью"
         few: "Статьи"
         many: "Статей"
         other: "Статей"
       photo:
         zero: "Фотографий"
-        one: "Фоторафия"
+        one: "Фоторафию"
         few: "Фотографии"
         many: "Фотографий"
         other: "Фотографий"
       user:
         zero: "Пользователей"
-        one: "Пользователь"
-        few: "Пользователя"
+        one: "Пользователя"
+        few: "Пользователей"
         many: "Пользователей"
         other: "Пользователей"
+      album:
+        zero: "Альбомов"
+        one: "Альбом"
+        few: "Альбома"
+        many: "Альбомов"
+        other: "Альбомов"
+    attributes:
+      user:
+        name: "Имя"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        created_at: "Создан"

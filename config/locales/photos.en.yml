@@ -1,6 +1,7 @@
 en:
   photos:
     label:
+      photos: "Photos"
       last100: "Last 100 photos"
       upload: "Upload photos"
     uploader:

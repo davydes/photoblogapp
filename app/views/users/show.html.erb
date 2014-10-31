@@ -22,12 +22,16 @@
                   <td><%= mail_to @user.email %></td>
                 </tr>
                 <tr>
-                  <td><%= t 'activerecord.models.photo', :count => @user.photos.count %>:</td>
+                  <td><%= t 'photos.label.photos', :count => @user.photos.count %>:</td>
                   <td><%= @user.photos.count %></td>
                 </tr>
                 <tr>
-                  <td><%= t 'activerecord.models.article', :count => @user.articles.count %>:</td>
+                  <td><%= t 'articles.label.articles', :count => @user.articles.count %>:</td>
                   <td><%= @user.articles.count %></td>
+                </tr>
+                <tr>
+                  <td><%= t 'albums.label.albums', :count => @user.albums.count %>:</td>
+                  <td><%= @user.albums.count %></td>
                 </tr>
                 </tbody>
               </table>

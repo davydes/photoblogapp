@@ -29,9 +29,11 @@
     <h3>Album "<%= @album.title %>"</h3>
   </div>
 
-  <div id="gallery">
-    <% @album.photos.each do |photo| %>
+  <% if @album.photos.count > 0 %>
+    <div id="gallery">
+      <% @album.photos.each do |photo| %>
         <%= link_to photo.title, get_photo(photo, :medium), 'data-ngThumb' => get_photo(photo, :small), 'data-ngdesc' => photo.user.name %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
