@@ -15,12 +15,6 @@ en:
     profile: "Profile"
     settings: "Settings"
 
-  time:
-    formats:
-      default: "%Y-%m-%d"
-      short: "%b %d"
-      long: "%B %d, %Y"
-
   footer:
     contacts: "Contacts"
     map: "Map"

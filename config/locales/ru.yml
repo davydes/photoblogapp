@@ -15,12 +15,6 @@ ru:
     profile: "Профиль"
     settings: "Настройки"
 
-  time:
-    formats:
-      default: "%Y-%m-%d"
-      short: "%b %d"
-      long: "%B %d, %Y"
-
   footer:
     contacts: "Контакты"
     map: "Карта"
