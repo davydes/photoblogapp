@@ -1,7 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
-  before_action :set_album, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  include UserResource
 
   def index
     user = User.find(params[:user_id])
@@ -55,19 +53,8 @@ class AlbumsController < ApplicationController
 
   private
 
-  def set_album
-    if current_user.admin?
-      @album = User.find(params[:user_id]).albums.find(params[:id])
-    else
-      @album = current_user.albums.find(params[:id])
-    end
-  end
-
   def album_params
     params.require(:album).permit(:title)
   end
 
-  def correct_user
-    redirect_to root_path unless admin_or_current?(@album.user)
-  end
 end

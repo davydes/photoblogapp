@@ -1,7 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
-  before_action :set_photo, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  include UserResource
 
   def index
     @user = User.find(params[:user_id]);
@@ -52,14 +50,6 @@ class PhotosController < ApplicationController
 
   private
 
-  def set_photo
-    if current_user.admin?
-      @photo = User.find(params[:user_id]).photos.find(params[:id])
-    else
-      @photo = current_user.photos.find(params[:id])
-    end
-  end
-
   def image_param
     image = params.require(:image)
     image[0] if image.is_a?(Array)
@@ -69,7 +59,4 @@ class PhotosController < ApplicationController
     params.require(:photo).permit(:title, :description, :image)
   end
 
-  def correct_user
-    redirect_to root_path unless admin_or_current?(@photo.user)
-  end
 end

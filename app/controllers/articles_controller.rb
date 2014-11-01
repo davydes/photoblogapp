@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :signed_in_user, only: [:new, :edit, :update, :destroy]
-  before_action :set_article, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  include UserResource
 
   def index
     @articles = User.find(params[:user_id]).articles.all.order('created_at DESC').limit(100)
@@ -41,22 +39,9 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      if current_user.admin?
-        @article = User.find(params[:user_id]).articles.find(params[:id])
-      else
-        @article = current_user.articles.find(params[:id])
-      end
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :content)
-    end
-
-    def correct_user
-      redirect_to root_path unless admin_or_current?(@article.user)
-    end
+  def article_params
+    params.require(:article).permit(:title, :content)
+  end
 
 end
