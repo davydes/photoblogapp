@@ -29,6 +29,14 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
+  def next
+    user.photos.where("id > ?", id).first
+  end
+
+  def prev
+    user.photos.where("id < ?", id).last
+  end
+
   private
 
   def user_quota

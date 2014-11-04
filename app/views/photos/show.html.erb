@@ -38,6 +38,16 @@
 </div>
 
 <div class="span7 text-center" id="photo-container">
+  <% if @photo.prev %>
+    <%= link_to [@photo.prev.user, @photo.prev] do %>
+      <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
+    <% end %>
+  <% end %>
+  <% if @photo.next %>
+    <%= link_to [@photo.next.user, @photo.next] do %>
+      <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
+    <% end %>
+  <% end %>
   <%= link_to get_photo(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
     <%= image_tag get_photo(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
   <% end %>
