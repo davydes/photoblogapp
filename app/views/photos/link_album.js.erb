@@ -1,0 +1,5 @@
+$('#context-albums').html("<%= j render ('context_albums')%>");
+setFadeAble('#context-albums', 'div.context-item', 'a.control');
+$('#available-albums-dialog').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();

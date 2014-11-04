@@ -1,0 +1,30 @@
+<% if @photo.albums.count > 0 %>
+    <h4>this photo in <%= @photo.albums.count %> albums</h4>
+    <% if current_user?(@photo.user) %>
+        <div class="right-head-link"><%= link_to 'add album', available_albums_user_photo_path(@photo.user, @photo), remote: :true%></div>
+    <% end %>
+    <div class="row context-row">
+      <% @photo.albums.each do |album| %>
+          <div class="col-md-6 context-item">
+            <% if admin_or_current?(album.user) %>
+                <%= link_to album_user_photo_path(@photo.user, @photo, album), remote: :true, method: 'DELETE', class: "unlink-photo control" do %>
+                    <span class="glyphicon glyphicon-remove remove-link" ></span>
+                <% end %>
+            <% end %>
+            <%= image_tag get_album_thumb(album), class: 'thumbnail' %>
+            <h4><%= link_to album.title, [album.user, album] %></h4>
+            <span class="count"><%= album.photos.count %> photos</span>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <div class="well well-lg text-center">
+        <% if current_user?(@photo.user) %>
+            <%= link_to 'add', available_albums_user_photo_path(@photo.user, @photo), remote: :true%> photo to album
+        <% else %>
+            no albums contains this photo
+        <% end %>
+    </div>
+<% end %>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="available-albums-dialog"></div>

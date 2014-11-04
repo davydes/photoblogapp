@@ -4,7 +4,16 @@ Rails.application.routes.draw do
     member do
       post :crop_avatar
     end
-    resources :photos, :albums, :articles
+
+    resources :photos do
+      member do
+        delete 'album/:album_id', :action => 'unlink_album', :as => :album
+        post   'album/:album_id', :action => 'link_album'
+        get 'available_albums'
+      end
+    end
+
+    resources :albums, :articles
   end
 
   resources :sessions, only: [:index, :new, :create, :destroy]

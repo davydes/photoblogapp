@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
   include UserResource
+  before_filter :set_resource, only: [:unlink_album, :link_album, :available_albums]
+  before_filter :set_album, only: [:unlink_album, :link_album]
 
   def index
     @photos = @owner.photos.all.order('created_at DESC').limit(100)
@@ -47,7 +49,34 @@ class PhotosController < ApplicationController
     end
   end
 
+  def link_album
+    @photo.albums << @album
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unlink_album
+    @photo.albums.delete(@album)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def available_albums
+    already_in_albums = @photo.albums
+    all_albums = @photo.user.albums
+    @albums = all_albums - already_in_albums
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
+
+  def set_album
+    @album = @owner.albums.find(params[:album_id])
+  end
 
   def image_param
     image = params.require(:image)

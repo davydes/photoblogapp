@@ -43,24 +43,20 @@
   <% end %>
 </div>
 
-<div class="description-panel">
-<div class="panel-heading">
-  <%= image_tag get_avatar(@photo.user), :class => "[ img-circle pull-left ]" %>
-  <h3><%= @photo.user.name %></h3>
-  <h5><span><%= @photo.title %></span> - <span><%= @photo.created_at %></span> </h5>
+<div class="container">
+
+<div class="row">
+  <div class="col-sm-6" id="context-user">
+    <%= render partial: 'context_user' %>
+  </div>
+  <div class="col-sm-6 ">
+    <div class="context-block">
+      <h4>uploaded at <span><%= l @photo.created_at, :format => :short %></span></h4>
+    </div>
+    <div class="context-block" id="context-albums">
+      <%= render partial: 'context_albums' %>
+    </div>
+  </div>
 </div>
-<div class="panel-body">
-  <p><%= @photo.description %></p>
-</div>
-<div class="panel-footer">
-  <%= link_to @photo.user.name, user_path(@photo.user), class: "btn btn-warning btn-xs" %>
-  <% if admin_or_current?(@photo.user) %>
-      <%= link_to edit_user_photo_path(@photo.user, @photo), class: "btn btn-danger btn-xs" do %>
-          <span class='glyphicon glyphicon-edit'></span></a>
-      <% end %>
-      <%= link_to [@photo.user, @photo], data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
-          <span class='glyphicon glyphicon-trash'></span>
-      <% end %>
-  <% end %>
-</div>
+
 </div>
