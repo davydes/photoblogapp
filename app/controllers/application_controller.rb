@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_mobile
-    request.format = :mobile if mobile_user_agent?
+    #request.format = :mobile if mobile_user_agent?
+    # todo: uncomment if mobile format supported
   end
 
   def use_preferred_format
@@ -28,9 +29,6 @@ class ApplicationController < ActionController::Base
     if request.format == 'mobile' && session[:preferred_format] == 'html'
       request.format = :html
     end
-
-    # todo: force desktop format while mobile version not supported
-    request.format = :html if request.format == :mobile
   end
 
   def force_mobile_format

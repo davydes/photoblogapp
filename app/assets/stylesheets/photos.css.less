@@ -5,7 +5,7 @@
 }
 
 #main-photo {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .description-panel > .panel-heading,
@@ -14,7 +14,6 @@
   border-width: 0px;
 }
 .description-panel > .panel-heading {
-  margin-top: 20px;
   padding-bottom: 5px;
 }
 .description-panel > .panel-heading > img {
@@ -29,4 +28,57 @@
   color: rgb(153, 153, 153);
   font-size: 12px;
   font-weight: 400;
+}
+
+.context-block {
+  position: relative;
+}
+
+.context-block .right-head-link {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+
+.context-item {
+  position: relative;
+  padding: 10px;
+  min-height: 70px;
+}
+
+.context-item:hover {
+  background-color: #f1f1f1;
+}
+
+.context-item > h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.context-item .remove-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: darkred;
+}
+
+.context-item .control {
+  display: none;
+}
+
+.context-item .thumbnail {
+  float: left;
+  height: 50px;
+  width: 50px;
+  margin: 0px 10px 0px 0px;
+  padding: 0px;
+  position: realtive;
+}
+
+.context-item .count {
+  padding-left: 60px;
+  display: block;
 }
