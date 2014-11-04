@@ -1,6 +1,7 @@
 class Album < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :photos
+  has_many :photo_album_links
+  has_many :photos, through: :photo_album_links
 
   validates :user, presence: true
 end
