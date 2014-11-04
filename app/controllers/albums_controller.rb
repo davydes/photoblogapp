@@ -1,21 +1,38 @@
 class AlbumsController < ApplicationController
   include UserResource
 
+  before_filter :set_resource, only: [:unlink_photo, :link_photo]
+
   def index
-    user = User.find(params[:user_id])
-    @albums = user.albums.all
+    @albums = @owner.albums.all
   end
 
   def show
-    user = User.find(params[:user_id])
-    @album = user.albums.find(params[:id])
+    @album = @owner.albums.find(params[:id])
   end
 
   def new
     @album = current_user.albums.new()
   end
 
-  def edit
+  def link_photo
+    @photo = @owner.photos.find(params[:photo_id])
+    @album.photos << @photo
+    respond_to do |format|
+      format.json { render file: '/photos/photo.json.erb',
+                           content_type: 'application/json' }
+      format.html { redirect_to [@album.user, @album], notice: 'Photo was successfully added to album.' }
+    end
+  end
+
+  def unlink_photo
+    @photo = @album.photos.find(params[:photo_id])
+    @album.photos.delete(@photo)
+    respond_to do |format|
+      format.json { render file: '/photos/photo.json.erb',
+                           content_type: 'application/json' }
+      format.html { redirect_to [@album.user, @album], notice: 'Photo was successfully removed form album.' }
+    end
   end
 
   def create

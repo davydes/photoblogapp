@@ -2,15 +2,15 @@ class ArticlesController < ApplicationController
   include UserResource
 
   def index
-    @articles = User.find(params[:user_id]).articles.all.order('created_at DESC').limit(100)
+    @articles = @owner.articles.all.order('created_at DESC').limit(100)
   end
 
   def show
-    @article =  User.find(params[:user_id]).articles.find(params[:id])
+    @article =  @owner.articles.find(params[:id])
   end
 
   def new
-    @article =  User.find(params[:user_id]).articles.new()
+    @article =  current_user.articles.new()
   end
 
   def edit

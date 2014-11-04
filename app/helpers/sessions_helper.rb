@@ -17,16 +17,15 @@ module SessionsHelper
   end
 
   def current_user?(user)
-    user == current_user
-  end
-
-  def admin_or_current?(user)
-    signed_in? and
-        (current_user?(user) or current_user.admin)
+    signed_in? and user == current_user
   end
 
   def admin?
     signed_in? and current_user.admin
+  end
+
+  def admin_or_current?(user)
+    current_user?(user) or admin?
   end
 
   def sign_out

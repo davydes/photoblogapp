@@ -2,12 +2,11 @@ class PhotosController < ApplicationController
   include UserResource
 
   def index
-    @user = User.find(params[:user_id]);
-    @photos = @user.photos.all.order('created_at DESC').limit(100)
+    @photos = @owner.photos.all.order('created_at DESC').limit(100)
   end
 
   def show
-    @photo = User.find(params[:user_id]).photos.find(params[:id])
+    @photo = @owner.photos.find(params[:id])
   end
 
   def new
