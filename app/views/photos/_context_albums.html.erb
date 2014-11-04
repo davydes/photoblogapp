@@ -11,7 +11,7 @@
                     <span class="glyphicon glyphicon-remove remove-link" ></span>
                 <% end %>
             <% end %>
-            <%= image_tag get_album_thumb(album), class: 'thumbnail' %>
+            <%= image_tag get_album_img(album), class: 'thumbnail' %>
             <h4><%= link_to album.title, [album.user, album] %></h4>
             <span class="count"><%= album.photos.count %> photos</span>
           </div>

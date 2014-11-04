@@ -1,16 +1,48 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+<% end %>
+
+<script type="application/javascript">
+    var loadGallery = function () {
+        $(document).ready(function () {
+            $("#gallery").nanoGallery({
+                thumbnailWidth: 'auto',
+                thumbnailHeight: 240,
+                thumbnailHoverEffect: [
+                    { name: 'labelAppear75', duration: 300 }
+                ],
+                thumbnailGutterWidth: 4,
+                thumbnailGutterHeight: 4,
+                theme: 'clean',
+                thumbnailLabel: {
+                    position: 'overImageOnBottom',
+                    hideIcons: true}
+            });
+        });
+    }
+    $(document).ready(loadGallery);
+</script>
+
 <div class="container-fluid">
-  <% if admin_or_current?(@owner) %>
-    <div class="span7 text-center">
-      <%= link_to 'New', new_user_album_path(current_user), :class => 'btn btn-primary btn-lg' %>
-    </div>
+  <div class="page-header">
+    <h3><%=t 'albums.label.albums'%> - "<%= @owner.name %>"</h3>
+  </div>
+
+  <div id="gallery">
+      <% @albums.each do |album| %>
+          <%= link_to album.title, '#', 'data-ngThumb' => get_album_img(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "photos #{album.photos.count}" %>
+      <% end %>
+  </div>
+
+  <% if current_user?(@owner) %>
+      <div class="span7 text-center">
+          <%= link_to 'New', new_user_album_path(current_user), :class => 'btn btn-primary btn-lg' %>
+      </div>
   <% end %>
 
-  <% @albums.each do |album| %>
-    <%= album.title %>
-    <% if admin_or_current?(@owner) %>
-      <%= link_to 'Show', user_album_path(album.user, album) %>
-      <%= link_to 'Edit', edit_user_album_path(album.user, album) %>
-      <%= link_to 'Destroy', user_album_path(album.user, album), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  <% end %>
+</div>
+
+<div class="wrap-container">
+
 </div>

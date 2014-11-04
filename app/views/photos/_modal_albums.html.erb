@@ -10,7 +10,7 @@
             <% @albums.each do |album| %>
               <%= link_to album_user_photo_path(@photo.user, @photo, album), method: :post, remote: true do %>
                 <div class="col-md-6 context-item">
-                    <%= image_tag get_album_thumb(album), class: 'thumbnail' %>
+                    <%= image_tag get_album_img(album), class: 'thumbnail' %>
                     <h4><%= album.title %></h4>
                     <span class="count"><%= album.photos.count %> photos</span>
                 </div>

@@ -1,9 +1,9 @@
 module AlbumsHelper
-  def get_album_thumb(album)
+  def get_album_img (album, style = :thumb)
     if album.photos.count > 0
-      get_photo(album.photos.first,:thumb);
+      get_photo(album.photos.first, style);
     else
-      'album_thumb.png'
+      image_url 'album_thumb.png'
     end
   end
 end
