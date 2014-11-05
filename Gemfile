@@ -16,7 +16,6 @@ gem "paperclip", "~> 4.2"
 gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'spring',  group: :development
-gem 'sqlite3', :group => [:development, :test]
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -24,6 +23,12 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails', '2.5.0'
 gem 'unicorn'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'sqlite3'
+end
 
 group :production do
   gem 'pg'

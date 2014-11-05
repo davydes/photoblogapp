@@ -57,9 +57,15 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     commonjs (0.2.7)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.40.0)
     execjs (2.2.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     fog-brightbox (0.6.1)
       fog-core (~> 1.22)
       fog-json
@@ -153,6 +159,22 @@ GEM
       json (~> 1.4)
     recaptcha (0.3.6)
     ref (1.0.5)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-rails (3.0.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     russian (0.6.0)
       i18n (>= 0.5.0)
     sass (3.2.19)
@@ -202,6 +224,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
+  factory_girl_rails (~> 4.0)
   fog!
   jbuilder (~> 2.0)
   jquery-rails
@@ -212,6 +235,7 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails_12factor
   recaptcha
+  rspec-rails (~> 3.0.0)
   russian
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
