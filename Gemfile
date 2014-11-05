@@ -16,6 +16,7 @@ gem "paperclip", "~> 4.2"
 gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'spring',  group: :development
+gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
