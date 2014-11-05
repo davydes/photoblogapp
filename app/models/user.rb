@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  VALID_NAME_REGEX = /[a-z]/i
+  VALID_NAME_REGEX = /\A\w{3,}\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name,
             presence: true,
