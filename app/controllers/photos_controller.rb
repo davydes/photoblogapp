@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   include UserResource
-  before_filter :set_resource, only: [:unlink_album, :link_album, :available_albums]
-  before_filter :set_album, only: [:unlink_album, :link_album]
+  before_action :set_photo, only: [:unlink_album, :link_album, :available_albums]
+  before_action :set_album, only: [:unlink_album, :link_album]
 
   def index
     @photos = @owner.photos.all.order('created_at DESC').limit(100)
@@ -73,6 +73,10 @@ class PhotosController < ApplicationController
   end
 
   private
+
+  def set_photo
+    set_resource
+  end
 
   def set_album
     @album = @owner.albums.find(params[:album_id])
