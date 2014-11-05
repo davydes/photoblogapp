@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_gitsha
   before_action :set_locale
   before_action :handle_mobile
   before_action :use_preferred_format
@@ -39,5 +40,9 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
+  end
+
+  def set_gitsha
+    headers['X-GitSHA'] = PhotoBlogApp::Application::GIT_SHA
   end
 end
