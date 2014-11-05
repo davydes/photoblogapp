@@ -16,8 +16,6 @@ gem "paperclip", "~> 4.2"
 gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'spring',  group: :development
-gem "codeclimate-test-reporter", group: :test, require: nil
-
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -25,9 +23,15 @@ gem 'therubyracer',  platforms: :ruby
 gem 'less-rails', '2.5.0'
 gem 'unicorn'
 
+group :test do
+  gem "codeclimate-test-reporter",  require: nil
+  gem "timecop"
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'sqlite3'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :production do

@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  belongs_to :user
+
   validates :title,
             presence: true,
             length: { maximum: 100 }
@@ -6,5 +8,5 @@ class Article < ActiveRecord::Base
             presence: true,
             length: { minimum: 10 }
 
-  belongs_to :user
+  validates :user, presence: true
 end
