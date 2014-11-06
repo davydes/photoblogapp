@@ -1,11 +1,11 @@
 <%- model_class = User -%>
 <%= provide(:title, t('users.password_reset.label'))%>
-<div class="wrap-user">
+<div class="container">
 <div class="page-header">
   <h1><%=t 'users.password_reset.label'%></h1>
 </div>
 <%= form_tag password_resets_path, :method => :post, :class => 'form-inline' do %>
-    <div style="width: 400px; margin: 0 auto">
+    <div style="max-width: 400px; margin: 0 auto">
       <div class="form-group">
         <%= label_tag :email %>
         <%= text_field_tag :email, params[:email], :class => 'form-control' %>

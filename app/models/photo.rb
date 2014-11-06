@@ -31,12 +31,12 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
-  def next
-    user.photos.where("id > ?", id).first
+  def next(context = user)
+    context.photos.where("id < ?", id).last
   end
 
-  def prev
-    user.photos.where("id < ?", id).last
+  def prev(context = user)
+    context.photos.where("id > ?", id).first
   end
 
   private

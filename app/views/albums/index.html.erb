@@ -31,7 +31,7 @@
 
   <div id="gallery">
       <% @albums.each do |album| %>
-          <%= link_to album.title, '#', 'data-ngThumb' => image_album_url(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "photos #{album.photos.count}" %>
+          <%= link_to album.title, '#', 'data-ngThumb' => image_album_url(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "<a href=\"#\">photos #{album.photos.count}</a>" %>
       <% end %>
   </div>
 
@@ -43,6 +43,6 @@
 
 </div>
 
-<div class="wrap-container">
+<div class="container-fluid">
 
 </div>

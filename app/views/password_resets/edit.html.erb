@@ -1,6 +1,6 @@
 <%- model_class = User -%>
 <%= provide(:title, t('users.password_reset.label'))%>
-<div class="wrap-user">
+<div class="container">
 <div class="page-header">
   <h1><%=t 'users.password_reset.label'%></h1>
 </div>
@@ -22,7 +22,7 @@
         </div>
     <% end %>
 
-    <div style="width: 317px; margin: 0 auto">
+    <div style="max-width: 317px; margin: 0 auto">
         <div class="form-group">
           <%= f.label :password %>
           <%= f.password_field :password, :class => 'form-control' %>
