@@ -21,7 +21,7 @@
           <% if signed_in? %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= image_tag get_avatar(current_user), class: "img-circle", id: "panel-avatar" %>
+                  <%= image_tag image_avatar_url(current_user), class: "img-circle", id: "panel-avatar" %>
                   <%= current_user.name %><b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">

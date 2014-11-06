@@ -9,7 +9,7 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center"><%= image_tag get_avatar(@user, :original), alt: "User Pic", class: "img-circle user-avatar"%></div>
+            <div class="col-md-3 col-lg-3 " align="center"><%= image_tag image_avatar_url(@user, :original), alt: "User Pic", class: "img-circle user-avatar"%></div>
             <div class=" col-md-9 col-lg-9 ">
               <table class="table table-user-information">
                 <tbody>

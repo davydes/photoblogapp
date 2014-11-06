@@ -19,7 +19,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.id, user_path(user) %></td>
-        <td> <%= image_tag get_avatar(user), style: "margin-right:5px"%><%= user.name %></td>
+        <td> <%= image_tag image_avatar_url(user), style: "margin-right:5px"%><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%=l user.created_at %></td>
         <% if admin? %>

@@ -16,8 +16,8 @@
       <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
     <% end %>
   <% end %>
-  <%= link_to get_photo(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
-    <%= image_tag get_photo(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
+  <%= link_to image_photo_url(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
+    <%= image_tag image_photo_url(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
   <% end %>
 </div>
 

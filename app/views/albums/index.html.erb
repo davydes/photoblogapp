@@ -31,7 +31,7 @@
 
   <div id="gallery">
       <% @albums.each do |album| %>
-          <%= link_to album.title, '#', 'data-ngThumb' => get_album_img(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "photos #{album.photos.count}" %>
+          <%= link_to album.title, '#', 'data-ngThumb' => image_album_url(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "photos #{album.photos.count}" %>
       <% end %>
   </div>
 
