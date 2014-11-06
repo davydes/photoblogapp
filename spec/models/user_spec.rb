@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   describe 'when create' do
     it 'should create a new instance given a valid attribute' do
-      attrs = attributes_for(:user)
-      User.create!(attrs)
+      expect{ create(:user) }.to change { User.count }.by(1)
     end
 
     describe 'should be invalid with' do
