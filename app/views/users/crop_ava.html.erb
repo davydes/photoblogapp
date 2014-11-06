@@ -29,7 +29,7 @@
     <p style="width:500px; margin: 0 auto 20px">
       <%= image_tag @user.avatar.url(:original), :id => "cropbox" %>
     </p>
-    <%= form_for @user, url: crop_user_path(@user), method: 'post' do |form| %>
+    <%= form_for @user, url: crop_avatar_user_path(@user), method: 'post' do |form| %>
       <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
         <%= form.hidden_field attribute, :id => attribute %>
       <% end %>

@@ -1,20 +1,14 @@
 <footer class="footer">
-  <div style="margin: 0 20px">
-  <nav>
+  <div class="container-fluid" style="margin: 0 20px">
     &copy; evgeny davydov 2014
     <ul>
       <li>
-        <p>
-          <%= link_to_unless I18n.locale == :en, "ENG", locale_english_path %>
-          |
-          <%= link_to_unless I18n.locale == :ru, "RUS", locale_russian_path %>
-        </p>
+      <%= link_to_unless I18n.locale == :en, "ENG", locale_english_path %>
+      |
+      <%= link_to_unless I18n.locale == :ru, "RUS", locale_russian_path %>
+      </li><li>
+      <%= link_to t('footer.contacts'), 'mailto:davydes@gmail.com' %>
       </li>
-      <!--li>
-        <%= link_to t('mobile_version'), format_mobile_path %>
-      </li-->
-      <li><%= link_to t('footer.contacts'), 'mailto:davydes@gmail.com' %></li>
     </ul>
-  </nav>
   </div>
 </footer>

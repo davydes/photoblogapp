@@ -3,3 +3,7 @@
  *= require nanogallery/nanogallery_clean.woff.css
  *= require_self
 */
+
+.nanoGalleryConsoleParent {
+    display: none; !important
+}
