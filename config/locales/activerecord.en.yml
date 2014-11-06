@@ -3,16 +3,3 @@ en:
     error:
       one: "The form has %{count} error :"
       other: "The form has %{count} errors :"
-    models:
-      article:
-        one: "Article"
-        other: "Articles"
-      photo:
-        one: "Photo"
-        other: "Photos"
-      user:
-        one: "User"
-        other: "Users"
-      album:
-        one: "Album"
-        other: "Albums"

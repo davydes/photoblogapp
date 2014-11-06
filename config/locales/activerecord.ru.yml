@@ -37,3 +37,8 @@ ru:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
         created_at: "Создан"
+      album:
+        title: "Название"
+      photo:
+        title: "Название"
+        description: "Описание"

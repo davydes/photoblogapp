@@ -5,6 +5,9 @@ ru:
   to_russian: "По-русски"
   to_english: "In English"
 
+  button:
+    close: 'Закрыть'
+
   sessions:
     user: "Пользователь"
     need_to_signin: "Необходимо войти для продолжения!"
