@@ -42,11 +42,8 @@ class Photo < ActiveRecord::Base
   private
 
   def user_quota
+    return false unless user
     # todo: remove quota settings to user profile
-    unless user
-      logger.error "user not defined"
-      return false
-    end
     if user.photos.today.count >= LIMIT_PHOTOS_DAILY
       errors.add(:base, I18n.t('photos.uploader.errors.exceeds_daily_limit'))
     elsif  user.photos.this_week.count >= LIMIT_PHOTOS_WEEKLY
