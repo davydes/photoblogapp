@@ -1,16 +1,16 @@
 var setMaxPhotoHeight = function (){
-    winHeight = $(window).height()-85;
+    var winHeight = $(window).height()-85;
     $('#main-photo').first().css({
         'max-height' : winHeight + "px"
     });
 };
 
 var setFadeAble = function(container, baseElementSelector, affectElementSelector) {
-    $(container).find(baseElementSelector).on('mouseenter', function (e) {
+    $(container).find(baseElementSelector).on('mouseenter', function () {
         $(this).find(affectElementSelector).fadeIn();
     });
 
-    $(container).find(baseElementSelector).on('mouseleave', function(e){
+    $(container).find(baseElementSelector).on('mouseleave', function(){
         $(this).find(affectElementSelector).stop().fadeOut();
     });
 };

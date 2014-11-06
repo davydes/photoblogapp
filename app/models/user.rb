@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
     generate_token(:remember_token)
   end
 
+  def self.find_for_auth(login)
+    self.find_by_email(login) || self.find_by_name(login)
+  end
+
   private
 
   def password_changed?

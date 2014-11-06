@@ -16,16 +16,15 @@ module ApplicationHelper
 
   def url_to_attachment(attachment, style = nil)
     return attachment.url(style) unless (Rails.env.production? && attachment?) #default
-    style = attachment.options[:default_style] unless style
-    ext = attachment.styles[style][:format].to_s
+    style = attachment.options[:default_style] unless style?
+    id = attachment.instance.id
     c_name = attachment.instance.class.name.pluralize.downcase
     a_name = attachment.name.to_s.pluralize.downcase
-    id = attachment.instance.id
     hash_data = "#{c_name}/#{a_name}/#{id}"
     hash_secret = Paperclip::Attachment.default_options[:hash_secret]
     hash_digest = Paperclip::Attachment.default_options[:hash_digest]
     hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.const_get(hash_digest).new, hash_secret, hash_data)
-    "https://photoblogapp.storage.googleapis.com/#{c_name}/#{a_name}/#{hash}/#{id}_#{style}.#{ext}"
+    "https://photoblogapp.storage.googleapis.com/#{c_name}/#{a_name}/#{hash}/#{id}_#{style}.#{attachment.styles[style][:format].to_s}"
   end
 
 end
