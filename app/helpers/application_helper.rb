@@ -15,8 +15,8 @@ module ApplicationHelper
   end
 
   def url_to_attachment(attachment, style = nil)
-    return attachment.url(style) unless (Rails.env.production? && attachment?) #default
-    style = attachment.options[:default_style] unless style?
+    return attachment.url(style) unless (Rails.env.production? && attachment.file?) #default
+    style = attachment.options[:default_style] if style.nil?
     id = attachment.instance.id
     c_name = attachment.instance.class.name.pluralize.downcase
     a_name = attachment.name.to_s.pluralize.downcase
