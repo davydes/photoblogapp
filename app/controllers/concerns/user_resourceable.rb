@@ -1,4 +1,4 @@
-module UserResource
+module UserResourceable
   extend ActiveSupport::Concern
 
   included do

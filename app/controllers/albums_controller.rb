@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  include UserResource
+  include UserResourceable
   respond_to :html
 
   def index

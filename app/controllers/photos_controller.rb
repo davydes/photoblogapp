@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  include UserResource
+  include UserResourceable
   before_action :set_photo, only: [:unlink_album, :link_album, :available_albums]
   before_action :set_album, only: [:unlink_album, :link_album]
 
