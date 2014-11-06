@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_gitsha
   before_action :set_locale
-  before_action :handle_mobile
-  before_action :use_preferred_format
 
   # Comment out when use only ajax content for mobile version
 
@@ -19,8 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_mobile
-    #request.format = :mobile if mobile_user_agent?
-    # todo: uncomment if mobile format supported
+    request.format = :mobile if mobile_user_agent?
   end
 
   def use_preferred_format

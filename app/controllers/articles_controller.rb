@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   include UserResource
+  respond_to :html
 
   def index
     @articles = @owner.articles.all.order('created_at DESC').limit(100)

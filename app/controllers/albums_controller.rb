@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   include UserResource
+  respond_to :html
 
   def index
     @albums = @owner.albums.all
@@ -15,35 +16,24 @@ class AlbumsController < ApplicationController
 
   def create
     @album = current_user.albums.new(album_params)
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to [@album.user, @album], notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: [@album.user, @album] }
-      else
-        format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.save
+      redirect_to [@album.user, @album]
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to [@album.user, @album], notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@album.user, @album] }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.update(album_params)
+      redirect_to [@album.user, @album]
+    else
+      render :edit
     end
   end
 
   def destroy
     @album.destroy
-    respond_to do |format|
-      format.html { redirect_to user_albums_path(@album.user), notice: 'Album was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_albums_path(@album.user)
   end
 
   private

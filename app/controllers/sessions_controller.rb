@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  respond_to :html
+
   def index
     if signed_in?
       redirect_to :root

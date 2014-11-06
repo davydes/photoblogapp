@@ -1,4 +1,6 @@
 class ExplorerController < ApplicationController
+  respond_to :html
+
   def index
     set_last_articles
     set_last_photos

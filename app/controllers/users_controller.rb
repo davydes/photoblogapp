@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
+  respond_to :html
+
   def index
     @users = User.all
   end
@@ -35,7 +37,6 @@ class UsersController < ApplicationController
       flash.delete(:recaptcha_error)
       render 'new'
     end
-
   end
 
   def edit
