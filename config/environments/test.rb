@@ -39,3 +39,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
+
+ENV['PAPERCLIP_HASH_SECRET'] = SecureRandom.base64(128)

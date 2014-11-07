@@ -2,7 +2,8 @@ ru:
   albums:
     label:
       albums: "Альбомы"
-      create: "Новый альбом"
+      new: "Новый альбом"
+      edit: "Изменить альбом"
       your_albums: "Ваши альбомы"
       name: "Альбом \"%{name}\""
     confirm:

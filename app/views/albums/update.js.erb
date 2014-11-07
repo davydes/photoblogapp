@@ -1,0 +1,3 @@
+$('#<%= album_id(@album) %>').replaceWith("<%= j render partial: 'album_item', locals: {album: @album} %>");
+$('#albums-area').justifiedGallery();
+$('#new_album_modal').modal('hide');

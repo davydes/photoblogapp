@@ -8,6 +8,6 @@ module AlbumsHelper
   end
 
   def album_id (album)
-    "user##{album.user.id}album##{album.id}"
+    "user_#{album.user.id}_album_#{album.id}"
   end
 end

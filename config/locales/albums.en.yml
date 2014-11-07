@@ -2,7 +2,8 @@ en:
   albums:
     label:
       albums: "Albums"
-      create: "New Album"
+      new: "New Album"
+      edit: "Change Album"
       your_albums: "Your Albums"
       name: "Album \"%{name}\""
     confirm:

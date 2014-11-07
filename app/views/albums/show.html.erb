@@ -20,7 +20,7 @@
                     hideIcons: true}
             });
         });
-    }
+    };
     $(document).ready(loadGallery);
 </script>
 
@@ -31,6 +31,9 @@
         <%= link_to [@album.user, @album], method: 'DELETE' ,class: 'pull-right btn btn-xs btn-danger',
                     :data => { :confirm => t('albums.confirm.delete', :name => @album.title) } do %>
           <i class="glyphicon glyphicon-trash"></i>
+        <% end %>
+        <%= link_to edit_user_album_path(@album.user, @album), class: 'pull-right btn btn-xs btn-success' do %>
+          <i class="glyphicon glyphicon-edit"></i>
         <% end %>
       <% end %>
     </h3>
