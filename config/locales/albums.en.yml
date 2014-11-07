@@ -3,3 +3,7 @@ en:
     label:
       albums: "Albums"
       create: "New Album"
+      your_albums: "Your Albums"
+      name: "Album \"%{name}\""
+    confirm:
+      delete: "You want delete album \"%{name}\"?"

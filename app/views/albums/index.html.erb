@@ -1,48 +1,44 @@
 <% content_for :head do %>
-    <%= javascript_include_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'custom/justified'%>
+  <%= stylesheet_link_tag 'custom/justified'%>
 <% end %>
-
-<script type="application/javascript">
-    var loadGallery = function () {
-        $(document).ready(function () {
-            $("#gallery").nanoGallery({
-                thumbnailWidth: 'auto',
-                thumbnailHeight: 240,
-                thumbnailHoverEffect: [
-                    { name: 'labelAppear75', duration: 300 }
-                ],
-                thumbnailGutterWidth: 4,
-                thumbnailGutterHeight: 4,
-                theme: 'clean',
-                thumbnailLabel: {
-                    position: 'overImageOnBottom',
-                    hideIcons: true}
-            });
-        });
-    }
-    $(document).ready(loadGallery);
-</script>
 
 <div class="container-fluid">
   <div class="page-header">
-    <h3><%=t 'albums.label.albums'%> - "<%= @owner.name %>"</h3>
-  </div>
-
-  <div id="gallery">
-      <% @albums.each do |album| %>
-          <%= link_to album.title, '#', 'data-ngThumb' => image_album_url(album, :small), 'data-ngdest' => user_album_path(album.user, album), 'data-ngdesc' => "photos #{album.photos.count}" %>
+    <h3>
+      <% if current_user?(@owner) %>
+        <%=t 'albums.label.your_albums'%>
+        <%= link_to t('albums.label.create'), new_user_album_path(current_user), remote: :true, :class => 'btn btn-primary btn-xs pull-right' %>
+      <% else %>
+        <%=t 'albums.label.albums'%> - "<%= @owner.name %>"
       <% end %>
+    </h3>
   </div>
 
-  <% if current_user?(@owner) %>
-      <div class="span7 text-center">
-          <%= link_to 'New', new_user_album_path(current_user), :class => 'btn btn-primary btn-lg' %>
-      </div>
-  <% end %>
-
+  <div id="albums-area">
+    <% @albums.each do |album| %>
+      <%= render partial: 'album_item', locals: {album: album} %>
+    <% end %>
+  </div>
 </div>
 
-<div class="container-fluid">
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#albums-area").justifiedGallery({
+      sizeRangeSuffixes : {
+        'lt100': '','lt240': '','lt320': '','lt500': '','lt640': '','lt1024': ''
+      },
+      rowHeight : 240,
+      margins : 3,
+      captions : true,
+      captionSettings : {
+        animationDuration : 500,
+        visibleOpacity : 1,
+        nonVisibleOpacity : 0.5
+      },
+      refreshTime : 100
+    });
+  })
+</script>
 
-</div>
+<div class="modal fade" id="new_album_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">Loading...</div>

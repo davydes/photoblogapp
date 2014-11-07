@@ -1,20 +1,38 @@
-<%= form_for([@album.user, @album], :role => "form") do |f| %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+
+<%= form_for([@album.user, @album], remote: remote, html: {role: :form, 'data-model' => 'album', id: 'album-form'}) do |f| %>
   <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t 'activerecord.error', :count => @album.errors %></h2>
-      <ul>
-      <% @album.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= t('activerecord.error', :count => @album.errors.count) %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @album.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title %><br>
+    <%= f.label :title, class: 'control-label' %><br>
     <%= f.text_field :title, class: 'form-control' %>
+    <span class="help-block"></span>
   </div>
   <div class="form-group">
-    <%= f.submit, class: 'btn btn-primary' %>
+    <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
+<% end %>
+
+<% if @album.errors.any? %>
+  <script type="application/javascript">
+    $(document).ready(function () {
+      $('#album-form').render_form_errors(<%= @album.errors.to_json.html_safe %>);
+    })
+  </script>
 <% end %>

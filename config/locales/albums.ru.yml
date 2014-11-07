@@ -3,3 +3,7 @@ ru:
     label:
       albums: "Альбомы"
       create: "Новый альбом"
+      your_albums: "Ваши альбомы"
+      name: "Альбом \"%{name}\""
+    confirm:
+      delete: "Вы хотите удалить альбом \"%{name}\"?"

@@ -1,0 +1,3 @@
+$('#albums-area').append("<%= j render partial: 'album_item', locals: {album: @album } %>");
+$('#albums-area').justifiedGallery('norewind');
+$('#new_album_modal').modal('hide');

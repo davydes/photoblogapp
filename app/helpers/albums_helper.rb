@@ -6,4 +6,8 @@ module AlbumsHelper
       image_url 'album_thumb.png'
     end
   end
+
+  def album_id (album)
+    "user##{album.user.id}album##{album.id}"
+  end
 end

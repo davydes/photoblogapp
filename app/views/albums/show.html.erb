@@ -26,7 +26,14 @@
 
 <div class="container-fluid">
   <div class="page-header">
-    <h3>Album "<%= @album.title %>"</h3>
+    <h3><%= t 'albums.label.name', :name => @album.title %>
+      <% if admin_or_current?(@album.user) %>
+        <%= link_to [@album.user, @album], method: 'DELETE' ,class: 'pull-right btn btn-xs btn-danger',
+                    :data => { :confirm => t('albums.confirm.delete', :name => @album.title) } do %>
+          <i class="glyphicon glyphicon-trash"></i>
+        <% end %>
+      <% end %>
+    </h3>
   </div>
 
   <% if @album.photos.count > 0 %>
