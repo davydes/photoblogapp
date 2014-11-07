@@ -18,14 +18,13 @@
 
 (function($) {
     $.fn.render_form_errors = function(errors){
-        $form = this;
         this.clear_previous_errors();
-        model = this.data('model');
+        var model = this.data('model');
 
         // show error messages in input form-group help-block
         $.each(errors, function(field, messages){
-            $input = $('input[name="' + model + '[' + field + ']"]');
-            $input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
+            var input = $('input[name="' + model + '[' + field + ']"]');
+            input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
         });
     };
 
@@ -34,5 +33,5 @@
             $('.help-block', $(this)).html('');
             $(this).removeClass('has-error');
         });
-    }
+    };
 }(jQuery));
