@@ -3,7 +3,7 @@
     <%= image_tag image_album_url(album, :small), alt: "#{album.title}" %>
   <% end %>
   <div class="caption">
-    <%= album.title %> [<%= album.photos.count %>]
+    <strong><%= album.title %> [<%= album.photos.count %>]</strong>
     <% if admin_or_current?(album.user) %>
       <%= link_to [album.user, album], method: 'DELETE' ,class: 'pull-right btn btn-xs btn-danger',
                   :data => { :confirm => t('albums.confirm.delete', :name => album.title) } do %>
