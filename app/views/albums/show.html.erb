@@ -1,29 +1,3 @@
-<% content_for :head do %>
-    <%= javascript_include_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'custom/nanogallery', 'data-turbolinks-track' => true %>
-<% end %>
-
-<script type="application/javascript">
-    var loadGallery = function () {
-        $(document).ready(function () {
-            $("#gallery").nanoGallery({
-                thumbnailWidth: 'auto',
-                thumbnailHeight: 240,
-                thumbnailHoverEffect: [
-                    { name: 'labelAppear75', duration: 300 }
-                ],
-                thumbnailGutterWidth: 4,
-                thumbnailGutterHeight: 4,
-                theme: 'clean',
-                thumbnailLabel: {
-                    position: 'overImageOnBottom',
-                    hideIcons: true}
-            });
-        });
-    };
-    $(document).ready(loadGallery);
-</script>
-
 <div class="container-fluid">
   <div class="page-header">
     <h3><%= t 'albums.label.name', :name => @album.title %>
@@ -39,11 +13,5 @@
     </h3>
   </div>
 
-  <% if @album.photos.count > 0 %>
-    <div id="gallery">
-      <% @album.photos.each do |photo| %>
-        <%= link_to photo.title, image_photo_url(photo, :medium), 'data-ngThumb' => image_photo_url(photo, :small), 'data-ngdesc' => photo.user.name %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render partial: 'photos/justified_gallery', :locals => {:photos => @album.photos} %>
 </div>
