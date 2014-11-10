@@ -13,12 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-
 //= require_directory .
 
 (function($) {
-    $.fn.render_form_errors = function(errors){
-        this.clear_previous_errors();
+    $.fn.renderFormErrors = function(errors){
+        this.clearPreviousErrors();
         var model = this.data('model');
 
         // show error messages in input form-group help-block
@@ -28,10 +27,27 @@
         });
     };
 
-    $.fn.clear_previous_errors = function(){
+    $.fn.clearPreviousErrors = function(){
         $('.form-group.has-error', this).each(function(){
             $('.help-block', $(this)).html('');
             $(this).removeClass('has-error');
         });
     };
+
+    $.fn.setHeightAsWindow = function (delta){
+        var winHeight = $(window).height()-delta;
+        $(this).first().css({
+            'max-height' : winHeight + "px"
+        });
+    };
+
+    $.fn.setFadeAble = function(baseElementSelector, affectElementSelector) {
+        $(this).find(baseElementSelector).on('mouseenter', function () {
+            $(this).find(affectElementSelector).fadeIn();
+        });
+        $(this).find(baseElementSelector).on('mouseleave', function(){
+            $(this).find(affectElementSelector).stop().fadeOut();
+        });
+    };
+
 }(jQuery));

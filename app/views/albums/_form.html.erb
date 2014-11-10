@@ -32,7 +32,7 @@
 <% if @album.errors.any? %>
   <script type="application/javascript">
     $(document).ready(function () {
-      $('#album-form').render_form_errors(<%= @album.errors.to_json.html_safe %>);
+      $('#album-form').renderFormErrors(<%= @album.errors.to_json.html_safe %>);
     })
   </script>
 <% end %>

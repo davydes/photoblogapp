@@ -13,6 +13,27 @@
   </h1>
 </div>
 
-<%= @article.content %>
+<%=
+  @article.content.gsub(/\{\{photo#(\d+)\}\}/) do |m|
+    if @article.user.photos.exists?($1)
+      photo = @article.user.photos.find($1)
+      "<div class=\"article-photo-container\">"+
+        "<img src=\"#{image_photo_url(photo)}\">"+
+        "<div class=\"caption\">#{photo.title}</div>"+
+      "</div>"
+    else
+      m
+    end
+  end.html_safe
+%>
+
+<% if @article.user.photos.any? %>
+  <hr>
+  Photos attached:
+  <br>
+  <% @article.user.photos.each do |photo| %>
+    <%= image_tag image_photo_url(photo, :thumb) %>
+  <% end %>
+<% end %>
 
 </div>
