@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110115045) do
+ActiveRecord::Schema.define(version: 20141111102000) do
 
   create_table "albums", force: true do |t|
     t.integer  "user_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20141110115045) do
   end
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+
+  create_table "articles_photos", id: false, force: true do |t|
+    t.integer "article_id"
+    t.integer "photo_id"
+  end
+
+  add_index "articles_photos", ["article_id", "photo_id"], name: "index_articles_photos_on_article_id_and_photo_id", unique: true
+  add_index "articles_photos", ["photo_id"], name: "index_articles_photos_on_photo_id"
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"

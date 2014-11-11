@@ -1,6 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :albums
+  has_and_belongs_to_many :articles
   has_attached_file :image,
                     :styles => {
                         :original => ["2048x2048>", :jpg],

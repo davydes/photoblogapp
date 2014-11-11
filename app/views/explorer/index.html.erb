@@ -3,19 +3,18 @@
       <% first_article = @articles.first %>
       <div class="jumbotron">
         <h2><%= first_article.title%></h2>
-        <p><%= first_article.content %></p>
-        <p><%= link_to "more", [first_article.user, first_article], class: "btn btn-primary btn-lg", role: "button" %></p>
+        <%= html_intro_article(first_article) %>
+        <p>
+          <div style="display: block">
+            <% first_article.photos.each do |photo| %>
+              <%= image_tag image_photo_url(photo, :thumb), style: "float: right; width: 64px; height: 64px;" %>
+            <% end %>
+          </div>
+        </p>
+        <p style='clear: both'><%= link_to "more", [first_article.user, first_article], class: "btn btn-primary btn-lg", role: "button" %></p>
       </div>
 
-      <div class="row">
-        <% @articles.drop(1).each do |article| %>
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2><%= article.title%></h2>
-              <p><%= article.content %></p>
-              <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
-            </div>
-        <% end %>
-      </div>
+      <%= render partial: 'articles/article_list', locals: {articles: @articles.drop(1)} %>
   <% end %>
 
   <%= render partial: 'photos' %>

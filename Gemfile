@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails', '2.5.0'
+gem "redcarpet"
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil

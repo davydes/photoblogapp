@@ -1,14 +1,3 @@
 <div class="container-fluid">
-<% if !@articles.empty? %>
-
-<div class="row">
-  <% @articles.all.each do |article| %>
-  <div class="col-6 col-sm-6 col-lg-4">
-    <h2><%= article.title%></h2>
-    <p><%= article.content %></p>
-    <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
-  </div>
-  <% end %>
-</div>
-<% end %>
+  <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
 </div>

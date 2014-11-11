@@ -39,6 +39,9 @@ ru:
         created_at: "Создан"
       album:
         title: "Название"
+      article:
+        title: "Название"
+        content: "Текст статьи"
       photo:
         title: "Название"
         description: "Описание"

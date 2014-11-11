@@ -1,7 +1,4 @@
-<div class="container-fluid">
-<h1>New article</h1>
-
+<div class="container">
+<h1><%= t 'articles.label.new' %></h1>
 <%= render 'form' %>
-
-<%= link_to 'Back', user_articles_path(@article.user) %>
 </div>

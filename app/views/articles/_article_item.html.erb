@@ -1,0 +1,12 @@
+<div class="col-6 col-sm-6 col-lg-4">
+    <h2><%= article.title %></h2>
+    <p><%= html_intro_article(article) %></p>
+    <p>
+    <div class="article-photo-preview-container">
+        <% article.photos.each do |photo| %>
+            <%= image_tag image_photo_url(photo, :thumb), class: 'pull-left article-photo-preview' %>
+        <% end %>
+    </div>
+    </p>
+    <p><%= link_to "more", [article.user, article], class: "btn btn-default", role: "button" %></p>
+</div>

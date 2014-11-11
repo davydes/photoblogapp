@@ -1,6 +1,6 @@
 var setMaxArticlePhotoHeight = function() {
-    $('div.article-photo-container img').each(function () {
-        $(this).setHeightAsWindow(66);
+    $('div.blog-photo-view img.blog-photo-img').each(function () {
+        $(this).setHeightAsWindow($(window).height()/2);
     });
 };
 

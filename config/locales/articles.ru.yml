@@ -2,3 +2,5 @@ ru:
   articles:
     label:
       articles: "Статьи"
+      new: "Новая статья"
+      edit: "Редактировать статью"

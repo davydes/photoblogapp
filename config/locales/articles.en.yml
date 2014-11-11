@@ -2,3 +2,5 @@ en:
   articles:
     label:
       articles: "Articles"
+      new: "New Article"
+      edit: "Edit Article"

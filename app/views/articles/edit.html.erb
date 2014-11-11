@@ -1,6 +1,4 @@
-<div class="container-fluid">
-<h1>Editing article</h1>
+<div class="container">
+<h1><%= t 'articles.label.edit' %></h1>
 <%= render 'form' %>
-<%= link_to 'Show', [@article.user, @article] %> |
-<%= link_to 'Back', user_articles_path(@article.user) %>
 </div>

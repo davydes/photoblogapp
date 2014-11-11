@@ -1,0 +1,7 @@
+<% if articles.any? %>
+    <div class="row">
+        <% articles.each do |article| %>
+            <%= render partial: 'articles/article_item', locals: {article: article} %>
+        <% end %>
+    </div>
+<% end %>
