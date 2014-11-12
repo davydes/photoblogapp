@@ -4,7 +4,9 @@ module ArticlesHelper
       if photos_hash.has_key?($1)
         photo = photos_hash[$1]
         "<div class=\"blog-photo-view\">"+
-            "<img class=\"blog-photo-img\" src=\"#{image_photo_url(photo, style)}\">"+
+            link_to(user_photo_url(photo.user, photo)) do
+              image_tag(image_photo_url(photo, style), class: 'blog-photo-img')
+            end+
             "<div class=\"blog-photo-caption\">#{photo.title}</div>"+
         "</div>".html_safe
       else
