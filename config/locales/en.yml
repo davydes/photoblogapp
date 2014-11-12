@@ -4,9 +4,11 @@ en:
   mobile_version: "Mobile"
   to_russian: "По-русски"
   to_english: "In English"
+  unsaved_alert: 'You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?'
 
   button:
     close: 'Close'
+    cancel: 'Cancel'
 
   sessions:
     user: "User"

@@ -1,8 +1,8 @@
 module ArticlesHelper
-  def _compile_photo_tags(text, photos, style = :medium)
+  def _compile_photo_tags(text, photos_hash, style = :medium)
     text.gsub(Article::PHOTO_TAG) do
-      if photos.exists?($1)
-        photo = photos.find($1)
+      if photos_hash.has_key?($1)
+        photo = photos_hash[$1]
         "<div class=\"blog-photo-view\">"+
             "<img class=\"blog-photo-img\" src=\"#{image_photo_url(photo, style)}\">"+
             "<div class=\"blog-photo-caption\">#{photo.title}</div>"+
@@ -30,7 +30,7 @@ module ArticlesHelper
 
   def html_content_article(article)
     text = strip_tags(article.content)
-    text = _compile_photo_tags(text, article.photos)
+    text = _compile_photo_tags(text, article.photos_hash)
     markdown(text)
   end
 

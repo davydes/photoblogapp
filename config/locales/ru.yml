@@ -4,9 +4,11 @@ ru:
   mobile_version: "Мобильная"
   to_russian: "По-русски"
   to_english: "In English"
+  unsaved_alert: 'Имеются несохраненные данные. Вы действительно хотите отменить все изменения?'
 
   button:
     close: 'Закрыть'
+    cancel: 'Отменить'
 
   sessions:
     user: "Пользователь"

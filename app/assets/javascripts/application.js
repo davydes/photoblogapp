@@ -22,8 +22,10 @@
 
         // show error messages in input form-group help-block
         $.each(errors, function(field, messages){
-            var input = $('input[name="' + model + '[' + field + ']"]');
-            input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
+            if (messages.length > 0) {
+                var input = $('#'+model+'_'+field);
+                input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '));
+            }
         });
     };
 

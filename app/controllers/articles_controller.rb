@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   include UserResourceable
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @articles = @owner.articles.all.order('created_at DESC').limit(100)
@@ -19,19 +19,12 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(article_params)
-    if @article.save
-      redirect_to [@article.user, @article], notice: 'Article was successfully created.'
-    else
-      render :new
-    end
+    preview || save_or_render(:new)
   end
 
   def update
-    if @article.update(article_params)
-      redirect_to [@article.user, @article], notice: 'Article was successfully updated.'
-    else
-      render :edit
-    end
+    @article.assign_attributes(article_params)
+    preview || save_or_render(:edit)
   end
 
   def destroy
@@ -45,4 +38,18 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content)
   end
 
+  def preview
+    if @show_preview = (request.format == :js)
+      @article.valid?
+      render 'preview'
+    end
+  end
+
+  def save_or_render(action)
+    if @article.save
+      redirect_to [@article.user, @article]
+    else
+      render action
+    end
+  end
 end

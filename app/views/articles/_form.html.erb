@@ -1,31 +1,45 @@
-<%= form_for([@article.user, @article]) do |f| %>
+<%= form_for([@article.user, @article], html: {'data-model' => 'article', id: 'article-form'}) do |f| %>
   <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t 'activerecord.error', :count => @article.errors.count %></h2>
-      <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+        <%= t('activerecord.error', :count => @article.errors.count) %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="form-group">
     <%= f.label :title, class: 'control-label'%><br>
     <%= f.text_field :title, class: 'form-control' %>
+    <span class="help-block"></span>
   </div>
   <div class="form-group">
     <%= f.label :content, class: 'control-label' %><br>
     <%= f.text_area :content, class: 'form-control', style: 'resize: vertical;' %>
+    <span class="help-block"></span>
   </div>
   <div class="form-group">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= f.submit 'Preview', :name => 'preview', :class => 'btn btn-warning' %>
-    <%= button_tag 'Close', :class => 'btn btn-danger pull-right' %>
+    <%= f.submit nil, id: 'commit-button', name: 'commit', class: 'btn btn-primary' %>
+    <%= f.submit t('articles.label.preview'), id: 'preview-button', name: 'preview', class: 'btn btn-warning' %>
+    <%= link_to t('button.cancel'),
+                action_name == 'new' ? user_articles_path(current_user)
+                                    : user_article_path(@article.user, @article),
+                class: 'btn btn-danger pull-right' %>
   </div>
 <% end %>
 
-<script type="text/javascript">
+<div class="modal fade" id="article_preview_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<script type="application/javascript">
+    var unsaved = false;
     var setEditorHeight = function() {
         $('textarea#article_content').each(function () {
             var winHeight = $(window).height()-300;
@@ -35,8 +49,30 @@
         });
     };
 
+    $('#preview-button').click(function (e) {
+        $.rails.handleRemote( $('form') );
+        e.preventDefault();
+    });
+
+    $('#commit-button').click(function () {
+        unsaved = false;
+    });
+
     $(document).ready(function () {
         setEditorHeight();
         $(window).resize(setEditorHeight);
+        <% if @article.errors.any? %>
+            $('form').renderFormErrors(<%= @article.errors.to_json.html_safe %>);
+        <% end %>
+    });
+
+    $(window).bind('beforeunload', function() {
+        if(unsaved){
+            return "<%= t 'unsaved_alert' %>";
+        }
+    });
+
+    $(document).on('change', ':input', function(){
+        unsaved = true;
     });
 </script>
