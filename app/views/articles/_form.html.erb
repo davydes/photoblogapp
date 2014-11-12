@@ -42,7 +42,7 @@
     var unsaved = false;
     var setEditorHeight = function() {
         $('textarea#article_content').each(function () {
-            var winHeight = $(window).height()-300;
+            var winHeight = Math.max($(window).height()-300, 300);
             $(this).first().css({
                 'height' : winHeight + "px"
             });
