@@ -29,10 +29,7 @@
   <div class="form-group">
     <%= f.submit nil, id: 'commit-button', name: 'commit', class: 'btn btn-primary' %>
     <%= f.submit t('articles.label.preview'), id: 'preview-button', name: 'preview', class: 'btn btn-warning' %>
-    <%= link_to t('button.cancel'),
-                action_name == 'new' ? user_articles_path(current_user)
-                                    : user_article_path(@article.user, @article),
-                class: 'btn btn-danger pull-right' %>
+    <%= link_to t('button.cancel'), user_articles_path(current_user), class: 'btn btn-danger pull-right' %>
   </div>
 <% end %>
 
