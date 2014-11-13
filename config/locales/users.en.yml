@@ -6,12 +6,11 @@ en:
         update: "Save"
   users:
     label:
-      users: "Пользователи"
+      users: "Users"
+      since_from: "since %{date}"
     edit_user: "Edit %{name}"
     new_user?: "New user?"
     signup_now: "Sign up now!"
-    label:
-      users: "Users"
     name: "Name"
     email: "E-mail"
     password: "Password"

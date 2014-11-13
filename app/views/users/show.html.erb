@@ -24,7 +24,7 @@
             </tr>
             <tr>
               <td><%= model_class.human_attribute_name(:email) %>:</td>
-              <td><%= admin_or_current?(@user) ? mail_to(@user.email) : @user.email.gsub(/.{1,}@/, '***@') %></td>
+              <td><%= masked_user_email(@user) %></td>
             </tr>
             </tbody>
           </table>

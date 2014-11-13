@@ -7,6 +7,7 @@ ru:
   users:
     label:
       users: "Пользователи"
+      since_from: "учетная запись с %{date}"
     edit_user: "Изменение %{name}"
     new_user?: "Нету логина?"
     signup_now: "Зарегестрируйся!"

@@ -1,13 +1,11 @@
 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 user-card">
 <%= link_to user_path(user) do %>
 <div  class="user-card-block">
-  <div class="user-card-header">
-      <%= image_tag image_avatar_url(user)%>
+  <%= image_tag image_avatar_url(user, :original)%>
+  <div class="user-card-body">
     <h1 class="media-heading"><%= user.name %></h1>
-    <h2><%= user.email %></h2>
-  </div>
-  <div class="user-card-body text-right">
-    since <%=l user.created_at, :format => :short %>
+    <h2><%= masked_user_email(user) %></h2>
+    <h2 class="text-right"><%= t 'users.label.since_from', :date => l(user.created_at, :format => :short) %></h2>
   </div>
   <div class="user-card-footer">
     <% if admin? %>
