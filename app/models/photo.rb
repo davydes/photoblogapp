@@ -1,7 +1,8 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :albums
-  has_and_belongs_to_many :articles
+  has_many :articles_photos
+  has_many :articles, :through => :articles_photos, :dependent => :restrict_with_exception
   has_attached_file :image,
                     :styles => {
                         :original => ["2048x2048>", :jpg],

@@ -55,6 +55,10 @@ class PhotosController < ApplicationController
       format.json { render file: '/photos/photo.json.erb',
                            content_type: 'application/json' }
     end
+  rescue ActiveRecord::DeleteRestrictionError => e
+    @photo.errors.add(:base, e)
+    flash[:error] = "#{e}"
+    redirect_to [@photo.user, @photo]
   end
 
   def link_album
