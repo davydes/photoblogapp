@@ -1,4 +1,7 @@
 class Article < ActiveRecord::Base
+  scope :drafts, -> { where(published: false) }
+  scope :published, -> { where(published: true) }
+
   belongs_to :user
   has_and_belongs_to_many :photos
 
@@ -22,7 +25,25 @@ class Article < ActiveRecord::Base
         photos_hash[$1] =  Photo.find($1)
       end
     end
-    return photos_hash
+    photos_hash
+  end
+
+  def unpublish
+    self.attributes = {:published_at => nil, :published => false}
+    save
+  end
+
+  def publish
+    self.attributes = {:published_at => Time.now, :published => true}
+    save
+  end
+
+  def is_draft?
+    !(self.published || false)
+  end
+
+  def when_published
+    self.published_at || self.created_at
   end
 
   private

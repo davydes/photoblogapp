@@ -6,3 +6,7 @@ ru:
       edit: "Редактировать статью"
       preview: 'Предпросмотр'
       published_by: 'опубликовано'
+      draft_created_at: "черновик создан %{date}"
+      your_drafts: "Ваши неопубликованные статьи"
+      your_published: "Ваши опубликованные статьи"
+      articles_of: "Статьи %{name}"

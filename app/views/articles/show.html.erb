@@ -15,8 +15,12 @@
 <div class="container">
         <h2><%= @article.title %></h2>
         <h5 class="text-right">
-          <%= t 'articles.label.published_by' %> <%= link_to @article.user.name, user_path(@article.user) %>
-          <%= t 'at' %> <%= l @article.created_at, :format => :short %>
+          <% if @article.is_draft? %>
+            <span class="text-warning"> <%= t 'articles.label.draft_created_at', date: l(@article.created_at, :format => :short) %></span>
+          <% else %>
+            <%= t 'articles.label.published_by' %> <%= link_to @article.user.name, user_path(@article.user) %>
+            <%= l @article.when_published, :format => :short %>
+          <% end %>
           <% if admin_or_current?(@article.user) %>
               <%= link_to edit_user_article_path(@article.user, @article),
                           style: 'font-size: 1.2em; color: green; margin-left: 3px;' do %>

@@ -3,11 +3,15 @@ class ArticlesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @articles = @owner.articles.all.order('created_at DESC').limit(100)
+    @articles = @owner.articles.published.order('created_at DESC').limit(100)
+    if current_user?(@owner)
+      @drafts = current_user.articles.drafts.order('created_at DESC')
+    end
   end
 
   def show
-    @article =  @owner.articles.find(params[:id])
+    @article = current_user?(@owner) ? current_user.articles.find(params[:id])
+                                     : @owner.articles.published.find(params[:id])
   end
 
   def new
@@ -39,7 +43,8 @@ class ArticlesController < ApplicationController
   end
 
   def preview
-    if @show_preview = (request.format == :js)
+    @show_preview = (request.format == :js)
+    if @show_preview
       @article.valid?
       render 'preview'
     end

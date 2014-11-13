@@ -17,7 +17,7 @@ class ExplorerController < ApplicationController
   private
 
   def set_last_articles
-    @articles = Article.all.order('created_at DESC').last(100)
+    @articles = Article.published.order('created_at DESC').last(100)
   end
 
   def set_last_photos
