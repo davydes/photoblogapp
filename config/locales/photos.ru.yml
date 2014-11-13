@@ -2,6 +2,8 @@ ru:
   photos:
     label:
       photos: "Фотографии"
+      your_photos: "Ваши фотографии"
+      photos_of: "Фотографии - %{name}"
       last100: "Последние 100 фотографий"
       upload: "Загрузить фото"
     uploader:

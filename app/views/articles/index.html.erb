@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <% if @drafts && @drafts.any? %>
-    <h2><%= t 'articles.label.your_drafts' %></h2>
+    <h3><%= t 'articles.label.your_drafts' %></h3>
     <%= render partial: 'articles/article_list', locals: {articles: @drafts} %>
   <% end %>
-  <h2>
+  <h3>
     <%= current_user?(@owner) ? t('articles.label.your_published')
                               : t('articles.label.articles_of', name: @owner.name) %>
-  </h2>
+  </h3>
   <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
 </div>

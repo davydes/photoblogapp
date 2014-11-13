@@ -4,18 +4,16 @@
 <% end %>
 
 <div class="container-fluid">
-  <div class="page-header">
-    <h3>
-      <% if current_user?(@owner) %>
-        <%=t 'albums.label.your_albums'%>
-        <%= link_to new_user_album_path(current_user), remote: :true, :class => 'btn btn-success btn-xs pull-right' do %>
-          <i class="glyphicon glyphicon-plus"></i>
-        <% end %>
-      <% else %>
-        <%=t 'albums.label.albums'%> - "<%= @owner.name %>"
+  <h3>
+    <% if current_user?(@owner) %>
+      <%=t 'albums.label.your_albums'%>
+      <%= link_to new_user_album_path(current_user), remote: :true, :class => 'btn btn-success btn-xs pull-right' do %>
+        <i class="glyphicon glyphicon-plus"></i>
       <% end %>
-    </h3>
-  </div>
+    <% else %>
+      <%=t 'albums.label.albums'%> - "<%= @owner.name %>"
+    <% end %>
+  </h3>
 
   <div id="albums-area">
     <% @albums.each do |album| %>

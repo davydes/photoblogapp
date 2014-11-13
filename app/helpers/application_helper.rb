@@ -9,8 +9,14 @@ module ApplicationHelper
     }[flash_type] || flash_type.to_s
   end
 
-  def badge (count)
-    html = "<span class=\"badge pull-right\">#{count}</span>"
+  def badge (count, position = :right)
+    position_css = ''
+    if position == :right
+      position_css = 'pull-right'
+    elsif position == :left
+      position_css = 'pull-left'
+    end
+    html = "<span class=\"badge #{position_css}\">#{count}</span>"
     html.html_safe
   end
 

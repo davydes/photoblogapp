@@ -2,6 +2,8 @@ en:
   photos:
     label:
       photos: "Photos"
+      your_photos: "Your photos"
+      photos_of: "Photos of %{name}"
       last100: "Last 100 photos"
       upload: "Upload photos"
     uploader:

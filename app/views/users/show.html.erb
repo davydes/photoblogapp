@@ -3,58 +3,33 @@
 
 <div class="container" id="user-profile-container">
   <div class="row">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= @user.name %></h3>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 " align="center"><%= image_tag image_avatar_url(@user, :original), alt: "User Pic", class: "img-circle user-avatar"%></div>
+        <div class=" col-md-9 col-lg-9 col-xs-12 ">
+          <%= link_to user_photos_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
+              <%= t 'photos.label.photos', :count => @user.photos.count %> <%= badge(@user.photos.count, :none) %>
+          <% end %>
+          <%= link_to user_articles_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
+              <%= t 'articles.label.articles', :count => @user.articles.count %> <%= badge(@user.articles.count, :none) %>
+          <% end %>
+          <%= link_to user_albums_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
+              <%= t 'albums.label.albums', :count => @user.albums.count %> <%= badge(@user.albums.count, :none) %>
+          <% end %>
+          <table class="table table-user-information">
+            <tbody>
+            <tr>
+              <td><%= model_class.human_attribute_name(:name) %>:</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:email) %>:</td>
+              <td><%= admin_or_current?(@user) ? mail_to(@user.email) : @user.email.gsub(/.{1,}@/, '***@') %></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center"><%= image_tag image_avatar_url(@user, :original), alt: "User Pic", class: "img-circle user-avatar"%></div>
-            <div class=" col-md-9 col-lg-9 ">
-              <table class="table table-user-information">
-                <tbody>
-                <tr>
-                  <td><%= model_class.human_attribute_name(:name) %>:</td>
-                  <td><%= @user.name %></td>
-                </tr>
-                <tr>
-                  <td><%= model_class.human_attribute_name(:email) %>:</td>
-                  <td><%= mail_to @user.email %></td>
-                </tr>
-                <tr>
-                  <td><%= t 'photos.label.photos', :count => @user.photos.count %>:</td>
-                  <td><%= @user.photos.count %></td>
-                </tr>
-                <tr>
-                  <td><%= t 'articles.label.articles', :count => @user.articles.count %>:</td>
-                  <td><%= @user.articles.count %></td>
-                </tr>
-                <tr>
-                  <td><%= t 'albums.label.albums', :count => @user.albums.count %>:</td>
-                  <td><%= @user.albums.count %></td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class  ="panel-footer">
-          <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-          <%# if current_user.admin? %>
-          <span class="pull-right">
-            <%= link_to edit_user_path(@user), {type: 'button', :class => "btn btn-sm btn-warning"} do %>
-                <i class="glyphicon glyphicon-edit"></i>
-            <% end %>
-            <%= link_to user_path(@user),
-                        {:method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-sm btn-danger'} do %>
-              <i class="glyphicon glyphicon-remove"></i>
-            <% end %>
-          </span>
-          <%# end %>
-        </div>
-
       </div>
+    </div>
   </div>
 </div>
