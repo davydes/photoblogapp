@@ -7,7 +7,7 @@
 
 <%= render partial: 'shared/blueimp_controls', locals: {bootstrap: :true} %>
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 10px;">
 <%= form_tag({action: :create}, method: "post", id: "fileupload", multipart: :true)  do %>
   <div class="row fileupload-buttonbar">
     <div class="col-lg-7">

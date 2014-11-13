@@ -1,0 +1,24 @@
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 user-card">
+<%= link_to user_path(user) do %>
+<div  class="user-card-block">
+  <div class="user-card-header">
+      <%= image_tag image_avatar_url(user)%>
+    <h1 class="media-heading"><%= user.name %></h1>
+    <h2><%= user.email %></h2>
+  </div>
+  <div class="user-card-body text-right">
+    since <%=l user.created_at, :format => :short %>
+  </div>
+  <div class="user-card-footer">
+    <% if admin? %>
+        <%= link_to t("helpers.links.edit"),
+                    edit_user_path(user), :class => 'text-warning' %>
+        <%= link_to t("helpers.links.destroy"),
+                    user_path(user), :method => :delete,
+                    :data => { :confirm => 'Are you sure?' },
+                    :class => 'text-danger'  %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+</div>
