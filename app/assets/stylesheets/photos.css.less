@@ -4,30 +4,28 @@
   padding: 20px 0;
   margin-bottom: 20px;
 
-  #main-photo {
-    max-width: 100%;
-  }
-
-  > .nav {
+  a > .nav {
     position: absolute;
     display: block;
     top: 25%;
     height: 50%;
     width: 25%;
-
-    .prev {left: 0px;}
-    .next {right: 0px;}
   }
-  .nav > span {
+  a > .prev {left: 0px;}
+  a > .next {right: 0px;}
+  a > .nav > span {
     display: block;
     color: #ddd;
     position: absolute;
     top: 50%;
     margin-top: -10px;
   }
+  a > .prev > span {left: 0px;}
+  a > .next > span {right: 0px;}
 
-  .prev > span {left: 0px;}
-  .next > span {right: 0px;}
+  #main-photo {
+    max-width: 100%;
+  }
 }
 
 .description-panel {
