@@ -4,8 +4,7 @@
     <%= render partial: 'articles/article_list', locals: {articles: @drafts} %>
   <% end %>
   <h3>
-    <%= current_user?(@owner) ? t('articles.label.your_published')
-                              : t('articles.label.articles_of', name: @owner.name) %>
+    <%= t('articles.label.your_published') %>
   </h3>
   <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
 </div>

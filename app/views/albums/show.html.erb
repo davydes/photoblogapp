@@ -2,11 +2,11 @@
   <div class="page-header">
     <h3><%= t 'albums.label.name', :name => @album.title %>
       <% if admin_or_current?(@album.user) %>
-        <%= link_to [@album.user, @album], method: 'DELETE' ,class: 'pull-right btn btn-xs btn-danger',
+        <%= link_to @album, method: 'DELETE' ,class: 'pull-right btn btn-xs btn-danger',
                     :data => { :confirm => t('albums.confirm.delete', :name => @album.title) } do %>
           <i class="glyphicon glyphicon-trash"></i>
         <% end %>
-        <%= link_to edit_user_album_path(@album.user, @album), class: 'pull-right btn btn-xs btn-success' do %>
+        <%= link_to edit_album_path(@album), class: 'pull-right btn btn-xs btn-success' do %>
           <i class="glyphicon glyphicon-edit"></i>
         <% end %>
       <% end %>

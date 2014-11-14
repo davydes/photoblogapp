@@ -3,15 +3,16 @@ class ArticlesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @articles = @owner.articles.published.order('created_at DESC').limit(100)
-    if current_user?(@owner)
-      @drafts = current_user.articles.drafts.order('created_at DESC')
-    end
+    @articles = current_user.articles.published.order('created_at DESC').limit(100)
+    @drafts = current_user.articles.drafts.order('created_at DESC')
   end
 
   def show
-    @article = current_user?(@owner) ? current_user.articles.find(params[:id])
-                                     : @owner.articles.published.find(params[:id])
+    @article = Article.find(params[:id])
+    not_found if !@article
+    access_denied if @article.is_draft? && !admin_or_current?(@article.user)
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   def new
@@ -33,7 +34,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to user_articles_path(@article.user), notice: 'Article was successfully destroyed.'
+    redirect_to articles_path, notice: 'Article was successfully destroyed.'
   end
 
   private
@@ -52,7 +53,7 @@ class ArticlesController < ApplicationController
 
   def save_or_render(action)
     if @article.save
-      redirect_to [@article.user, @article]
+      redirect_to @article
     else
       render action
     end

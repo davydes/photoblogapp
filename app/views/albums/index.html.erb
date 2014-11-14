@@ -5,13 +5,9 @@
 
 <div class="container-fluid">
   <h3>
-    <% if current_user?(@owner) %>
-      <%=t 'albums.label.your_albums'%>
-      <%= link_to new_user_album_path(current_user), remote: :true, :class => 'btn btn-success btn-xs pull-right' do %>
-        <i class="glyphicon glyphicon-plus"></i>
-      <% end %>
-    <% else %>
-      <%=t 'albums.label.albums'%> - "<%= @owner.name %>"
+    <%=t 'albums.label.your_albums'%>
+    <%= link_to new_album_path, remote: :true, :class => 'btn btn-success btn-xs pull-right' do %>
+      <i class="glyphicon glyphicon-plus"></i>
     <% end %>
   </h3>
 

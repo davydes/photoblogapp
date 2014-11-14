@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
   end
+
+  def access_denied
+    redirect_to :root;
+  end
+
+  def not_found
+    redirect_to :root;
+  end
 end

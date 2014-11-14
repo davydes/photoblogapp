@@ -1,4 +1,4 @@
 <div class="container-fluid">
-  <h3><%= current_user?(@owner) ? t('photos.label.your_photos') : t('photos.label.photos_of', name: @owner.name) %></h3>
+  <h3><%= t('photos.label.your_photos') %></h3>
   <%= render partial: 'photos/justified_gallery', :locals => {:photos => @photos} %>
 </div>

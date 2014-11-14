@@ -26,6 +26,6 @@
 <h3><%= link_to (t 'photos.label.last100'), explorer_photos_path %></h3>
 <div id="lastFilm">
   <% @photos.each do |photo| %>
-      <%= link_to photo.title, image_photo_url(photo, :original), 'data-ngdest' => user_photo_path(photo.user ,photo) ,'data-ngThumb' => image_photo_url(photo, :thumb) %>
+      <%= link_to photo.title, image_photo_url(photo, :original), 'data-ngdest' => photo_path(photo) ,'data-ngThumb' => image_photo_url(photo, :thumb) %>
   <% end %>
 </div>

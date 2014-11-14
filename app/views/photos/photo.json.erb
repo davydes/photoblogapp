@@ -3,6 +3,6 @@
 "size": "<%= @photo.image_file_size %>",
 "url": "<%= image_photo_url(@photo, :medium) %>",
 "thumbnailUrl": "<%= image_photo_url(@photo, :thumb) %>",
-"deleteUrl": "<%= user_photo_path(@photo.user,@photo) %>",
+"deleteUrl": "<%= photo_path(@photo) %>",
 "deleteType": "DELETE"
 }]}

@@ -2,11 +2,11 @@ class AlbumsController < ApplicationController
   include UserResourceable
 
   def index
-    @albums = @owner.albums.all
+    @albums = current_user.albums.all
   end
 
   def show
-    @album = @owner.albums.find(params[:id])
+    @album = Album.find(params[:id])
   end
 
   def new
@@ -18,8 +18,8 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.new(album_params)
     respond_to do |format|
       if @album.save
-        format.html { redirect_to [@album.user, @album] }
-        format.js   { render action: 'show', status: :created, location: [@album.user, @album] }
+        format.html { redirect_to @album }
+        format.js   { render action: 'show', status: :created, location: @album }
       else
         format.html { render :album }
         format.js   { render json: @album.errors, status: :unprocessable_entity }
@@ -34,7 +34,7 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to [@album.user, @album] }
+        format.html { redirect_to @album }
         format.js   { render 'update' }
       else
         format.html { render :album }
@@ -47,7 +47,7 @@ class AlbumsController < ApplicationController
     # todo: make destroy remoteable
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to user_albums_path(@album.user) }
+      format.html { redirect_to albums_path }
       format.js   { render 'destroy' }
     end
   end

@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :users do
+  resources :users, shallow: true do
     member do
       post :crop_avatar
     end
-
-    resources :photos do
-      member do
-        delete 'album/:album_id', :action => 'unlink_album', :as => :album
-        post   'album/:album_id', :action => 'link_album'
-        get 'available_albums'
-      end
-    end
-
-    resources :albums, :articles
   end
+
+  resources :photos do
+    member do
+      delete 'album/:album_id', :action => 'unlink_album', :as => :album
+      post   'album/:album_id', :action => 'link_album'
+      get    'available_albums'
+    end
+  end
+  resources :albums, :articles
 
   resources :sessions, only: [:index, :new, :create, :destroy]
 

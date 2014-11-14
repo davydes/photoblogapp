@@ -11,7 +11,7 @@
             <% end %>
           </div>
         </p>
-        <p style='clear: both'><%= link_to "more", [first_article.user, first_article], class: "btn btn-primary btn-lg", role: "button" %></p>
+        <p style='clear: both'><%= link_to "more", first_article, class: "btn btn-primary btn-lg", role: "button" %></p>
       </div>
 
       <%= render partial: 'articles/article_list', locals: {articles: @articles.drop(1)} %>

@@ -1,5 +1,5 @@
 <div class="item" id="<%= photo_id(photo) %>">
-  <%= link_to user_photo_path(photo.user, photo) do %>
+  <%= link_to photo do %>
       <%= image_tag image_photo_url(photo, :small), alt: "#{photo.title}" %>
   <% end %>
   <div class="caption">

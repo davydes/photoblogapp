@@ -7,15 +7,6 @@
       <div class="row">
         <div class="col-md-3 col-lg-3 " align="center"><%= image_tag image_avatar_url(@user, :original), alt: "User Pic", class: "img-circle user-avatar"%></div>
         <div class=" col-md-9 col-lg-9 col-xs-12 ">
-          <%= link_to user_photos_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
-              <%= t 'photos.label.photos', :count => @user.photos.count %> <%= badge(@user.photos.count, :none) %>
-          <% end %>
-          <%= link_to user_articles_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
-              <%= t 'articles.label.articles', :count => @user.articles.count %> <%= badge(@user.articles.count, :none) %>
-          <% end %>
-          <%= link_to user_albums_path(@user), class: 'col-md-4 col-lg-4 col-xs-12 btn btn-primary' do %>
-              <%= t 'albums.label.albums', :count => @user.albums.count %> <%= badge(@user.albums.count, :none) %>
-          <% end %>
           <table class="table table-user-information">
             <tbody>
             <tr>

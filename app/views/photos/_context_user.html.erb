@@ -9,10 +9,10 @@
   </div>
   <div class="panel-footer">
     <% if admin_or_current?(@photo.user) %>
-        <%= link_to edit_user_photo_path(@photo.user, @photo), class: "btn btn-danger btn-xs" do %>
+        <%= link_to edit_photo_path(@photo), class: "btn btn-danger btn-xs" do %>
             <span class='glyphicon glyphicon-edit'></span></a>
         <% end %>
-        <%= link_to [@photo.user, @photo], data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
+        <%= link_to @photo, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
             <span class='glyphicon glyphicon-trash'></span>
         <% end %>
     <% end %>

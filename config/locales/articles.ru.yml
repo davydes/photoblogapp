@@ -10,3 +10,5 @@ ru:
       your_drafts: "Ваши неопубликованные статьи"
       your_published: "Ваши опубликованные статьи"
       articles_of: "Статьи %{name}"
+    error:
+      not_found: 'Статья не найдена'

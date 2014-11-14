@@ -1,7 +1,7 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
 
-<%= form_for([@album.user, @album], remote: remote, html: {role: :form, 'data-model' => 'album', id: 'album-form'}) do |f| %>
+<%= form_for(@album, remote: remote, html: {role: :form, 'data-model' => 'album', id: 'album-form'}) do |f| %>
   <% if @album.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">

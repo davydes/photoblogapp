@@ -19,12 +19,12 @@
 
 <div class="span7 text-center" id="photo-container">
   <% if @photo.prev %>
-    <%= link_to [@photo.prev.user, @photo.prev] do %>
+    <%= link_to @photo.prev do %>
       <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
     <% end %>
   <% end %>
   <% if @photo.next %>
-    <%= link_to [@photo.next.user, @photo.next] do %>
+    <%= link_to @photo.next do %>
       <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
     <% end %>
   <% end %>

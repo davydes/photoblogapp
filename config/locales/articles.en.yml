@@ -10,4 +10,5 @@ en:
       your_drafts: "Your drafts"
       your_published: "Your public articles"
       articles_of: "Articles of %{name}"
-
+    error:
+      not_found: 'Article not found'

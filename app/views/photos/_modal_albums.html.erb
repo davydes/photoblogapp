@@ -8,7 +8,7 @@
         <div class="row context-row">
           <% if @albums.count > 0 %>
             <% @albums.each do |album| %>
-              <%= link_to album_user_photo_path(@photo.user, @photo, album), method: :post, remote: true do %>
+              <%= link_to album_photo_path(@photo, album), method: :post, remote: true do %>
                 <div class="col-md-6 context-item">
                     <%= image_tag image_album_url(album), class: 'thumbnail' %>
                     <h4><%= album.title %></h4>

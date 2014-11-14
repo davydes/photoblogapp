@@ -1,15 +1,15 @@
 <div class="item" id="<%= album_id(album) %>">
-  <%= link_to user_album_path(album.user, album) do %>
+  <%= link_to album do %>
     <%= image_tag image_album_url(album, :small), alt: "#{album.title}" %>
   <% end %>
   <div class="caption">
     <strong><%= album.title %> [<%= album.photos.count %>]</strong>
     <% if admin_or_current?(album.user) %>
-      <%= link_to [album.user, album], method: 'DELETE', class: 'pull-right', remote: :true,
+      <%= link_to album, method: 'DELETE', class: 'pull-right', remote: :true,
                   :data => { :confirm => t('albums.confirm.delete', :name => album.title) } do %>
         <i class="glyphicon glyphicon-trash" style="color: white; margin-left: 3px;"></i>
       <% end %>
-      <%= link_to edit_user_album_path(album.user, album), class: 'pull-right', remote: :true do %>
+      <%= link_to edit_album_path(album), class: 'pull-right', remote: :true do %>
         <i class="glyphicon glyphicon-edit" style="color: white"></i>
       <% end %>
     <% end %>

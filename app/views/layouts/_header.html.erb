@@ -25,18 +25,18 @@
                   <%= current_user.name %><b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to t('articles.label.new'), new_user_article_path(current_user) %></li>
-                  <li><%= link_to t('photos.label.upload'), new_user_photo_path(current_user) %></li>
+                  <li><%= link_to t('articles.label.new'), new_article_path %></li>
+                  <li><%= link_to t('photos.label.upload'), new_photo_path %></li>
                   <li class="divider"></li>
-                  <li><%= link_to user_photos_path(current_user) do %>
+                  <li><%= link_to photos_path do %>
                     <%= badge(current_user.photos.count) %>
                     <%= t('photos.label.photos') %>
                   <% end %></li>
-                  <li><%= link_to user_albums_path(current_user) do %>
+                  <li><%= link_to albums_path do %>
                     <%= badge(current_user.albums.count) %>
                     <%= t('albums.label.albums') %>
                   <% end %></li>
-                  <li><%= link_to user_articles_path(current_user) do %>
+                  <li><%= link_to articles_path do %>
                     <%= badge(current_user.articles.count) %>
                     <%= t('articles.label.articles') %>
                   <% end %></li>

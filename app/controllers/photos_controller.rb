@@ -8,11 +8,11 @@ class PhotosController < ApplicationController
   respond_to :js,   only: [:unlink_album, :link_album, :available_albums]
 
   def index
-    @photos = @owner.photos.all.order('created_at DESC').limit(100)
+    @photos = current_user.photos.all.order('created_at DESC').limit(100)
   end
 
   def show
-    @photo = @owner.photos.find(params[:id])
+    @photo = Photo.find(params[:id])
   end
 
   def new
@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
     @photo.title, @photo.image = image.original_filename, image
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to [@photo.user, @photo] }
+        format.html { redirect_to @photo }
         format.json { render file: '/photos/photo.json.erb',
                              content_type: 'application/json' }
       else
@@ -42,7 +42,7 @@ class PhotosController < ApplicationController
 
   def update
     if @photo.update(photo_update_params)
-      redirect_to [@photo.user, @photo]
+      redirect_to @photo
     else
       render :edit
     end
@@ -51,14 +51,14 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to user_photos_url(@photo.user) }
+      format.html { redirect_to photos_url }
       format.json { render file: '/photos/photo.json.erb',
                            content_type: 'application/json' }
     end
   rescue ActiveRecord::DeleteRestrictionError => e
     @photo.errors.add(:base, e)
     flash[:error] = "#{e}"
-    redirect_to [@photo.user, @photo]
+    redirect_to @photo
   end
 
   def link_album
@@ -82,7 +82,7 @@ class PhotosController < ApplicationController
   end
 
   def set_album
-    @album = @owner.albums.find(params[:album_id])
+    @album = current_user.albums.find(params[:album_id])
   end
 
   def image_param
