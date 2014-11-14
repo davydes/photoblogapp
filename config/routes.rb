@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
   resources :photos do
     member do
-      delete 'album/:album_id', :action => 'unlink_album', :as => :album
-      post   'album/:album_id', :action => 'link_album'
+      delete 'album/:album_id', action: 'unlink_album', as: :album
+      post   'album/:album_id', action: 'link_album'
       get    'available_albums'
     end
   end
-  resources :albums, :articles
-
+  resources :albums
+  resources :articles
   resources :sessions, only: [:index, :new, :create, :destroy]
 
   resources :password_resets
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/explorer/index'
   get '/explorer/articles'
   get '/explorer/photos'
+  get '/explorer/articles/:id', to: 'explorer#article', as: :explorer_article
 
   root 'explorer#index'
 

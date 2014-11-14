@@ -42,4 +42,12 @@ module ArticlesHelper
     text = text.gsub(Article::PHOTO_TAG, '')
     markdown(text)
   end
+
+  def path_to_article(article)
+    if controller_name == 'explorer'
+      explorer_article_path(article)
+    else
+      article_path(article)
+    end
+  end
 end
