@@ -24,5 +24,12 @@ module PhotoBlogApp
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|
       html_tag
     }
+
+    config.generators do |g|
+      g.test_framework  :rspec, :fixture => false
+      g.view_specs      false
+      g.helper_specs    false
+      g.fixture_replacement :fabrication
+    end
   end
 end
