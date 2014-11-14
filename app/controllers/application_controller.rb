@@ -11,28 +11,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def mobile_user_agent?
-    request.env["HTTP_USER_AGENT"].try :match, /(iphone|ipod|android)/i
-  end
-
-  def handle_mobile
-    request.format = :mobile if mobile_user_agent?
-  end
-
-  def use_preferred_format
-    if request.format == 'html' && session[:preferred_format] == 'mobile'
-      request.format = :mobile
-    end
-    if request.format == 'mobile' && session[:preferred_format] == 'html'
-      request.format = :html
-    end
-  end
-
-  def force_mobile_format
-    session[:preferred_format] = 'mobile'
-    request.format = :mobile
-  end
-
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
