@@ -32,7 +32,13 @@ ru:
         other: "Альбомов"
     attributes:
       user:
-        name: "Имя"
+        name: "Логин"
+        first_name: "Имя"
+        last_name: "Фамилия"
+        date_of_birth: "Дата рождения"
+        gender: "Пол"
+        country: 'Страна'
+        city: 'Город'
         email: "Email"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"

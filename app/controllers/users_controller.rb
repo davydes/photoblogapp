@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:success] = "User #{@user.name} successfully destroyed"
     redirect_to(users_url)
   end
 
@@ -45,7 +44,6 @@ class UsersController < ApplicationController
   def update
     params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile #{@user.name} saved successfully"
       if user_params[:avatar].blank?
         redirect_to @user
       else
@@ -69,8 +67,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :first_name, :last_name, :email, :password,
+                                 :password_confirmation, :avatar, :gender, :date_of_birth, :city, :country)
   end
 
   def crop_ava_params

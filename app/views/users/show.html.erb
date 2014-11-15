@@ -17,6 +17,30 @@
               <td><%= model_class.human_attribute_name(:email) %>:</td>
               <td><%= masked_user_email(@user) %></td>
             </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:first_name) %>:</td>
+              <td><%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:last_name) %>:</td>
+              <td><%= @user.last_name %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:gender) %>:</td>
+              <td><%= gender(@user) %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:date_of_birth) %>:</td>
+              <td><%= birthday(@user) %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:country) %>:</td>
+              <td><%= @user.country %></td>
+            </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:city) %>:</td>
+              <td><%= @user.city %></td>
+            </tr>
             </tbody>
           </table>
         </div>

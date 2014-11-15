@@ -3,63 +3,124 @@
     <%= stylesheet_link_tag 'custom/fileinput', 'data-turbolinks-track' => true %>
 <% end %>
 
-<%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+<%= form_for @user, :html => { :class => "form-horizontal user", role: 'form', data: {model: 'user'} } do |f| %>
 
   <% if @user.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
+      <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title">
-          <%= t('activerecord.error', :count => @user.errors.count) %>
-        </h3>
+          <h3 class="panel-title">
+              <%= t('activerecord.error', :count => @user.errors.count) %>
+          </h3>
       </div>
       <div class="panel-body">
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+          </ul>
       </div>
     </div>
   <% end %>
 
-
-
-  <div class="control-group" style="max-width: 318px; margin: 0 auto">
-    <%= f.label t('users.name'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%= f.label t('users.email'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'form-control' %>
-    </div>
-    <%= f.label t('users.password'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password, :class => 'form-control' %>
-    </div>
-    <%= f.label t('users.password_confirmation'), :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password_confirmation, :class => 'form-control' %>
-    </div>
-    <%= f.label :avatar, "Avatar", :class => 'control-label'%>
-    <div class="control">
-      <%= f.file_field :avatar, id: 'input-avatar'%>
-    </div>
-    <%= (recaptcha_tags display: { theme: 'white' }, :ajax => :true) if (mode == 'create') %>
-    <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 5px 0" %>
+  <div class="row">
+      <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 col-sm-6 col-sm-offset-0">
+        <div class="container-fluid">
+            <div class="form-group">
+              <%= f.label :name, class: 'control-label' %>
+              <%= f.text_field :name, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, class: 'control-label' %>
+              <%= f.text_field :email, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :first_name, class: 'control-label' %>
+              <%= f.text_field :first_name, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :last_name, class: 'control-label' %>
+              <%= f.text_field :last_name, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+              <%= f.label :gender, class: 'control-label' %>
+              <div class="btn-group pull-right " data-toggle="buttons" style="width:100%">
+              <% [[t('users.genders.female'), 'f'], [t('users.genders.male'), 'm']].each do |gender|%>
+                <%= label_tag nil, class: "btn btn-default #{ 'active' if gender[1] == @user.gender }", style: 'width: 50%' do %>
+                  <%= f.radio_button(:gender, gender[1], checked: gender[1] == @user.gender) %><%= gender[0] %>
+                <% end %>
+              <% end %>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+              <%= f.label :date_of_birth, class: 'control-label' %>
+              <div class="input-group date">
+                <%= f.text_field :date_of_birth, value: birthday(@user), :class => 'datepicker form-control' %>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+              <span class="help-block"></span>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-6 col-sm-offset-0">
+        <div class="container-fluid">
+            <div class="form-group">
+              <%= f.label :country, class: 'control-label' %>
+              <%= f.text_field :country, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :city, class: 'control-label' %>
+              <%= f.text_field :city, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, class: 'control-label' %>
+              <%= f.password_field :password, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, class: 'control-label' %>
+              <%= f.password_field :password_confirmation, :class => 'form-control' %>
+              <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+              <%= f.label :avatar, class: 'control-label' %>
+              <%= f.file_field :avatar, id: 'input-avatar'%>
+              <span class="help-block"></span>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div style="max-width: 318px; margin: 0 auto">
+      <%= (recaptcha_tags display: { theme: 'white' }, :ajax => :true) if (mode == 'create') %>
+      <%= f.submit nil, :class => 'btn btn-primary form-control', :style => "margin: 5px 0" %>
   </div>
 
-  <script type="text/javascript">
+<% end %>
+
+<script type="text/javascript">
     /* Initialize your widget via javascript as follows */
     $(document).ready(function () {
-      $("#input-avatar").fileinput({
-          browseClass: "btn btn-primary btn-block",
-          showCaption: false,
-          showRemove: false,
-          showUpload: false,
-          maxFileSize: 1024
-      });
-    });
-  </script>
+        $("#input-avatar").fileinput({
+            browseClass: "btn btn-primary btn-block",
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileSize: 1024
+        });
 
-<% end %>
+        <% if @user.errors.any? %>
+          $('form').renderFormErrors(<%= @user.errors.to_json.html_safe %>);
+        <% end %>
+    });
+</script>

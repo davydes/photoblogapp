@@ -9,6 +9,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield(:head) %>
   <%= csrf_meta_tags %>
+  <script type="application/javascript">
+    $(document).ready(function () {
+      $('.datepicker').datepicker({
+          language: '<%= I18n.locale %>',
+          format: 'dd.mm.yyyy'
+      });
+    });
+  </script>
 </head>
 <body>
   <%= render partial: 'layouts/header' %>

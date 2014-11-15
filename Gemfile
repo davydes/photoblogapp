@@ -11,6 +11,7 @@ gem 'jquery_mobile_rails', '1.4.4'
 
 gem 'russian'
 gem 'twitter-bootstrap-rails', '3.2.0'
+gem 'bootstrap-datepicker-rails'
 gem 'paperclip', '~> 4.2'
 gem 'recaptcha', :require => 'recaptcha/rails'
 

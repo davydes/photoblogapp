@@ -10,7 +10,7 @@ ru:
       since_from: "учетная запись с %{date}"
     error:
       too_young: 'Вам должно быть больше 18 лет'
-    edit_user: "Изменение %{name}"
+    edit_user: "Изменение профиля"
     new_user?: "Нету логина?"
     signup_now: "Зарегестрируйся!"
     name: "Имя"
@@ -27,3 +27,6 @@ ru:
       password_reset: "Пароль успешно установлен"
       link_expired: "Ссылка больше не действительна"
 
+    genders:
+      male: 'Мужской'
+      female: 'Женский'

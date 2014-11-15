@@ -10,7 +10,7 @@ en:
       since_from: "since %{date}"
     error:
       too_young: 'You must be 18 years or older'
-    edit_user: "Edit %{name}"
+    edit_user: "Edit profile"
     new_user?: "New user?"
     signup_now: "Sign up now!"
     name: "Name"
@@ -27,3 +27,7 @@ en:
       email_sent: "Email sent with password reset instructions"
       password_reset: "Password has been reset"
       link_expired: "Password reset has expired."
+
+    genders:
+      male: 'Male'
+      female: 'Female'

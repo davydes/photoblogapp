@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { :within => 6..40 }, if: :password_changed?
   validates :first_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
   validates :last_name,  format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
-  validates :gender, inclusion: [:m, :f, nil]
+  validates :gender, inclusion: [:m, :f, 'm', 'f', nil]
   validate :at_least_18
   validates_attachment :avatar, less_than: 1.megabytes, content_type: { content_type: /\Aimage\/.*\Z/ }
 
