@@ -7,7 +7,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery_mobile_rails', '1.4.4'
 
 gem 'russian'
 gem 'twitter-bootstrap-rails', '3.2.0'
@@ -16,18 +15,18 @@ gem 'paperclip', '~> 4.2'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'spring',  group: :development
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
-gem 'less-rails', '2.5.0'
+gem 'less-rails'
 gem "redcarpet"
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil
   gem 'timecop'
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
 end
 
