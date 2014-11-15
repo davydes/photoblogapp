@@ -57,6 +57,45 @@ RSpec.describe User, :type => :model do
         user2 = build(:user, :email => user1.email)
         expect(user2).to be_invalid
       end
+      it 'wrong first_name format' do
+        user = build(:user, :first_name => 'Wrong@Name' )
+        expect(user).to be_invalid
+      end
+      it 'too long first_name' do
+        user = build(:user, :first_name => 'N'*51 )
+        expect(user).to be_invalid
+      end
+      it 'wrong last_name format' do
+        user = build(:user, :last_name => 'Wrong@Name' )
+        expect(user).to be_invalid
+      end
+      it 'too long last_name' do
+        user = build(:user, :last_name => 'N'*51 )
+        expect(user).to be_invalid
+      end
+      it 'gender invalid value' do
+        user = build(:user, :gender => 'i')
+        expect(user).to be_invalid
+      end
+      it 'age least 18' do
+        user = build(:user, :date_of_birth => 5.years.ago)
+        expect(user).to be_invalid
+      end
+    end
+
+    describe 'should be valid with' do
+      it 'undefined first_name and last_name' do
+        user = build(:user, :first_name => nil, :last_name =>  nil)
+        expect(user).to be_valid
+      end
+      it 'undefined age' do
+        user = build(:user, :date_of_birth => nil)
+        expect(user).to be_valid
+      end
+      it 'undefined gender' do
+        user = build(:user, :gender => nil)
+        expect(user).to be_valid
+      end
     end
   end
 end

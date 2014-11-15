@@ -8,6 +8,8 @@ ru:
     label:
       users: "Пользователи"
       since_from: "учетная запись с %{date}"
+    error:
+      too_young: 'Вам должно быть больше 18 лет'
     edit_user: "Изменение %{name}"
     new_user?: "Нету логина?"
     signup_now: "Зарегестрируйся!"

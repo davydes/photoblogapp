@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  #fields
+
   has_secure_password
   has_attached_file :avatar,
                     :styles => {
@@ -10,41 +13,43 @@ class User < ActiveRecord::Base
                         :thumb => ["32x32!", :png]
                     },
                     :default_url => "avatar_:style.png"
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  #asociations
+
   has_many :articles, :dependent => :destroy
   has_many :albums, :dependent => :destroy
-  has_many :photos, :dependent => :destroy do
-    def today
-      where(:created_at => (Time.now.beginning_of_day..Time.now))
-    end
-    def this_week
-      where(:created_at => (Time.now.beginning_of_week..Time.now))
-    end
-  end
+  has_many :photos, :dependent => :destroy
 
-  VALID_NAME_REGEX = /\A\w{3,}\z/i
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :name,
-            presence: true,
-            format: { with: VALID_NAME_REGEX },
+  #validations
+    # REGEX
+    REAL_NAME_REGEX = /\A[\da-zа-яё ,.'\-_]*\z/i
+
+  validates :name, presence: true, format: { with: /\A\w{3,}\z/i },
             length: { maximum: 50 },
             uniqueness: { case_sensitive: false }
+
   validates :email,
             presence: true,
-            format: { with: VALID_EMAIL_REGEX },
             length: { maximum: 100 },
+            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: { case_sensitive: false }
-  validates :password, :presence => true,
-                       :length   => { :within => 6..40 },
-                       :if       => :password_changed?
-  validates_attachment :avatar,
-                       less_than: 1.megabytes,
-                       content_type: { content_type: /\Aimage\/.*\Z/ }
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  validates :password, presence: true, length: { :within => 6..40 }, if: :password_changed?
+  validates :first_name, format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
+  validates :last_name,  format: { with: REAL_NAME_REGEX }, length: { maximum: 50 }
+  validates :gender, inclusion: [:m, :f, nil]
+  validate :at_least_18
+  validates_attachment :avatar, less_than: 1.megabytes, content_type: { content_type: /\Aimage\/.*\Z/ }
+
+  #callbacks
 
   before_save {
     self.email = email.downcase
     self.name = name.downcase
   }
+
+  #methods
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
@@ -90,5 +95,11 @@ class User < ActiveRecord::Base
     end while User.exists?(column => digest_token)
     update_attribute(column, digest_token)
     return token
+  end
+
+  def at_least_18
+    if self.date_of_birth
+      errors.add(:date_of_birth, I18n.t('users.error.too_young')) if self.date_of_birth > 18.years.ago
+    end
   end
 end

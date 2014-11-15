@@ -1,4 +1,7 @@
 class Photo < ActiveRecord::Base
+  scope :today, -> { where(:created_at => (Time.now.beginning_of_day..Time.now)) }
+  scope :this_week, -> { where(:created_at => (Time.now.beginning_of_week..Time.now)) }
+
   belongs_to :user
   has_and_belongs_to_many :albums
   has_many :articles_photos
