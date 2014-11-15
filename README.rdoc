@@ -3,6 +3,7 @@
 {<img src="https://codeclimate.com/github/davydes/photoblogapp/badges/gpa.svg" />}[https://codeclimate.com/github/davydes/photoblogapp]
 {<img src="https://codeclimate.com/github/davydes/photoblogapp/badges/coverage.svg" />}[https://codeclimate.com/github/davydes/photoblogapp]
 {<img src="https://travis-ci.org/davydes/photoblogapp.svg?branch=master" />}[https://travis-ci.org/davydes/photoblogapp]
+{<img src="https://gemnasium.com/davydes/photoblogapp.svg" alt="Dependency Status" />}[https://gemnasium.com/davydes/photoblogapp]
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
