@@ -3,7 +3,8 @@ class Photo < ActiveRecord::Base
   scope :this_week, -> { where(:created_at => (Time.now.beginning_of_week..Time.now)) }
 
   belongs_to :user
-  has_and_belongs_to_many :albums
+  has_many :albums_photos
+  has_many :albums, :through => :albums_photos
   has_many :articles_photos
   has_many :articles, :through => :articles_photos, :dependent => :restrict_with_exception
   has_attached_file :image,
@@ -35,12 +36,27 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
-  def next(context = user)
-    context.photos.where("id < ?", id).last
+  def next(context = nil)
+    Photo.contextual(context).where("id < ?", id).last
   end
 
-  def prev(context = user)
-    context.photos.where("id > ?", id).first
+  def prev(context = nil)
+    Photo.contextual(context).where("id > ?", id).first
+  end
+
+  def self.contextual(context = nil)
+    # album context
+    /\Aalbum\-(?<id>\d+)\z/.match(context) { |m|
+      raise "album #{m[:id]} does not exists" unless Album.exists?(m[:id])
+      return joins(:albums_photos).where('album_id = ?', m[:id])
+    }
+    # article context
+    /\Aarticle\-(?<id>\d+)\z/.match(context) { |m|
+      raise "article #{m[:id]} does not exists" unless Article.exists?(m[:id])
+      return joins(:articles_photos).where('article_id = ?', m[:id])
+    }
+    raise "undefined context: #{context}" if context
+    return default_scoped
   end
 
   private

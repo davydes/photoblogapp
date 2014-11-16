@@ -7,6 +7,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @context = "album-#{@album.id}"
   end
 
   def new

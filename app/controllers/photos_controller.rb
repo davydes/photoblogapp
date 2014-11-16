@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   include UserResourceable
+  skip_before_action :signed_in_user, only: :show
   before_action :set_photo, only: [:unlink_album, :link_album, :available_albums]
   before_action :set_album, only: [:unlink_album, :link_album]
 
@@ -12,7 +13,8 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @photo = Photo.contextual(@context).find(params[:id])
+    @context = params[:context]
   end
 
   def new

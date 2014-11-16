@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @context = "article-#{@article.id}"
     not_found if !@article
     access_denied if @article.is_draft? && !admin_or_current?(@article.user)
   rescue ActiveRecord::RecordNotFound

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :photos do
     member do
+      get    'in/:context',     action: 'show', as: :in
       delete 'album/:album_id', action: 'unlink_album', as: :album
       post   'album/:album_id', action: 'link_album'
       get    'available_albums'
