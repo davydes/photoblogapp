@@ -20,8 +20,6 @@ class Photo < ActiveRecord::Base
                         :thumb => "-quality 80 -strip"
                     }
 
-  LIMIT_PHOTOS_DAILY = 5
-  LIMIT_PHOTOS_WEEKLY = 15
   LIMIT_PHOTO_SIZE_UP = 5.megabytes
   LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes
 
@@ -59,9 +57,9 @@ class Photo < ActiveRecord::Base
   def user_quota
     return false unless user
     # todo: remove quota settings to user profile
-    if user.photos.today.count >= LIMIT_PHOTOS_DAILY
+    if user.photos.today.count >= user.photo_upload_daily_limit
       errors.add(:base, I18n.t('photos.uploader.errors.exceeds_daily_limit'))
-    elsif  user.photos.this_week.count >= LIMIT_PHOTOS_WEEKLY
+    elsif  user.photos.this_week.count >= user.photo_upload_weekly_limit
       errors.add(:base, I18n.t('photos.uploader.errors.exceeds_weekly_limit'))
     end
   end

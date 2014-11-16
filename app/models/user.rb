@@ -82,6 +82,19 @@ class User < ActiveRecord::Base
     self.find_by_email(login) || self.find_by_name(login)
   end
 
+  def photo_upload_daily_limit
+    read_attribute(:photo_upload_daily_limit)||5
+  end
+
+  def photo_upload_weekly_limit
+    read_attribute(:photo_upload_weekly_limit)||15
+  end
+
+  def upload_photo_available
+    [self.photo_upload_daily_limit - self.photos.today.count,
+     self.photo_upload_weekly_limit - self.photos.this_week.count].min
+  end
+
   private
 
   def password_changed?

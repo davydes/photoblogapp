@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @max_files = [Photo::LIMIT_PHOTOS_DAILY - current_user.photos.today.count, Photo::LIMIT_PHOTOS_WEEKLY - current_user.photos.this_week.count].min
+    @max_files = current_user.upload_photo_available
     flash.now[@max_files > 0 ? :notice : :error] = I18n.t 'photos.uploader.messages.uploadLimit', count: @max_files
   end
 

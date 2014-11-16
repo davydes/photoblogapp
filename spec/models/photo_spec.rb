@@ -35,7 +35,7 @@ RSpec.describe Photo, :type => :model do
         end
         expect(build(:photo, :user => user)).to be_invalid
       end
-      describe 'weekly quota per user' do
+      describe 'weekly quota per user with default limits' do
         before do Timecop.freeze(Time.now.beginning_of_week) end
         after  do Timecop.return end
 
@@ -51,7 +51,23 @@ RSpec.describe Photo, :type => :model do
 
           expect(build(:photo, :user => user)).to be_invalid
         end
+      end
+      describe 'weekly quota per user with custom limits' do
+        before do Timecop.freeze(Time.now.beginning_of_week) end
+        after  do Timecop.return end
 
+        it '' do
+          user = create(:user, :photo_upload_daily_limit => 7, :photo_upload_weekly_limit => 21)
+          expect {
+            3.times do
+              7.times { create(:photo, :user => user) }
+              Timecop.freeze(Time.now+1.day)
+            end
+          }.to change{ Photo.count }.by(21)
+          Timecop.freeze(Time.now+1.day)
+
+          expect(build(:photo, :user => user)).to be_invalid
+        end
       end
     end
   end
