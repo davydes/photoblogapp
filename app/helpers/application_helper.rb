@@ -20,6 +20,10 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
+
   def url_to_attachment(attachment, style = nil)
     return attachment.url(style) unless (Rails.env.production? && attachment.file?) #default
     style = attachment.options[:default_style] if style.nil?
