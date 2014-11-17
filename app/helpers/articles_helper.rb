@@ -16,7 +16,7 @@ module ArticlesHelper
   end
 
   def markdown(text)
-    renderer = Redcarpet::Render::HTML.new
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
     options = {
         autolink: true,
         no_intra_emphasis: true,
