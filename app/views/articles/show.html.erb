@@ -20,7 +20,7 @@
           <% if @article.is_draft? %>
             <span class="text-warning"> <%= t 'articles.label.draft_created_at', date: l(@article.created_at, :format => :short) %></span>
           <% else %>
-            <%= t 'articles.label.published_by' %> <%= link_to @article.user.name, user_path(@article.user) %>
+            <%= t 'articles.label.published_by' %> <%= link_to user_title(@article.user), user_path(@article.user) %>
             <%= l @article.when_published, :format => :short %>
           <% end %>
           <% if admin_or_current?(@article.user) %>

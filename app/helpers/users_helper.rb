@@ -21,4 +21,12 @@ module UsersHelper
         'm' => t('users.genders.male')
     }[user.gender]
   end
+
+  def user_title(user)
+    if user.first_name
+      "#{user.first_name} #{user.last_name}".strip
+    else
+      user.name
+    end
+  end
 end
