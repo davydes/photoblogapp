@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>4.1.7'
-gem 'jbuilder', '~>2.0'
+gem 'rails', '4.1.8'
+gem 'jbuilder', '2.2.5'
 gem 'sdoc', '~>0.4.0',          group: :doc
 gem 'bcrypt', '~>3.1.7'
 
