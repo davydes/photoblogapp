@@ -34,6 +34,8 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
+  after_image_post_process :load_exif
+
   def next(context = nil)
     Photo.contextual(context).where("id < ?", id).last
   end
@@ -62,5 +64,12 @@ class Photo < ActiveRecord::Base
     elsif  user.photos.this_week.count >= user.photo_upload_weekly_limit
       errors.add(:base, I18n.t('photos.uploader.errors.exceeds_weekly_limit'))
     end
+  end
+
+  def load_exif
+    exif =  ExifParser.new(image.queued_for_write[:original].path)
+    logger.debug "try read EXIF: "+exif.inspect
+  rescue
+    false
   end
 end

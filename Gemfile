@@ -21,6 +21,7 @@ gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem "redcarpet"
+gem 'exifparser'
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil

@@ -73,6 +73,7 @@ GEM
     erubis (2.7.0)
     excon (0.41.0)
     execjs (2.2.2)
+    exifparser (1.0.3)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -262,6 +263,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails
   database_cleaner
+  exifparser
   factory_girl_rails
   fog!
   jbuilder (= 2.2.5)
