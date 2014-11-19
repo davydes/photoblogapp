@@ -31,6 +31,10 @@
   <% end %>
   <%= link_to image_photo_url(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
     <%= image_tag image_photo_url(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
+    <%= link_to "#{url_for(@context)}##{photo_id(@photo)}", id: "return-link",  class: "bottom-link has-tooltip",
+                title: t('photos.label.return_to_context', context: @context.class.model_name.human), data: {placement: "top"} do %>
+      <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    <% end if @context %>
   <% end %>
 </div>
 

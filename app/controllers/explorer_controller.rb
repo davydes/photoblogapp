@@ -10,11 +10,6 @@ class ExplorerController < ApplicationController
     set_last_articles
   end
 
-  def article
-    @article = Article.published.find(params[:id])
-    render 'articles/show'
-  end
-
   def photos
     set_last_photos
   end

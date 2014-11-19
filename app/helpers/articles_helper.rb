@@ -3,12 +3,12 @@ module ArticlesHelper
     text.gsub(Article::PHOTO_TAG) do
       if photos_hash.has_key?($1)
         photo = photos_hash[$1]
-        "<div class=\"blog-photo-view\">"+
-            link_to_photo(photo, context: "article-#{article.id}") do
+        "<div class=\"text-center\"><div class=\"blog-photo-view\" id=\"#{photo_id(photo)}\">"+
+            link_to_photo(photo, context: article) do
               image_tag(image_photo_url(photo, style), class: 'blog-photo-img')
             end+
             "<div class=\"blog-photo-caption\">#{photo.title}</div>"+
-        "</div>".html_safe
+        "</div></div>".html_safe
       else
         nil
       end
@@ -43,11 +43,4 @@ module ArticlesHelper
     markdown(text)
   end
 
-  def path_to_article(article)
-    if controller_name == 'explorer'
-      explorer_article_path(article)
-    else
-      article_path(article)
-    end
-  end
 end

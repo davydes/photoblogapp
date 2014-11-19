@@ -6,6 +6,7 @@ ru:
       photos_of: "Фотографии - %{name}"
       last100: "Последние 100 фотографий"
       upload: "Загрузить фото"
+      return_to_context: "Вернуться в %{context}"
     uploader:
       messages:
         uploadLimit:

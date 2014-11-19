@@ -45,13 +45,8 @@ class Photo < ActiveRecord::Base
   end
 
   def self.contextual(context = nil)
-    # album/article context
-    /\A(?<entity>article|album)\-(?<id>\d+)\z/.match(context) { |m|
-      raise "#{m[:entity]} #{m[:id]} does not exists" unless Object.const_get(m[:entity].classify).exists?(m[:id])
-      return joins("#{m[:entity].pluralize}_photos".to_sym).where("#{m[:entity]}_id = ?", m[:id])
-    }
-    raise "undefined context: #{context}" if context
-    return default_scoped
+    return default_scoped.merge(context.photos) if context
+    default_scoped
   end
 
   private

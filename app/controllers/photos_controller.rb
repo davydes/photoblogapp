@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   include UserResourceable
   skip_before_action :signed_in_user, only: :show
+  before_action :set_context, only: :show
   before_action :set_photo, only: [:unlink_album, :link_album, :available_albums]
   before_action :set_album, only: [:unlink_album, :link_album]
 
@@ -14,7 +15,6 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.contextual(@context).find(params[:id])
-    @context = params[:context]
   end
 
   def new
@@ -81,6 +81,16 @@ class PhotosController < ApplicationController
 
   def set_photo
     set_resource
+  end
+
+  def set_context
+    @context = nil
+    context_string = params[:context]
+    /\A(?<entity>article|album)\-(?<id>\d+)\z/.match(context_string) { |m|
+      context = Object.const_get(m[:entity].classify)
+      raise "#{m[:entity]} #{m[:id]} does not exists" unless context.exists?(m[:id])
+      @context = context.find(m[:id])
+    }
   end
 
   def set_album

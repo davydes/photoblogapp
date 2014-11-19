@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    redirect_to :root;
+    raise ActionController::RoutingError.new('Access Denied')
   end
 
   def not_found
-    redirect_to :root;
+    raise ActionController::RoutingError.new('Not Found')
   end
 end

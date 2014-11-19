@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   get '/explorer/index'
   get '/explorer/articles'
   get '/explorer/photos'
-  get '/explorer/articles/:id', to: 'explorer#article', as: :explorer_article
 
   root 'explorer#index'
 
