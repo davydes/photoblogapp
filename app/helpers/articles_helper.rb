@@ -20,21 +20,20 @@ module ArticlesHelper
         superscript: true,
         space_after_headers: true
     }
-    markdown = Redcarpet::Markdown.new(renderer, options)
-    markdown.render(text).html_safe
+    Redcarpet::Markdown.new(renderer, options).render(text)
   end
 
   def html_content_article(article)
     text = strip_tags(article.content)
-    text = _compile_photo_tags(article, text, article.photos_hash)
-    markdown(text)
+    text = markdown(text)
+    _compile_photo_tags(article, text, article.photos_hash).html_safe
   end
 
   def html_intro_article(article)
     text = strip_tags(article.content)
     text = truncate(text, length: 150, separator: ' ')
-    text = text.gsub(Article::PHOTO_TAG, '')
-    markdown(text)
+    text = markdown(text)
+    text = text.gsub(Article::PHOTO_TAG, '').html_safe
   end
 
 end
