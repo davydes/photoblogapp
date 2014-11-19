@@ -17,7 +17,8 @@ module PhotosHelper
 
   def link_to_photo(photo, options = nil, html_options = nil, &block)
     if options && options[:context]
-      link_to in_photo_path(photo, context_serialize(options[:context])), options, html_options, &block
+      context = options.delete(:context)
+      link_to in_photo_path(photo, context_serialize(context)), options, html_options, &block
     else
       link_to photo, options, html_options, &block
     end

@@ -14,7 +14,6 @@
   a > .prev {left: 0px;}
   a > .next {right: 0px;}
   a > .nav > span {
-    display: block;
     color: #ddd;
     position: absolute;
     top: 50%;
@@ -127,65 +126,67 @@
   }
 }
 
-.blog-photo-view {
-  position: relative;
-  background-color: #222;
-  clear: both;
-  margin: 0 auto;
-  padding: 0 15px;
-  display: inline-block;
+.blog-sub-content {
+  text-align: center;
+  text-indent: 0;
 
-  a > img.blog-photo-img {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    padding-top: 15px;
-  }
-
-  > div.blog-photo-caption {
-    color: #fff;
-    width: 100%;
-    text-align: right;
-    height: 21px;
-    overflow: hidden;
+  .blog-photo-view {
+    position: relative;
     background-color: #222;
-    font-size: 12px;
-  }
+    padding: 15px 15px 0px;
+    display: inline-block;
+    max-width: 100%;
 
-  > div.meta-info {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 200px;
-    height: 100px;
-    padding: 5px;
-    display: none;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-
-    background-color: black;
-    color: white;
-    font-size: 12px;
-    text-indent: 0;
-    line-height: 12px;
-
-    h1 {
-      padding: 0;
-      margin: 0 0 3px 0;
-      text-align: center;
-      font-weight: bold;
-      font-size: 14px;
+    a > img.blog-photo-img {
+      display: block;
+      max-width: 100%;
     }
 
-    p {
-      padding: 0 0 1px 0;
-      margin: 0;
-    }
-
-    p.one-line {
-      white-space: nowrap;
+    > div.blog-photo-caption {
+      color: #fff;
+      width: 100%;
+      text-align: right;
+      height: 21px;
       overflow: hidden;
-      text-overflow: ellipsis;
+      background-color: #222;
+      font-size: 12px;
+    }
+
+    > div.meta-info {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 200px;
+      height: 100px;
+      padding: 5px;
+      display: none;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      background-color: black;
+      color: white;
+      font-size: 12px;
+      text-indent: 0;
+      line-height: 12px;
+
+      h1 {
+        padding: 0;
+        margin: 0 0 3px 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      p {
+        padding: 0 0 1px 0;
+        margin: 0;
+      }
+
+      p.one-line {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

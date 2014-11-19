@@ -1,10 +1,14 @@
+$.fn.setMaxHeight = (val) ->
+  $(this).first().css({
+    'max-height' : val + "px"
+  })
+
 setMaxMainPhotoHeight = () ->
-  $('#main-photo').setHeightAsWindow(85)
+  $('#main-photo').setMaxHeight($(window).height()-85)
 
 setMaxBlogPhotoViewHeight = () ->
-  height = $(window).height()/3
   $('div.blog-photo-view img.blog-photo-img').each ->
-      $(this).setHeightAsWindow(height)
+      $(this).setMaxHeight($(window).height() * 2/3)
 
 $(document).ready ->
   setMaxBlogPhotoViewHeight()

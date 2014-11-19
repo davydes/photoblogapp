@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/fog/fog.git
-  revision: 319fed9589598762858de52239b5fe5003518a00
+  revision: 1c5e8b58d3b7639cae724ad0c817616915b8ff52
   specs:
-    fog (1.24.1)
+    fog (1.25.0)
       fog-brightbox (~> 0.4)
-      fog-core (~> 1.24)
+      fog-core (~> 1.25)
       fog-json
       fog-profitbricks
       fog-radosgw (>= 0.0.2)
@@ -85,7 +85,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto
-    fog-core (1.24.0)
+    fog-core (1.25.0)
       builder
       excon (~> 0.38)
       formatador (~> 0.2)
@@ -108,7 +108,7 @@ GEM
     fog-softlayer (0.3.24)
       fog-core
       fog-json
-    fog-terremark (0.0.2)
+    fog-terremark (0.0.3)
       fog-core
       fog-xml
     fog-vmfusion (0.0.1)

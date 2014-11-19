@@ -38,13 +38,6 @@
         });
     };
 
-    $.fn.setHeightAsWindow = function (delta){
-        var winHeight = $(window).height()-delta;
-        $(this).first().css({
-            'max-height' : winHeight + "px"
-        });
-    };
-
     $.fn.setFadeAble = function(baseElementSelector, affectElementSelector, maxOpacity) {
         maxOpacity = typeof maxOpacity !== 'undefined' ? maxOpacity : 1;
         $(this).find(baseElementSelector).on('mouseenter', function () {
