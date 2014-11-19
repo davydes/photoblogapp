@@ -20,6 +20,8 @@ class Photo < ActiveRecord::Base
                         :thumb => "-quality 80 -strip"
                     }
 
+  attr_accessor :exif
+
   LIMIT_PHOTO_SIZE_UP = 5.megabytes
   LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes
 
@@ -34,7 +36,8 @@ class Photo < ActiveRecord::Base
                        content_type: { content_type: /\Aimage\/.*\Z/ },
                        size: { in: LIMIT_PHOTO_SIZE_DOWN..LIMIT_PHOTO_SIZE_UP }
 
-  after_image_post_process :load_exif
+  after_image_post_process :save_exif
+  after_initialize :load_exif
 
   def next(context = nil)
     Photo.contextual(context).where("id < ?", id).last
@@ -61,10 +64,20 @@ class Photo < ActiveRecord::Base
     end
   end
 
-  def load_exif
-    exif =  ExifParser.new(image.queued_for_write[:original].path)
-    logger.debug "try read EXIF: "+exif.inspect
+  def save_exif
+    exif =  Exif::Parser.new(image.queued_for_write[:original].path)
+    self.exif_binary = Marshal.dump(exif)
+    logger.debug "marshaling exif successfully. size #{exif_binary.length}"
   rescue
-    false
+    self.exif_binary = nil
+    logger.debug "marshaling exif failed"
+  end
+
+  def load_exif
+    self.exif = Marshal.load(self.exif_binary)
+    logger.debug "unmarshaling exif_binary successfullty #{exif.inspect}"
+  rescue
+    self.exif_binary = nil
+    logger.debug "unmarshaling exif_binary failed"
   end
 end
