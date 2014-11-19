@@ -1,19 +1,5 @@
 <%= title (@article.title) %>
 
-<script type="application/javascript">
-    var setMaxArticlePhotoHeight = function() {
-        var height = $(window).height()/3;
-        $('div.blog-photo-view img.blog-photo-img').each(function () {
-            $(this).setHeightAsWindow(height);
-        });
-    };
-
-    $(document).ready(function () {
-        setMaxArticlePhotoHeight();
-        $(window).resize(setMaxArticlePhotoHeight);
-    });
-</script>
-
 <div class="container">
         <h2><%= @article.title %></h2>
         <h5 class="text-right">

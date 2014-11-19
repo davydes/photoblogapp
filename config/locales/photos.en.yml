@@ -7,6 +7,7 @@ en:
       last100: "Last 100 photos"
       upload: "Upload photos"
       return_to_context: "Return to %{context}"
+      exif: 'extended info'
     uploader:
       messages:
         uploadLimit:

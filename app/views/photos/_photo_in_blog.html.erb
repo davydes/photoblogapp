@@ -1,0 +1,12 @@
+<div class="text-center">
+    <div class="blog-photo-view" id="<%= photo_id(photo) %>">
+        <%= link_to_photo(photo, context: article) do %>
+            <%= image_tag(image_photo_url(photo, :medium), class: 'blog-photo-img') %>
+        <% end %>
+        <div class="blog-photo-caption"><%= photo.title %></div>
+        <div class="meta-info text-left">
+          <h1><%= t 'photos.label.exif' %></h1>
+          <p class="one-line"></p>Date: <%= l photo.created_at, :format => :short %></p>
+        </div>
+    </div>
+</div>

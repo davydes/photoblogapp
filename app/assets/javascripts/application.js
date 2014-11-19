@@ -45,9 +45,10 @@
         });
     };
 
-    $.fn.setFadeAble = function(baseElementSelector, affectElementSelector) {
+    $.fn.setFadeAble = function(baseElementSelector, affectElementSelector, maxOpacity) {
+        maxOpacity = typeof maxOpacity !== 'undefined' ? maxOpacity : 1;
         $(this).find(baseElementSelector).on('mouseenter', function () {
-            $(this).find(affectElementSelector).fadeIn();
+            $(this).find(affectElementSelector).fadeTo('faset', maxOpacity);
         });
         $(this).find(baseElementSelector).on('mouseleave', function(){
             $(this).find(affectElementSelector).stop().fadeOut();

@@ -126,3 +126,66 @@
     background-color: #f1f1f1;
   }
 }
+
+.blog-photo-view {
+  position: relative;
+  background-color: #222;
+  clear: both;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: inline-block;
+
+  a > img.blog-photo-img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+
+  > div.blog-photo-caption {
+    color: #fff;
+    width: 100%;
+    text-align: right;
+    height: 21px;
+    overflow: hidden;
+    background-color: #222;
+    font-size: 12px;
+  }
+
+  > div.meta-info {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    display: none;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    text-indent: 0;
+    line-height: 12px;
+
+    h1 {
+      padding: 0;
+      margin: 0 0 3px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    p {
+      padding: 0 0 1px 0;
+      margin: 0;
+    }
+
+    p.one-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

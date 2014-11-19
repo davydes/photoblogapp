@@ -3,19 +3,6 @@
     <%= stylesheet_link_tag 'custom/gallery', 'data-turbolinks-track' => true %>
 <% end %>
 
-<script type="application/javascript">
-    var setMaxPhotoHeight = function() {
-        $('#main-photo').setHeightAsWindow(85);
-    };
-
-    $(document).ready(function () {
-        $('body').setFadeAble('div.context-item', 'a.control');
-        $('body').setFadeAble('#photo-container .nav', ' span');
-        setMaxPhotoHeight();
-        $(window).resize(setMaxPhotoHeight);
-    });
-</script>
-
 <%= render partial: 'shared/blueimp_controls' %>
 
 <div class="span7 text-center" id="photo-container">
