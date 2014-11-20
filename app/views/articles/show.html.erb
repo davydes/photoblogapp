@@ -1,26 +1,29 @@
 <%= title (@article.title) %>
 
 <div class="container">
-        <h2><%= @article.title %></h2>
-        <h5 class="text-right">
-          <% if @article.is_draft? %>
-            <span class="text-warning"> <%= t 'articles.label.draft_created_at', date: l(@article.created_at, :format => :short) %></span>
-          <% else %>
-            <%= t 'articles.label.published_by' %> <%= link_to user_title(@article.user), user_path(@article.user) %>
-            <%= l @article.when_published, :format => :short %>
+    <h2 class="article-header"><%= @article.title %></h2>
+    <h5 class="text-right">
+      <% if @article.is_draft? %>
+        <span class="text-warning"> <%= t 'articles.label.draft_created_at', date: l(@article.created_at, :format => :short) %></span>
+      <% else %>
+        <%= t 'articles.label.published_by' %> <%= link_to user_title(@article.user), user_path(@article.user) %>
+        <%= l @article.published_at, :format => :short %>
+      <% end %>
+      <% if admin_or_current?(@article.user) %>
+          <%= link_to edit_article_path(@article),
+                      style: 'font-size: 1.2em; color: green; margin-left: 3px;' do %>
+              <span class='glyphicon glyphicon-edit'></span>
           <% end %>
-          <% if admin_or_current?(@article.user) %>
-              <%= link_to edit_article_path(@article),
-                          style: 'font-size: 1.2em; color: green; margin-left: 3px;' do %>
-                  <span class='glyphicon glyphicon-edit'></span>
-              <% end %>
-              <%= link_to @article, data: { confirm: "Are you sure?" },
-                          :method => "delete", style: 'font-size: 1.2em; color: red; margin-left: 3px;' do %>
-                  <span class='glyphicon glyphicon-trash'></span>
-              <% end %>
+          <%= link_to @article, data: { confirm: "Are you sure?" },
+                      :method => "delete", style: 'font-size: 1.2em; color: red; margin-left: 3px;' do %>
+              <span class='glyphicon glyphicon-trash'></span>
           <% end %>
-        </h5>
-    <div class="article-text text-justify">
+      <% end %>
+    </h5>
+    <div class="article-text">
+      <%= html_intro_article(@article) %>
+    </div>
+    <div class="article-text">
       <%= html_content_article(@article) %>
     </div>
 </div>

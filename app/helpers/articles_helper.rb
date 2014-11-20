@@ -30,10 +30,7 @@ module ArticlesHelper
   end
 
   def html_intro_article(article)
-    text = strip_tags(article.content)
-    text = truncate(text, length: 150, separator: ' ')
-    text = markdown(text)
-    text = text.gsub(Article::PHOTO_TAG, '').html_safe
+    strip_tags(article.intro)
   end
 
 end

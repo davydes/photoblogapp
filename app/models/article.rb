@@ -5,12 +5,19 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :photos
 
+  VALIDATION_MAX_TITLE = 50
+  VALIDATION_MAX_INTRO = 255
+  VALIDATION_MIN_CONTENT = 10
+
   validates :title,
             presence: true,
-            length: { maximum: 100 }
+            length: { maximum: VALIDATION_MAX_TITLE }
+  validates :intro,
+            presence: true,
+            length: { maximum: VALIDATION_MAX_INTRO }
   validates :content,
             presence: true,
-            length: { minimum: 10 }
+            length: { minimum: VALIDATION_MIN_CONTENT }
 
   validates :user, presence: true
 
@@ -39,11 +46,11 @@ class Article < ActiveRecord::Base
   end
 
   def is_draft?
-    !(self.published || false)
+    !self.published
   end
 
-  def when_published
-    self.published_at || self.created_at
+  def published_at
+    read_attribute(:published_at) || self.created_at
   end
 
   private

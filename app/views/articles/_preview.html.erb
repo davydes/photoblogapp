@@ -2,10 +2,15 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h4 class="modal-title"><%= @article.title %></h4>
+      <h4 class="modal-title article-header"><%= @article.title %></h4>
     </div>
-    <div class="modal-body article-text text-justify">
-      <%= html_content_article(@article) %>
+    <div class="modal-body">
+      <div class="article-text">
+        <%= html_intro_article(@article) %>
+      </div>
+      <div class="article-text">
+        <%= html_content_article(@article) %>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.close' %></button>

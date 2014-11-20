@@ -47,6 +47,7 @@ ru:
         title: "Название"
       article:
         title: "Название"
+        intro: "Введиние"
         content: "Текст статьи"
       photo:
         title: "Название"

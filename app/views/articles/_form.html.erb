@@ -18,7 +18,12 @@
 
   <div class="form-group">
     <%= f.label :title, class: 'control-label'%><br>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.text_field :title, class: 'form-control', maxlenght: Article::VALIDATION_MAX_TITLE %>
+    <span class="help-block"></span>
+  </div>
+  <div class="form-group">
+    <%= f.label :intro, class: 'control-label' %><br>
+    <%= f.text_area :intro, class: 'form-control', style: 'resize: vertical;', maxlenght: Article::VALIDATION_MAX_INTRO %>
     <span class="help-block"></span>
   </div>
   <div class="form-group">

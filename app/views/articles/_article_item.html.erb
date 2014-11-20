@@ -1,5 +1,6 @@
 <div class="col-6 col-sm-6 col-lg-4 article-preview">
-    <h3><%= article.title %></h3>
+    <h3 class="article-header"><%= link_to article.title, article %></h3>
+    <% if article.photos.any? %>
     <div class="jcarousel">
       <ul>
         <% article.photos.each do |photo| %>
@@ -7,6 +8,10 @@
         <% end %>
       </ul>
     </div>
-    <div class="preview-text"><%= html_intro_article(article) %></div>
-    <div class="more-link"><%= link_to "more", article %></div>
+    <% end %>
+    <div class="preview-text <%= 'with-previews' if article.photos.any? %>"><%= html_intro_article(article) %></div>
+    <div class="bottom">
+      <%= t 'articles.label.published_by' %> <%= link_to user_title(article.user), user_path(article.user) %>
+      <%= l article.published_at, :format => :short %>
+    </div>
 </div>
