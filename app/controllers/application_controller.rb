@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
+  around_filter :profile if Rails.env == 'development'
 
   # Comment out when use only ajax content for mobile version
 
@@ -22,5 +23,15 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def profile
+    if params[:profile] && result = RubyProf.profile { yield }
+      out = StringIO.new
+      RubyProf::GraphHtmlPrinter.new(result).print out, :min_percent => 0
+      self.response_body = out.string
+    else
+      yield
+    end
   end
 end

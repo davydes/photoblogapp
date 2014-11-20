@@ -4,9 +4,15 @@
             <%= image_tag(image_photo_url(photo, :medium), class: 'blog-photo-img') %>
         <% end %>
         <div class="blog-photo-caption"><%= photo.title %></div>
-        <div class="meta-info text-left">
-          <h1><%= t 'photos.label.exif' %></h1>
-          <p class="one-line">Date: <%= l photo.created_at, :format => :short %></p>
-        </div>
+        <% if photo.exif %>
+            <div class="meta-info text-left">
+              <h1><%= t 'photos.label.exif' %></h1>
+              <p class="one-line"><%= "Camera: #{photo.exif['Make']} #{photo.exif['Model']}" %></p>
+              <p class="one-line"><%= "ExposureTime: #{photo.exif['ExposureTime']}" %></p>
+              <p class="one-line"><%= "Focal: #{photo.exif['FocalLength']}" %></p>
+              <p class="one-line"><%= "Aperture: f/#{photo.exif['FNumber']}" %></p>
+              <p class="one-line"><%= "ISO: #{photo.exif['ISO']}" %></p>
+            </div>
+        <% end %>
     </div>
 </div>

@@ -21,7 +21,7 @@ gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem "redcarpet"
-gem 'exifparser'
+gem 'mini_exiftool_vendored'
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil
@@ -33,6 +33,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem "ruby-prof"
 end
 
 group :production do

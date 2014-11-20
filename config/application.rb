@@ -33,5 +33,8 @@ module PhotoBlogApp
       g.helper_specs    false
       g.fixture_replacement :fabrication
     end
+
+    # Autoload lib
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

@@ -65,19 +65,23 @@ class Photo < ActiveRecord::Base
   end
 
   def save_exif
-    exif =  Exif::Parser.new(image.queued_for_write[:original].path)
-    self.exif_binary = Marshal.dump(exif)
-    logger.debug "marshaling exif successfully. size #{exif_binary.length}"
-  rescue
+    self.exif =  Utils::Exif.new(image.queued_for_write[:original].path)
+    self.exif_binary = exif.to_binary
+    logger.debug "EXIF saved successfully. Size: #{exif_binary.length} bytes"
+  rescue => e
     self.exif_binary = nil
-    logger.debug "marshaling exif failed"
+    logger.error "EXIF save failed: #{e.message}"
   end
 
   def load_exif
-    self.exif = Marshal.load(self.exif_binary)
-    logger.debug "unmarshaling exif_binary successfullty #{exif.inspect}"
-  rescue
-    self.exif_binary = nil
-    logger.debug "unmarshaling exif_binary failed"
+    if self.exif_binary
+      self.exif =  Utils::Exif.from_binary(self.exif_binary)
+      logger.debug "EXIF load successfully"
+    else
+      logger.debug "EXIF not exists"
+    end
+  rescue => e
+    self.exif = nil
+    logger.error "EXIF load failed: #{e.message}"
   end
 end
