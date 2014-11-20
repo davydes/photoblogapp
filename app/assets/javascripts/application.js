@@ -15,6 +15,8 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
+//= require jcarousel/jquery.jcarousel
+//= require jcarousel/jquery.jcarousel-autoscroll
 //= require_directory .
 
 (function($) {

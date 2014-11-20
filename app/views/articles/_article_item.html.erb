@@ -1,12 +1,12 @@
-<div class="col-6 col-sm-6 col-lg-4">
+<div class="col-6 col-sm-6 col-lg-4 article-preview">
     <h3><%= article.title %></h3>
-    <p><%= html_intro_article(article) %></p>
-    <p>
-    <div class="article-photo-preview-container">
+    <div class="jcarousel">
+      <ul>
         <% article.photos.each do |photo| %>
-            <%= image_tag image_photo_url(photo, :thumb), class: 'pull-left article-photo-preview' %>
+          <li><%= image_tag image_photo_url(photo, :thumb)%></li>
         <% end %>
+      </ul>
     </div>
-    </p>
-    <p><%= link_to "more", article, class: "btn btn-default", role: "button" %></p>
+    <div class="preview-text"><%= html_intro_article(article) %></div>
+    <div class="more-link"><%= link_to "more", article %></div>
 </div>
