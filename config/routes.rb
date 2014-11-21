@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post   'album/:album_id', action: 'link_album'
       get    'available_albums'
     end
+    get 'browse', on: :collection
   end
   resources :albums
   resources :articles

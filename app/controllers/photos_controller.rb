@@ -77,6 +77,10 @@ class PhotosController < ApplicationController
     @albums = all_albums - already_in_albums
   end
 
+  def browse
+    @photos = Photo.all*100
+  end
+
   private
 
   def set_photo
