@@ -22,6 +22,7 @@ gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem "redcarpet"
 gem 'mini_exiftool_vendored'
+gem 'kaminari'
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil

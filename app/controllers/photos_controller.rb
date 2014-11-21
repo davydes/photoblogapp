@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
   respond_to :js,   only: [:unlink_album, :link_album, :available_albums]
 
   def index
-    @photos = current_user.photos.all.order('created_at DESC').limit(100)
+    @photos = current_user.photos.all.order('created_at DESC').page(params[:page]).per(30)
   end
 
   def show

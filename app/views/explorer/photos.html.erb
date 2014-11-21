@@ -1,7 +1,9 @@
 <div class="container-fluid">
-  <div class="page-header">
-    <h3><%=t 'photos.label.last100'%></h3>
+  <h3><%=t 'photos.label.last_photos'%></h3>
+  <div id="photo-page">
+    <%= render partial: 'photos/justified_gallery', :locals => {:photos => @photos} %>
   </div>
-
-  <%= render partial: 'photos/justified_gallery', :locals => {:photos => @photos} %>
+  <div id="photo-paginate" class="text-center">
+    <%= paginate @photos, remote: true %>
+  </div>
 </div>

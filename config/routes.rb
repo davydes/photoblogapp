@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
   resources :users, shallow: true do
     member do
       post :crop_avatar
     end
   end
 
-  resources :photos do
+  resources :photos, concerns: :paginatable do
     member do
       get    'in/:context',     action: 'show', as: :in
       delete 'album/:album_id', action: 'unlink_album', as: :album

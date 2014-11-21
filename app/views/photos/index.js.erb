@@ -1,0 +1,2 @@
+$('#photo-page').html("<%= j render partial: 'photos/justified_gallery', :locals => {:photos => @photos} %>");
+$('#photo-paginate').html("<%= j paginate @photos, remote: true %>");
