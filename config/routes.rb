@@ -41,4 +41,7 @@ Rails.application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
+  # deprecated link
+  get '/explorer/articles/:id', to: redirect('/articles/%{id}')
+  
 end
