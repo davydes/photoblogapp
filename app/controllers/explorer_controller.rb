@@ -11,10 +11,10 @@ class ExplorerController < ApplicationController
   end
 
   def photos
-    @photos = Photo.all.order('created_at DESC').page(params[:page]).per(30)
+    @photos = Photo.all.order('created_at DESC').page(params[:page])
     respond_to do |format|
       format.html
-      format.js { render 'photos/index.js'}
+      format.js { render partial: 'photos/justified_gallery', locals: {photos: @photos} }
     end
   end
 

@@ -7,6 +7,10 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js { render partial: 'photos/justified_gallery', locals: {photos: @album.photos.page(params[:page])} }
+    end
   end
 
   def new

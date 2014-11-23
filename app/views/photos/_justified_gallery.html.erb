@@ -1,32 +1,9 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'custom/justified' %>
-  <%= stylesheet_link_tag 'custom/justified' %>
-<% end %>
-
-<% if photos.count > 0 %>
+<div id="photo-infscrl-page">
   <div id="photos-area">
-    <% photos.each do |photo| %>
-      <%= render partial: 'photos/justify_thumb', locals:{photo: photo} %>
-    <% end %>
+    <%= render partial: 'photos/justified_photos', locals:{photos: photos} %>
   </div>
-<% end %>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#photos-area").justifiedGallery({
-      sizeRangeSuffixes : {
-        'lt100': '','lt240': '','lt320': '','lt500': '','lt640': '','lt1024': ''
-      },
-      rowHeight : 200,
-      margins : 3,
-      captions : true,
-      captionSettings : {
-        animationDuration : 500,
-        visibleOpacity : 0.7,
-        nonVisibleOpacity : 0
-      },
-      refreshTime : 100
-    });
-  })
-</script>
+<div id="page-loader" class="text-center"></div>
+<div id="photo-paginate" class="text-center">
+  <%= link_to_next_page photos, 'More', remote: true %>
+</div>

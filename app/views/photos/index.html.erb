@@ -1,9 +1,4 @@
 <div class="container-fluid">
   <h3><%= t('photos.label.your_photos') %></h3>
-  <div id="photo-page">
-    <%= render partial: 'photos/justified_gallery', :locals => {:photos => @photos} %>
-  </div>
-  <div id="photo-paginate" class="text-center">
-    <%= paginate @photos, remote: true %>
-  </div>
+  <%= render partial: 'photos/justified_gallery', locals: {photos: @photos} %>
 </div>

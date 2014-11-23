@@ -21,6 +21,7 @@ class Photo < ActiveRecord::Base
                     }
 
   attr_accessor :exif
+  paginates_per 50
 
   LIMIT_PHOTO_SIZE_UP = 5.megabytes
   LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes

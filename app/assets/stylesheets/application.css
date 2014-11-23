@@ -12,5 +12,6 @@
  *
  *= require_directory .
  *= require bootstrap-datepicker3
+ *= require custom/justified
  *= require_self
 */
