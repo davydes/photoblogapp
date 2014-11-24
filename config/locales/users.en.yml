@@ -8,6 +8,8 @@ en:
     label:
       users: "Users"
       since_from: "since %{date}"
+      last_login: "was at %{date}"
+      online: "now is online"
     error:
       too_young: 'You must be 18 years or older'
     edit_user: "Edit profile"

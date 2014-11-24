@@ -5,7 +5,12 @@
   <div class="user-card-body">
     <h1 class="media-heading"><%= user_title(user) %></h1>
     <h2><%= masked_user_email(user) %></h2>
-    <h5 class="text-right"><%= t 'users.label.since_from', :date => l(user.created_at, :format => :short) %></h5>
+    <h5 class="text-right">
+      <%= t 'users.label.since_from', :date => l(user.created_at, :format => :short) %>
+      <br />
+      <%= user.online? ? t('users.label.online')
+          : t('users.label.last_login', :date => l(user.last_login_time, :format => :short)) %>
+    </h5>
   </div>
   <div class="user-card-footer">
     <% if admin? %>

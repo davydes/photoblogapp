@@ -66,6 +66,7 @@
             maxFileSize: 5000000, // 5 MB
             minFileSize: 100000, // 100 KB
             maxNumberOfFiles: <%= @max_files %>,
+            sequentialUploads: 1,
             messages: {
                 maxNumberOfFiles: '<%=t 'photos.uploader.ui.js_errors.maxNumberOfFiles'%>',
                 acceptFileTypes: '<%=t 'photos.uploader.ui.js_errors.acceptFileTypes'%>',

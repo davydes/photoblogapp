@@ -8,6 +8,8 @@ ru:
     label:
       users: "Пользователи"
       since_from: "учетная запись с %{date}"
+      last_login: "был в сети %{date}"
+      online: "сейчас в сети"
     error:
       too_young: 'Вам должно быть больше 18 лет'
     edit_user: "Изменение профиля"
