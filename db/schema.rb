@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120190646) do
+ActiveRecord::Schema.define(version: 20141124092524) do
 
   create_table "albums", force: true do |t|
     t.integer  "user_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20141120190646) do
     t.date     "date_of_birth"
     t.integer  "photo_upload_daily_limit"
     t.integer  "photo_upload_weekly_limit"
+    t.datetime "last_login_time"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

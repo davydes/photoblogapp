@@ -1,6 +1,7 @@
 module SessionsHelper
   def sign_in(user)
     cookies.permanent[:remember_token] = user.new_remember_token
+    user.touch(:last_login_time)
     self.current_user = user
   end
 
@@ -13,7 +14,11 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by(remember_token: User.digest(cookies[:remember_token]))
+    unless @current_user
+      @current_user ||= User.find_by(remember_token: User.digest(cookies[:remember_token]))
+      @current_user.touch(:last_login_time) if @current_user
+    end
+    @current_user
   end
 
   def current_user?(user)

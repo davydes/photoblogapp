@@ -95,6 +95,14 @@ class User < ActiveRecord::Base
      self.photo_upload_weekly_limit - self.photos.this_week.count].min
   end
 
+  def last_login_time
+    read_attribute(:last_login_time) || created_at
+  end
+
+  def online?
+    last_login_time && last_login_time >= 10.minutes.ago
+  end
+
   private
 
   def password_changed?

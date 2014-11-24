@@ -43,6 +43,7 @@ ru:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
         created_at: "Создан"
+        last_login_time: "Последний вход"
       album:
         title: "Название"
       article:

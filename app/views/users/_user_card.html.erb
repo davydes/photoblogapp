@@ -17,6 +17,9 @@
                     :class => 'text-danger'  %>
     <% end %>
   </div>
+  <% if user.online? %>
+    <div class="online-marker"></div>
+  <% end %>
 </div>
 <% end %>
 </div>

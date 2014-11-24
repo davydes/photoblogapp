@@ -41,6 +41,10 @@
               <td><%= model_class.human_attribute_name(:city) %>:</td>
               <td><%= @user.city %></td>
             </tr>
+            <tr>
+              <td><%= model_class.human_attribute_name(:last_login_time) %>:</td>
+              <td><%= l @user.last_login_time, :format => :short %></td>
+            </tr>
             </tbody>
           </table>
         </div>

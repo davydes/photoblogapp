@@ -23,7 +23,7 @@ module UsersHelper
   end
 
   def user_title(user)
-    if user.first_name
+    unless user.first_name.blank?
       "#{user.first_name} #{user.last_name}".strip
     else
       user.name

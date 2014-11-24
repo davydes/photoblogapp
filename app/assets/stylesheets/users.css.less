@@ -1,3 +1,9 @@
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
 .user-avatar {
     max-width: 200px;
     max-height: 200px;
@@ -11,6 +17,7 @@
 
 .user-card {
   padding: 5px;
+  position: relative;
 
   > a {
     color: inherit;
@@ -68,5 +75,16 @@
       text-align: right;
       height: 25px;
     }
+  }
+
+  .online-marker {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    .border-radius(15px);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
   }
 }
