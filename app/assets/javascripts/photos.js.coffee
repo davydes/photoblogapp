@@ -19,14 +19,10 @@ $(document).ready ->
   $('body').setFadeAble('#photo-container .nav', 'span')
   $('body').setFadeAble('div.blog-photo-view', 'div.meta-info', 0.7)
 
-  $("#photos-area").justifiedGallery({
+  $("#justified-photos").justifiedGallery({
     sizeRangeSuffixes : {
-      'lt100': ''
-      'lt240': ''
-      'lt320': ''
-      'lt500': ''
-      'lt640': ''
-      'lt1024': ''
+      'lt100': '', 'lt240': '', 'lt320': ''
+      'lt500': '', 'lt640': '', 'lt1024': ''
     }
     rowHeight : 200
     margins : 3
@@ -39,14 +35,15 @@ $(document).ready ->
     refreshTime : 100
   })
 
-  $('#photo-infscrl-page #photos-area').infinitescroll({
-    navSelector: "#photo-paginate",
-    nextSelector: "#photo-paginate a[rel=next]",
-    itemSelector: "#photos-area div.item",
+  $('#photo-infscrl-page #justified-photos').infinitescroll({
+    debug: true
+    navSelector: "#photo-paginate"
+    nextSelector: "#photo-paginate a[rel=next]"
+    itemSelector: "#justified-photos div.item"
     loading: {
       selector: "#page-loader"
       finishedMsg: ''
       msg: null
       msgText: '<em>Loading...</em>'
     }
-  }, () -> $('#photos-area').justifiedGallery('norewind'))
+  }, () -> $('#justified-photos').justifiedGallery('norewind'))
