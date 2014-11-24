@@ -13,7 +13,7 @@ class PhotosController < ApplicationController
     @photos = current_user.photos.all.order('created_at DESC').page(params[:page])
     respond_to do |format|
       format.html
-      format.js { render partial: 'photos/justified_gallery', locals: {photos: @photos} }
+      format.js { render partial: 'photos/justified/gallery', locals: {photos: @photos} }
     end
   end
 

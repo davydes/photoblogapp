@@ -7,9 +7,7 @@
   </h3>
 
   <div id="albums-area">
-    <% @albums.each do |album| %>
-      <%= render partial: 'album_item', locals: {album: album} %>
-    <% end %>
+    <%= render partial: 'album', collection: @albums, as: :album %>
   </div>
 </div>
 

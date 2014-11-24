@@ -15,5 +15,5 @@
     </h3>
   </div>
 
-  <%= render partial: 'photos/justified_gallery', :locals => {:photos => @album.photos.page(params[:page])} %>
+  <%= render partial: 'photos/justified/gallery', :locals => {:photos => @album.photos.page(params[:page])} %>
 </div>

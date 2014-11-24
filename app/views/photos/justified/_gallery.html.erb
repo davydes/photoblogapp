@@ -1,6 +1,6 @@
 <div id="photo-infscrl-page">
   <div id="justified-photos">
-    <%= render partial: 'photos/justified_photos', locals:{photos: photos} %>
+    <%= render partial: 'photos/justified/photo', collection: photos, as: :photo %>
   </div>
 </div>
 <div id="page-loader" class="text-center"></div>

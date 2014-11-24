@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     respond_to do |format|
       format.html
-      format.js { render partial: 'photos/justified_gallery', locals: {photos: @album.photos.page(params[:page])} }
+      format.js { render partial: 'photos/justified/gallery', locals: {photos: @album.photos.page(params[:page])} }
     end
   end
 
