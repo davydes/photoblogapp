@@ -1,28 +1,29 @@
 <% if @photo.albums.count > 0 %>
-    <h4>this photo in <%= @photo.albums.count %> albums</h4>
+    <h4><%= t 'photos.label.contain_albums', count: @photo.albums.count %></h4>
     <% if current_user?(@photo.user) %>
-        <div class="right-head-link"><%= link_to 'add album', available_albums_photo_path(@photo), remote: :true%></div>
+        <div class="right-head-link"><%= link_to t('photos.label.add'), available_albums_photo_path(@photo), remote: :true%></div>
     <% end %>
     <div class="row context-row">
       <% @photo.albums.each do |album| %>
           <div class="col-md-6 context-item">
-            <% if admin_or_current?(album.user) %>
+            <% if current_user?(album.user) %>
                 <%= link_to album_photo_path(@photo, album), remote: :true, method: 'DELETE', class: "unlink-photo control" do %>
                     <span class="glyphicon glyphicon-remove remove-link" ></span>
                 <% end %>
             <% end %>
             <%= image_tag image_album_url(album), class: 'thumbnail' %>
             <h4><%= link_to album.title, album %></h4>
-            <span class="count"><%= album.photos.count %> photos</span>
+            <span class="count"><%= t 'photos.label.album_photos_count', count: album.photos.count %></span>
           </div>
       <% end %>
     </div>
 <% else %>
     <div class="well well-lg text-center">
         <% if current_user?(@photo.user) %>
-            <%= link_to 'add', available_albums_photo_path(@photo), remote: :true%> photo to album
+            <%= link_to t('photos.label.add'), available_albums_photo_path(@photo), remote: :true%>
+            <%= t('photos.label.photo_to_album') %>
         <% else %>
-            no albums contains this photo
+            <%= t 'photos.label.no_albums_contains_this_photo' %>
         <% end %>
     </div>
 <% end %>

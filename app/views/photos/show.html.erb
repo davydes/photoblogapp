@@ -31,22 +31,20 @@
 </div>
 
 <div class="container">
-
-<div class="row">
-  <div class="col-sm-6" id="context-user">
-    <%= render partial: 'photos/context/user' %>
+  <div class="row">
+    <div class="col-sm-6" id="context-user">
+      <div class="context-block">
+        <h4><%= t 'photos.label.uploaded_at', date: l(@photo.created_at, :format => :short) %></h4>
+      </div>
+      <%= render partial: 'photos/context/user' %>
+    </div>
+    <div class="col-sm-6 ">
+      <div class="context-block" id="context-albums">
+        <%= render partial: 'photos/context/albums' %>
+      </div>
+      <div class="context-block" id="context-exif">
+        <%= render partial: 'photos/context/exif' %>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-6 ">
-    <div class="context-block">
-      <h4>uploaded at <span><%= l @photo.created_at, :format => :short %></span></h4>
-    </div>
-    <div class="context-block" id="context-albums">
-      <%= render partial: 'photos/context/albums' %>
-    </div>
-    <div class="context-block" id="context-exif">
-      <%= render partial: 'photos/context/exif' %>
-    </div>
-  </div>
-</div>
-
 </div>

@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h4 class="modal-title">Add album</h4>
+      <h4 class="modal-title"><%= "#{t('photos.label.add')} #{t('photos.label.photo_to_album')}" %></h4>
     </div>
     <div class="modal-body">
         <div class="row context-row">
@@ -12,19 +12,19 @@
                 <div class="col-md-6 context-item">
                     <%= image_tag image_album_url(album), class: 'thumbnail' %>
                     <h4><%= album.title %></h4>
-                    <span class="count"><%= album.photos.count %> photos</span>
+                    <span class="count"><%= t 'photos.label.album_photos_count', count: album.photos.count %></span>
                 </div>
               <% end %>
             <% end %>
           <% else %>
             <div class="well text-center">
-              no albums available
+              <%= t 'photos.label.no_albums_available' %>
             </div>
           <% end %>
         </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.cancel' %></button>
     </div>
   </div>
 </div>

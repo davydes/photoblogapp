@@ -1,20 +1,20 @@
 <div class="description-panel">
   <div class="panel-heading">
     <%= image_tag image_avatar_url(@photo.user), :class => "[ img-circle pull-left ]" %>
-    <h3><%= link_to @photo.user.name, user_path(@photo.user) %></h3>
-    <h5><span><%= @photo.title %></span></h5>
+    <h3><%= link_to user_title(@photo.user), user_path(@photo.user) %></h3>
+    <h5>
+      <span><%= @photo.title %></span>
+      <% if current_user?(@photo.user) %>
+        <div class="pull-right controls">
+          <span class='glyphicon glyphicon-edit'></span>
+          <%= link_to @photo, data: { confirm: t('photos.confirm_delete') }, :method => "delete" do %>
+            <span class='glyphicon glyphicon-trash'></span>
+          <% end %>
+        </div>
+      <% end %>
+    </h5>
   </div>
   <div class="panel-body">
     <p><%= @photo.description %></p>
-  </div>
-  <div class="panel-footer">
-    <% if admin_or_current?(@photo.user) %>
-        <%= link_to edit_photo_path(@photo), class: "btn btn-danger btn-xs" do %>
-            <span class='glyphicon glyphicon-edit'></span></a>
-        <% end %>
-        <%= link_to @photo, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs", :method => "delete" do %>
-            <span class='glyphicon glyphicon-trash'></span>
-        <% end %>
-    <% end %>
   </div>
 </div>

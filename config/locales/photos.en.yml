@@ -9,6 +9,19 @@ en:
       upload: "Upload photos"
       return_to_context: "Return to %{context}"
       exif: 'extended info'
+      add: "Add"
+      photo_to_album: "photo to album"
+      no_albums_contains_this_photo: "no albums contains this photo"
+      no_albums_available: "no available albums"
+      album_photos_count:
+        zero: "empty"
+        one: "1 photo"
+        other: "%{count} photos"
+      uploaded_at: "uploaded at %{date}"
+      contain_albums:
+        one: "Photo contains in album"
+        many: "Photo contains in %{count} albums"
+    confirm_delete: "Do you want delete this photo?"
     uploader:
       messages:
         uploadLimit:

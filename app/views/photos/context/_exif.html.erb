@@ -1,5 +1,5 @@
-<% if @photo.exif %>
-    <h4>meta info:</h4>
+<% if @photo.exif.priority_tags.any? %>
+    <h4><%= t 'photos.label.exif' %></h4>
     <% @photo.exif.priority_tags.each do |tag| %>
         <%= "#{tag}: #{@photo.exif[tag]}" %><br>
     <% end %>

@@ -9,6 +9,21 @@ ru:
       upload: "Загрузить фото"
       return_to_context: "Вернуться в %{context}"
       exif: 'мета-данные'
+      add: "Добавить"
+      photo_to_album: "фото в альбом"
+      no_albums_contains_this_photo: "фоторафия не добавлена ни в один из альбомов"
+      no_albums_available: "нет доступных альбомов"
+      album_photos_count:
+        zero: "пустой"
+        one: "1 фотография"
+        few: "%{count} фотографии"
+        many: "%{count} фотографий"
+      uploaded_at: "загружено %{date}"
+      contain_albums:
+        one: "Фото содержится в одном альбоме"
+        few: "Фото содержится в %{count} альбомах"
+        many: "Фото содержится в %{count} альбомах"
+    confirm_delete: "Вы действительно хотите удалить фотографию?"
     uploader:
       messages:
         uploadLimit:
