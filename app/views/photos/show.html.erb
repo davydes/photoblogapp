@@ -5,21 +5,26 @@
 
 <%= render partial: 'shared/blueimp_controls' %>
 
+<%
+  _prev = @photo.prev(@context)
+  _next = @photo.next(@context)
+%>
+
 <div class="span7 text-center" id="photo-container">
-  <% if @photo.prev(@context) %>
-    <%= link_to_photo @photo.prev(@context), context: @context do %>
-      <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
-    <% end %>
-  <% end %>
-  <% if @photo.next(@context) %>
-    <%= link_to_photo(@photo.next(@context), context: @context) do %>
-      <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
-    <% end %>
-  <% end %>
+  <%= link_to_photo _prev, context: @context do %>
+    <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
+  <% end if _prev %>
+  <%= link_to_photo _next, context: @context do %>
+    <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
+  <% end if _next %>
   <%= link_to image_photo_url(@photo, :original), :title => @photo.title, 'data-gallery' => '' do %>
     <%= image_tag image_photo_url(@photo, :medium), :alt => @photo.title, :id => 'main-photo' %>
-    <%= link_to "#{url_for(@context)}##{photo_id(@photo)}", id: "return-link",  class: "bottom-link has-tooltip",
-                title: t('photos.label.return_to_context', context: @context.class.model_name.human), data: {placement: "top"} do %>
+    <%= link_to "#{url_for(@context)}##{photo_id(@photo)}",
+                id: "return-link",
+                class: "bottom-link has-tooltip",
+                title: t('photos.label.return_to_context',
+                context: @context.class.model_name.human),
+                data: {placement: "top"} do %>
       <span class="glyphicon glyphicon-circle-arrow-left"></span>
     <% end if @context %>
   <% end %>
