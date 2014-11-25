@@ -1,4 +1,5 @@
 class Photo < ActiveRecord::Base
+  default_scope { order('id desc') }
   scope :today, -> { where(:created_at => (Time.now.beginning_of_day..Time.now)) }
   scope :this_week, -> { where(:created_at => (Time.now.beginning_of_week..Time.now)) }
 
@@ -41,16 +42,20 @@ class Photo < ActiveRecord::Base
   after_initialize :load_exif
 
   def next(context = nil)
-    Photo.contextual(context).where("id < ?", id).last
+    Photo.contextual(context).where("id < ?", id).first
   end
 
   def prev(context = nil)
-    Photo.contextual(context).where("id > ?", id).first
+    Photo.contextual(context).where("id > ?", id).last
   end
 
   def self.contextual(context = nil)
-    return default_scoped.merge(context.photos) if context
-    default_scoped
+    context ? default_scoped.merge(context.photos) : default_scoped
+  end
+
+  def page(context = nil, order = :id)
+    position = Photo.contextual(context).where("#{order} >= ?", self.send(order)).count
+    (position.to_f/Photo.default_per_page).ceil
   end
 
   private

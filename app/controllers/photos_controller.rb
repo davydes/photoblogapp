@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
   respond_to :js,   only: [:unlink_album, :link_album, :available_albums]
 
   def index
-    @photos = current_user.photos.all.order('created_at DESC').page(params[:page])
+    @photos = current_user.photos.all.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: 'photos/justified/gallery', locals: {photos: @photos} }
