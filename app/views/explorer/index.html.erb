@@ -12,7 +12,7 @@
                 </ul>
               </div>
           <% end %>
-          <div class="preview-text <%= 'with-previews' if first_article.photos.any? %>"><p><%= html_intro_article(first_article) %></p></div>
+          <p><%= html_intro_article(first_article) %></p>
           <div class="bottom">
             <%= t 'articles.label.published_by' %> <%= link_to user_title(first_article.user), user_path(first_article.user) %>
             <%= l first_article.published_at, :format => :short %>

@@ -9,7 +9,7 @@
       </ul>
     </div>
     <% end %>
-    <div class="preview-text <%= 'with-previews' if article.photos.any? %>"><%= html_intro_article(article) %></div>
+    <p><%= html_intro_article(article) %></p>
     <div class="bottom">
       <%= t 'articles.label.published_by' %> <%= link_to user_title(article.user), user_path(article.user) %>
       <%= l article.published_at, :format => :short %>
