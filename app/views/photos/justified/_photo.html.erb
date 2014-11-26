@@ -1,6 +1,6 @@
 <div class="item" id="<%= photo_id(photo) %>">
   <%= link_to_photo photo, context: @context do %>
-      <%= image_tag image_photo_url(photo, :small), alt: "#{photo.title}" %>
+      <%= image_tag image_photo_url(photo, :s240), alt: "#{photo.title}" %>
   <% end %>
   <div class="caption">
     <strong><%= photo.title %></strong>

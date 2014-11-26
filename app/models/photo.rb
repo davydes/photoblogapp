@@ -10,15 +10,23 @@ class Photo < ActiveRecord::Base
   has_many :articles, :through => :articles_photos, :dependent => :restrict_with_exception
   has_attached_file :image,
                     :styles => {
-                        :original => ["2048x2048>", :jpg],
-                        :medium => ["1280x720>", :jpg],
-                        :small => ["x240>", :jpg],
-                        :thumb => ["120x120#", :jpg]
+                        :original => ["2048x2048>",:jpg],
+                        :medium   => ["1280x720>", :jpg],
+                        :s640     => ["640x640>",  :jpg],
+                        :s500     => ["500x500>",  :jpg],
+                        :s320     => ["320x320>",  :jpg],
+                        :s240     => ["240x240>",  :jpg],
+                        :s100     => ["100x100>",  :jpg],
+                        :thumb    => ["120x120#",  :jpg]
                     },
                     :convert_options => {
                         :medium => "-strip",
-                        :small => "-quality 80 -strip",
-                        :thumb => "-quality 80 -strip"
+                        :s640   => "-quality 80 -strip",
+                        :s500   => "-quality 80 -strip",
+                        :s320   => "-quality 80 -strip",
+                        :s240   => "-quality 80 -strip",
+                        :s100   => "-quality 80 -strip",
+                        :thumb  => "-quality 90 -strip"
                     }
 
   attr_accessor :exif

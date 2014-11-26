@@ -1,6 +1,6 @@
 <div class="item" id="<%= album_id(album) %>">
   <%= link_to album do %>
-    <%= image_tag image_album_url(album, :small), alt: "#{album.title}" %>
+    <%= image_tag image_album_url(album, :s240), alt: "#{album.title}" %>
   <% end %>
   <div class="caption">
     <strong><%= album.title %> [<%= album.photos.count %>]</strong>

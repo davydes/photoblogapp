@@ -6,12 +6,8 @@ $(document).ready ->
 
   $("#albums-area").justifiedGallery ({
     sizeRangeSuffixes : {
-      'lt100': ''
-      'lt240': ''
-      'lt320': ''
-      'lt500': ''
-      'lt640': ''
-      'lt1024': ''
+      'lt100': '_s100', 'lt240': '_s240', 'lt320': '_s320',
+      'lt500': '_s500', 'lt640': '_s640', 'lt1024': '_medium'
     }
     rowHeight : 240
     margins : 3
