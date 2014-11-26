@@ -35,12 +35,15 @@ class Photo < ActiveRecord::Base
   LIMIT_PHOTO_SIZE_UP = 5.megabytes
   LIMIT_PHOTO_SIZE_DOWN = 100.kilobytes
 
+  VALIDATION_MAX_TITLE = 50
+  VALIDATION_MAX_DESCRIPTION = 250
+
   validate :user_quota, :on => :create
   validates :user, presence: true
   validates :title,
-            length: { maximum: 50 }
+            length: { maximum: VALIDATION_MAX_TITLE }
   validates :description,
-            length: { maximum: 250 }
+            length: { maximum: VALIDATION_MAX_DESCRIPTION }
   validates_attachment :image,
                        presence: true,
                        content_type: { content_type: /\Aimage\/.*\Z/ },

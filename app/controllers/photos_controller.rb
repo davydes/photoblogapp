@@ -47,10 +47,14 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.update(photo_update_params)
-      redirect_to @photo
-    else
-      render :edit
+    respond_to do |format|
+      if @photo.update(photo_update_params)
+        format.html { redirect_to @photo }
+        format.js   { render :update }
+      else
+        format.html { render :edit }
+        format.js   { render json: @photo.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -107,6 +111,6 @@ class PhotosController < ApplicationController
   end
 
   def photo_update_params
-    params.require(:photo).permit(:title, :description, :image)
+    params.require(:photo).permit(:title, :description)
   end
 end

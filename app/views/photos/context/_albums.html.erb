@@ -3,7 +3,7 @@
     <% if current_user?(@photo.user) %>
         <div class="right-head-link"><%= link_to t('photos.label.add'), available_albums_photo_path(@photo), remote: :true%></div>
     <% end %>
-    <div class="row context-row">
+    <div class="context-row row">
       <% @photo.albums.each do |album| %>
           <div class="col-md-6 context-item">
             <% if current_user?(album.user) %>

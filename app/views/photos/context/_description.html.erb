@@ -1,0 +1,22 @@
+<div id="description" class="description-panel">
+  <div class="panel-heading">
+    <%= image_tag image_avatar_url(@photo.user), :class => "[ img-circle pull-left ]" %>
+    <% if current_user?(@photo.user) %>
+      <h5 class="controls">
+        <%= link_to edit_photo_path(@photo), remote: true do %>
+          <span class='glyphicon glyphicon-edit'></span>
+        <% end %>
+        <%= link_to @photo, data: { confirm: t('photos.confirm_delete') }, :method => "delete" do %>
+          <span class='glyphicon glyphicon-trash'></span>
+        <% end %>
+      </h5>
+    <% end %>
+    <h5 class="title">
+      <span><%= @photo.title %></span>
+    </h5>
+    <h3><%= link_to user_title(@photo.user), user_path(@photo.user) %></h3>
+  </div>
+  <div class="panel-body">
+    <p><%= @photo.description %></p>
+  </div>
+</div>

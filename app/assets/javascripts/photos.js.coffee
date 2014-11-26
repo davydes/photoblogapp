@@ -11,6 +11,11 @@ setMaxBlogPhotoViewHeight = () ->
       $(this).setMaxHeight($(window).height() * 2/3)
 
 $(document).ready ->
+
+  $(document).bind('ajaxError', 'form#photo-form', (event, jqxhr) ->
+    $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText))
+  )
+
   setMaxBlogPhotoViewHeight()
   setMaxMainPhotoHeight()
   $(window).resize(setMaxBlogPhotoViewHeight)

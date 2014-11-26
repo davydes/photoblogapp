@@ -21,6 +21,7 @@ en:
       contain_albums:
         one: "Photo contains in album"
         many: "Photo contains in %{count} albums"
+      edit: "Change photo description"
     confirm_delete: "Do you want delete this photo?"
     uploader:
       messages:

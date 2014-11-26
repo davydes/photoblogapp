@@ -44,34 +44,68 @@
 }
 
 .description-panel {
-  > .panel-heading, > .panel-footer {
+  > .panel-heading, > .panel-footer, > .panel-body {
     background-color: rgb(255, 255, 255);
     border-width: 0px;
+    padding: 5px 0 0 0;
+  }
+
+  > .panel-body {
+    padding-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   > .panel-heading {
     padding-bottom: 5px;
+    border-bottom: 1px solid #fafafa;
 
     > img {
-      margin-right: 15px;
+      margin-right: 5px;
     }
 
     > h3 {
       margin: 0px;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: bold;
     }
 
-    > h5 {
-      color: rgb(153, 153, 153);
+    > h5.title {
+      font-size: 14px;
+      line-height: 15px;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 3px 35px 0 0;
+    }
+
+    > h5.controls {
+      margin: 3px 0 0 0;
       font-size: 12px;
-      font-weight: 400;
+      float: right;
     }
   }
 }
 
+.context-row {
+  margin: 0px;
+}
+
 .context-block {
   position: relative;
+
+  > h4 {
+    font-size: 16px;
+    padding: 0;
+    margin: 5px 0;
+    font-weight: bold;
+  }
 
   .right-head-link {
     position: absolute;
