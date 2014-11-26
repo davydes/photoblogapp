@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
 
   belongs_to :user
   has_and_belongs_to_many :photos
+  has_many :comments, as: :commentable
 
   VALIDATION_MAX_TITLE = 50
   VALIDATION_MAX_INTRO = 255
