@@ -10,6 +10,7 @@ ru:
   button:
     close: 'Закрыть'
     cancel: 'Отменить'
+    leave: 'Оставить'
 
   sessions:
     user: "Пользователь"

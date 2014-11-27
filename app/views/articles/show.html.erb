@@ -26,4 +26,5 @@
     <div class="article-text">
       <%= html_content_article(@article) %>
     </div>
+    <%= render 'shared/comments', object: @article %>
 </div>

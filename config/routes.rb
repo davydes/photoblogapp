@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
   end
 
+  concern :commentable do
+    resources :comments, only: [:create], :on => :member
+  end
+
   resources :users, shallow: true do
     member do
       post :crop_avatar
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
   resources :albums
-  resources :articles
+  resources :articles, concerns: :commentable
   resources :sessions, only: [:index, :new, :create, :destroy]
 
   resources :password_resets

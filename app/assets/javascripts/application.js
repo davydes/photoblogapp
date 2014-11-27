@@ -61,3 +61,9 @@
     return false;
   };
 }(jQuery));
+
+$(document).ready(function () {
+  $(document).bind('ajaxError', 'form[data-remote]', function(event, jqxhr) {
+    $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText));
+  })
+});

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :articles, :dependent => :destroy
   has_many :albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy
+  has_many :comments
 
   #validations
     # REGEX

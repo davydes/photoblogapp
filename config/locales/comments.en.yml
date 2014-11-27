@@ -1,0 +1,10 @@
+en:
+  comments:
+    label:
+      comments: 'Comments'
+      new: 'New comment'
+      commented_at: 'commented %{datetime} ago.'
+      no_comments: 'Has not yet commented. Leave a comment.'
+      comments_plural:
+        one: '%{count} comment'
+        other: '%{count} comments'

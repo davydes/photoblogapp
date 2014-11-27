@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124092524) do
+ActiveRecord::Schema.define(version: 20141126180955) do
 
   create_table "albums", force: true do |t|
     t.integer  "user_id"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20141124092524) do
 
   add_index "articles_photos", ["article_id", "photo_id"], name: "index_articles_photos_on_article_id_and_photo_id", unique: true
   add_index "articles_photos", ["photo_id"], name: "index_articles_photos_on_photo_id"
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"

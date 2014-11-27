@@ -1,0 +1,12 @@
+ru:
+  comments:
+    label:
+      comments: 'Комментарии'
+      new: 'Оставить комментарий'
+      commented_at: 'прокомментировано %{datetime} назад.'
+      no_comments: 'Пока не прокомментировано. Оставьте свой комментарий.'
+      comments_plural:
+        one: '%{count} комментарий'
+        few: '%{count} комментария'
+        many: '%{count} комментариев'
+        other: '%{count} комментарий'

@@ -16,6 +16,10 @@
           <div class="bottom">
             <%= t 'articles.label.published_by' %> <%= link_to user_title(first_article.user), user_path(first_article.user) %>
             <%= l first_article.published_at, :format => :short %>
+            <br>
+            <%= link_to article_path(first_article, :anchor => 'comments-container') do %>
+              <%= t 'comments.label.comments_plural', count: first_article.comments.count %>
+            <% end %>
           </div>
       </div>
 

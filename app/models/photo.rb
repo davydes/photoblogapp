@@ -41,6 +41,7 @@ class Photo < ActiveRecord::Base
   validate :user_quota, :on => :create
   validates :user, presence: true
   validates :title,
+            presence: true,
             length: { maximum: VALIDATION_MAX_TITLE }
   validates :description,
             length: { maximum: VALIDATION_MAX_DESCRIPTION }

@@ -1,9 +1,5 @@
 $(document).ready ->
 
-  $(document).bind('ajaxError', 'form#album-form', (event, jqxhr) ->
-    $(event.data).renderFormErrors($.parseJSON(jqxhr.responseText))
-  )
-
   $("#albums-area").justifiedGallery ({
     sizeRangeSuffixes : {
       'lt100': '_s100', 'lt240': '_s240', 'lt320': '_s320',

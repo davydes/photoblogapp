@@ -1,0 +1,12 @@
+<div class="comment">
+  <li id="comment-<%= comment.id %>">
+    <%= link_to comment.user do %>
+      <%= image_tag image_avatar_url(comment.user), class: 'avatar' %>
+    <% end %>
+    <span class="user"><%= link_to user_title(comment.user), comment.user %></span>
+    <span class="content"><%= comment.content %></span>
+  <span class="timestamp">
+    <%= t 'comments.label.commented_at', datetime: time_ago_in_words(comment.created_at) %>
+  </span>
+  </li>
+</div>

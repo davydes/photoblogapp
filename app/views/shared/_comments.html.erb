@@ -1,0 +1,11 @@
+<div class="comments" id="comments-container">
+  <h4><%= t 'comments.label.comments' %></h4>
+  <% if object.comments.any? %>
+    <%= render partial: 'shared/comment', collection: object.comments, as: :comment %>
+  <% else %>
+    <div class="well text-center">
+      <%= t 'comments.label.no_comments' %>
+    </div>
+  <% end %>
+  <%= render('shared/comment_form', object: object) if signed_in? %>
+</div>
