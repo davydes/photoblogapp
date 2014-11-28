@@ -1,3 +1,1 @@
-$('#albums-area').append("<%= j render partial: 'album', locals: {album: @album} %>");
-$('#albums-area').justifiedGallery('norewind');
-$('#new_album_modal').modal('hide');
+<%= render partial: 'photos/justified/gallery', locals: {photos: @album.photos.page(params[:page])} %>

@@ -12,10 +12,6 @@ class ExplorerController < ApplicationController
 
   def photos
     @photos = Photo.all.page(params[:page])
-    respond_to do |format|
-      format.html
-      format.js { render partial: 'photos/justified/gallery', locals: {photos: @photos} }
-    end
   end
 
   private

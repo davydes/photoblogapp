@@ -7,48 +7,28 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.js { render partial: 'photos/justified/gallery', locals: {photos: @album.photos.page(params[:page])} }
-    end
   end
 
   def new
     @album = current_user.albums.new()
-    render :album
+    render :album_form
   end
 
   def create
     @album = current_user.albums.new(album_params)
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album }
-        format.js   { render action: 'show', status: :created, location: @album }
-      else
-        format.html { render :album }
-        format.js   { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
+    save_and_render
   end
 
   def edit
-    render :album
+    render :album_form
   end
 
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album }
-        format.js   { render 'update' }
-      else
-        format.html { render :album }
-        format.js   { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
+    @album.assign_attributes(album_params)
+    save_and_render
   end
 
   def destroy
-    # todo: make destroy remoteable
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_path }
@@ -62,4 +42,15 @@ class AlbumsController < ApplicationController
     params.require(:album).permit(:title)
   end
 
+  def save_and_render
+    respond_to do |format|
+      if @album.save
+        format.html { redirect_to @album }
+        format.js
+      else
+        format.html { render :album_form }
+        format.js   { render json: @album.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end

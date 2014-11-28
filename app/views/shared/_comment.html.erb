@@ -1,5 +1,5 @@
-<div class="comment">
-  <li id="comment-<%= comment.id %>">
+<div id="comment-<%= comment.id %>" class="comment">
+  <li>
     <%= link_to comment.user do %>
       <%= image_tag image_avatar_url(comment.user), class: 'avatar' %>
     <% end %>

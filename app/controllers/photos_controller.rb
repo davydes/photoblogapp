@@ -11,10 +11,6 @@ class PhotosController < ApplicationController
 
   def index
     @photos = current_user.photos.all.page(params[:page])
-    respond_to do |format|
-      format.html
-      format.js { render partial: 'photos/justified/gallery', locals: {photos: @photos} }
-    end
   end
 
   def show
@@ -50,7 +46,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.update(photo_update_params)
         format.html { redirect_to @photo }
-        format.js   { render :update }
+        format.js
       else
         format.html { render :edit }
         format.js   { render json: @photo.errors, status: :unprocessable_entity }
