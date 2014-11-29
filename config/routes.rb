@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   concern :commentable do
-    resources :comments, only: [:create], :on => :member
+    resources :comments, only: [:create, :destroy], :on => :member
   end
 
   resources :users, shallow: true do

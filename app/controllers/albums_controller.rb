@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_path }
-      format.js   { render 'destroy' }
+      format.js
     end
   end
 

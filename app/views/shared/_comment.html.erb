@@ -3,10 +3,15 @@
     <%= link_to comment.user do %>
       <%= image_tag image_avatar_url(comment.user), class: 'avatar' %>
     <% end %>
-    <span class="user"><%= link_to user_title(comment.user), comment.user %></span>
-    <span class="content"><%= comment.content %></span>
-  <span class="timestamp">
-    <%= t 'comments.label.commented_at', datetime: time_ago_in_words(comment.created_at) %>
-  </span>
+    <div class="control">
+      <%= link_to [comment.commentable, comment], method: :delete, remote: true do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end if comment.can_be_destroyed_by?(current_user) %>
+    </div>
+    <div class="user"><%= link_to user_title(comment.user), comment.user %></div>
+    <div class="content"><%= comment.content %></div>
+    <div class="timestamp">
+      <%= t 'comments.label.commented_at', datetime: time_ago_in_words(comment.created_at) %>
+    </div>
   </li>
 </div>

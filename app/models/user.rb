@@ -104,6 +104,14 @@ class User < ActiveRecord::Base
     last_login_time && last_login_time >= 10.minutes.ago
   end
 
+  def admin?
+    admin
+  end
+
+  def can_destroy?(resource)
+    resource.can_be_destroyed_by?(self)
+  end
+
   private
 
   def password_changed?
@@ -116,7 +124,7 @@ class User < ActiveRecord::Base
       digest_token =  User.digest(token)
     end while User.exists?(column => digest_token)
     update_attribute(column, digest_token)
-    return token
+    token
   end
 
   def at_least_18
