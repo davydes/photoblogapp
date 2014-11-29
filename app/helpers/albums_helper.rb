@@ -3,7 +3,7 @@ module AlbumsHelper
     if album.photos.count > 0
       image_photo_url(album.photos.first, style);
     else
-      image_url 'album_s320.png'
+      '/images/album_s320.png'
     end
   end
 
