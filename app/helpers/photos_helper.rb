@@ -3,8 +3,8 @@ module PhotosHelper
     url_to_attachment(photo.image, style)
   end
 
-  def photo_id (photo)
-    "photo_#{photo.id}"
+  def photo_id (object)
+    object_id(object)
   end
 
   def context_serialize(context)

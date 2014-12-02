@@ -1,0 +1,20 @@
+<% object_name = object.class.name.downcase %>
+<div class="votes" id="<%= vote_id(object) %>">
+  <% if signed_in? %>
+    <% vote = object.votes.find_by_user_id(current_user.id) %>
+    <% if vote %>
+      <%= link_to Rails.application.routes.url_helpers.send("#{object_name}_vote_path" ,object, vote),
+                  remote: true, method: 'DELETE' do %>
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+      <% end %>
+    <% else %>
+      <%= link_to Rails.application.routes.url_helpers.send("#{object_name}_votes_path" ,object),
+                  remote: true, method: 'POST' do %>
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+  <% end %>
+  <%= object.votes.count %>
+</div>

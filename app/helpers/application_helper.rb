@@ -9,6 +9,10 @@ module ApplicationHelper
     }[flash_type] || flash_type.to_s
   end
 
+  def object_id(object)
+    "#{object.class.name.downcase}-#{object.id}"
+  end
+
   def badge (count, position = :right)
     position_css = ''
     if position == :right

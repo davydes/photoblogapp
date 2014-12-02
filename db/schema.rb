@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126180955) do
+ActiveRecord::Schema.define(version: 20141202085624) do
 
   create_table "albums", force: true do |t|
     t.integer  "user_id"
@@ -107,5 +107,16 @@ ActiveRecord::Schema.define(version: 20141126180955) do
   add_index "users", ["name"], name: "index_users_on_name", unique: true
   add_index "users", ["password_reset_token"], name: "index_users_on_password_reset_token", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
 
 end

@@ -6,5 +6,9 @@
     <strong><%= photo.title %></strong>
     <br>
     <em>by <%= user_title(photo.user) %></em>
+    <br>
+    <div class="text-right">
+      <%= render 'shared/votes', object: photo %>
+    </div>
   </div>
 </div>

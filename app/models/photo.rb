@@ -4,6 +4,7 @@ class Photo < ActiveRecord::Base
   scope :this_week, -> { where(:created_at => (Time.now.beginning_of_week..Time.now)) }
 
   belongs_to :user
+  has_many :votes, as: :voteable
   has_many :albums_photos
   has_many :albums, :through => :albums_photos
   has_many :articles_photos

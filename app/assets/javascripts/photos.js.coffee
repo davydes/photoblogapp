@@ -16,7 +16,8 @@ $(document).ready ->
   $(window).resize(setMaxBlogPhotoViewHeight)
   $(window).resize(setMaxMainPhotoHeight)
   $('body').setFadeAble('div.context-item', 'a.control')
-  $('body').setFadeAble('#photo-container .nav', 'span')
+  $('body').setFadeAble('#photo-container', '.nav span')
+  $('body').setFadeAble('#photo-container', '.votes')
   $('body').setFadeAble('div.blog-photo-view', 'div.meta-info', 0.7)
 
   $("#justified-photos").justifiedGallery({

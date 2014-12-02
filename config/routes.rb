@@ -8,13 +8,17 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy], :on => :member
   end
 
+  concern :voteable do
+    resources :votes, only: [:create, :destroy], :on => :member
+  end
+
   resources :users, shallow: true do
     member do
       post :crop_avatar
     end
   end
 
-  resources :photos, concerns: :paginatable do
+  resources :photos, concerns: [:paginatable, :voteable] do
     member do
       get    'in/:context',     action: 'show', as: :in
       delete 'album/:album_id', action: 'unlink_album', as: :album

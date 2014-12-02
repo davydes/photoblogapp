@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :comments
+  has_many :votes
 
   #validations
     # REGEX
