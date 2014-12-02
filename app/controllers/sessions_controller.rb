@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   def new
     redirect_to current_user if signed_in?
-    session[:return_to] = request.referer
+    session[:return_to] ||= request.referer
   end
 
   def create
