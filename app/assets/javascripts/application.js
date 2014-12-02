@@ -44,12 +44,11 @@
 
   $.fn.setFadeAble = function(baseElementSelector, affectElementSelector, maxOpacity) {
     maxOpacity = typeof maxOpacity !== 'undefined' ? maxOpacity : 1;
-    $(this).find(baseElementSelector).on('mouseenter', function () {
-      $(this).find(affectElementSelector).fadeTo('faset', maxOpacity);
-    });
-    $(this).find(baseElementSelector).on('mouseleave', function(){
-      $(this).find(affectElementSelector).stop().fadeOut();
-    });
+    $(this).find(baseElementSelector).hover(
+      function(){$(this).find(affectElementSelector).stop().fadeTo('faset', maxOpacity);},
+      function(){$(this).find(affectElementSelector).stop().fadeOut();}
+    );
+    $(this).find(affectElementSelector).stop().fadeOut();
   };
 
   $.fn.jumpToHash = function(hash, offsetY) {
