@@ -1,0 +1,7 @@
+en:
+  activities:
+    datetime: '%{datetime} ago.'
+    comment_posted_to_article: "posted comment to article"
+    comment_posted_to_article_by_yourself: "You posted comment to article"
+    vote_posted_to_photo: "liked photo"
+    vote_posted_to_photo_by_yourself: "You liked photo"

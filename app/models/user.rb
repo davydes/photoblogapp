@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :comments
   has_many :votes
+  has_many :activities
 
   #validations
     # REGEX
@@ -111,6 +112,10 @@ class User < ActiveRecord::Base
 
   def can_destroy?(resource)
     resource.can_be_destroyed_by?(self)
+  end
+
+  def recent_activities(limit)
+    activities.order('created_at DESC').limit(limit)
   end
 
   private

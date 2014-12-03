@@ -1,0 +1,18 @@
+<% case subject.voteable.class.name %>
+<% when 'Photo' %>
+  <div class="voteable">
+    <%= image_tag image_avatar_url(subject.user), class: 'avatar' %>
+    <%= link_to subject.voteable do %>
+      <%= image_tag image_photo_url(subject.voteable, :thumb), class: 'preview' %>
+    <% end %>
+    <div class="user with-preview">
+      <% if current_user?(subject.user) %>
+        <%= t('activities.vote_posted_to_photo_by_yourself') %>
+      <% else %>
+        <%= link_to user_title(subject.user), subject.user %>
+        <%= t('activities.vote_posted_to_photo') %>
+      <% end %>
+      "<%= link_to subject.voteable.title, subject.voteable %>"
+    </div>
+  </div>
+<% end %>

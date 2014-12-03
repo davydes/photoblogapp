@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :albums
   resources :articles, concerns: :commentable
   resources :sessions, only: [:index, :new, :create, :destroy]
+  resources :activities, only: :index
 
   resources :password_resets
   get '/signup', to: 'users#new'

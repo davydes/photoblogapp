@@ -1,0 +1,12 @@
+<div class="container">
+<ul class="activities">
+  <% @activities.each do |activity| %>
+    <li class="activity">
+      <%= render "#{activity.name}_#{activity.direction}_current_user", subject: activity.subject %>
+      <div class="timestamp">
+        <%= t 'activities.datetime', datetime: time_ago_in_words(activity.created_at) %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+</div>

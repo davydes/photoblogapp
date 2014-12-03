@@ -1,0 +1,7 @@
+ru:
+  activities:
+    datetime: '%{datetime} назад.'
+    comment_posted_to_article: "оставил комментарий к статье"
+    comment_posted_to_article_by_yourself: "Вы оставили комментарий к статье"
+    vote_posted_to_photo: "оценил фоторафию"
+    vote_posted_to_photo_by_yourself: "Вы оценили фоторафию"
