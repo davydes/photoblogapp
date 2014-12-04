@@ -9,7 +9,7 @@
       <%= t 'users.label.since_from', :date => l(user.created_at, :format => :short) %>
       <br />
       <%= user.online? ? t('users.label.online')
-          : t('users.label.last_login', :date => l(user.last_login_time, :format => :short)) %>
+          : t('users.label.last_login', :gender => user.gender, :date => l(user.last_login_time, :format => :short)) %>
     </h5>
   </div>
   <div class="user-card-footer">

@@ -1,16 +1,21 @@
-<% case subject.commentable.class.name %>
- <% when 'Article' %>
-   <div class="commentable">
-     <%= image_tag image_avatar_url(subject.user), class: 'avatar' %>
-     <div class="user">
-       <% if current_user?(subject.user) %>
-         <%= t('activities.comment_posted_to_article_by_yourself') %>
-       <% else %>
-         <%= link_to user_title(subject.user), subject.user %>
-         <%= t('activities.comment_posted_to_article') %>
-       <% end %>
-       "<%= link_to subject.commentable.title, subject.commentable %>"
-     </div>
-     <p class="content"><%= subject.content %></p>
-   </div>
+<% user = subject.user
+   object = subject.commentable
+   model_name = subject.commentable.class.name.downcase
+   activity_name = 'comment_posted' %>
+
+<% case model_name %>
+  <% when 'article' %>
+    <div class="commentable">
+      <%= image_tag image_avatar_url(user), class: 'avatar' %>
+      <div class="user">
+        <% if current_user?(user) %>
+          <%= t("activities.#{activity_name}_to_#{model_name}_by_yourself") %>
+        <% else %>
+          <%= link_to user_title(user), user %>
+          <%= t("activities.#{activity_name}_to_#{model_name}", :gender => user.gender) %>
+        <% end %>
+        "<%= link_to object.title, object %>"
+      </div>
+      <p class="content"><%= subject.content %></p>
+    </div>
 <% end %>

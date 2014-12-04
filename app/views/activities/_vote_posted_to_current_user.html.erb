@@ -1,18 +1,23 @@
-<% case subject.voteable.class.name %>
-<% when 'Photo' %>
-  <div class="voteable">
-    <%= image_tag image_avatar_url(subject.user), class: 'avatar' %>
-    <%= link_to subject.voteable do %>
-      <%= image_tag image_photo_url(subject.voteable, :thumb), class: 'preview' %>
-    <% end %>
-    <div class="user with-preview">
-      <% if current_user?(subject.user) %>
-        <%= t('activities.vote_posted_to_photo_by_yourself') %>
-      <% else %>
-        <%= link_to user_title(subject.user), subject.user %>
-        <%= t('activities.vote_posted_to_photo') %>
+<% user = subject.user
+   object = subject.voteable
+   model_name = subject.voteable.class.name.downcase
+   activity_name = 'vote_posted' %>
+
+<% case model_name %>
+  <% when 'photo' %>
+    <div class="voteable">
+      <%= image_tag image_avatar_url(user), class: 'avatar' %>
+      <%= link_to object do %>
+        <%= image_tag image_photo_url(object, :thumb), class: 'preview' %>
       <% end %>
-      "<%= link_to subject.voteable.title, subject.voteable %>"
+      <div class="user with-preview">
+        <% if current_user?(user) %>
+          <%= t("activities.#{activity_name}_to_#{model_name}_by_yourself") %>
+        <% else %>
+          <%= link_to user_title(user), user %>
+          <%= t("activities.#{activity_name}_to_#{model_name}", :gender => user.gender) %>
+        <% end %>
+        "<%= link_to object.title, object %>"
+      </div>
     </div>
-  </div>
 <% end %>

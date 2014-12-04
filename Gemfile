@@ -23,6 +23,7 @@ gem 'less-rails'
 gem "redcarpet"
 gem 'mini_exiftool_vendored'
 gem 'kaminari'
+gem 'i18n-inflector-rails'
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil
