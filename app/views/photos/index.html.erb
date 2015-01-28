@@ -1,4 +1,8 @@
 <div class="container-fluid">
-  <h3><%= t('photos.label.your_photos') %></h3>
+  <% if current_user?(@user) %>
+    <h3><%= t('photos.label.your_photos') %></h3>
+  <% else %>
+    <h3><%= t('photos.label.photos_of', name: user_title(@user)) %></h3>
+  <% end %>
   <%= render partial: 'photos/justified/gallery', locals: {photos: @photos} %>
 </div>

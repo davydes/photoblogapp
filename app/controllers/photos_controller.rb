@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   include UserResourceable
-  skip_before_action :signed_in_user, only: :show
+  skip_before_action :signed_in_user, only: [:index, :show]
   before_action :set_context, only: :show
   before_action :set_photo, only: [:unlink_album, :link_album, :available_albums]
   before_action :set_album, only: [:unlink_album, :link_album]
@@ -10,7 +10,8 @@ class PhotosController < ApplicationController
   respond_to :js,   only: [:unlink_album, :link_album, :available_albums]
 
   def index
-    @photos = current_user.photos.all.page(params[:page])
+    @user = params[:user_id] ? User.find(params[:user_id]) : current_user
+    @photos = @user.photos.all.page(params[:page])
   end
 
   def show

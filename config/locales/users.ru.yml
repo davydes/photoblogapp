@@ -10,6 +10,7 @@ ru:
       since_from: "учетная запись с %{date}"
       last_login: "@{f:была|был} в сети %{date}"
       online: "сейчас в сети"
+      general_info: "Общая информация"
     error:
       too_young: 'Вам должно быть больше 18 лет'
     edit_user: "Изменение профиля"

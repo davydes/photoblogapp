@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     member do
       post :crop_avatar
     end
+    resources :photos, only: :index
   end
 
   resources :photos, concerns: [:paginatable, :voteable] do
