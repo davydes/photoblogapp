@@ -28,12 +28,16 @@ module Utils
     end
 
     def priority_tags
-      tags = %w(Make Model ISO ExposureTime FNumber FocalLength CreateDate)
+      tags = %w(Model ISO ExposureTime FNumber FocalLength CreateDate)
       @exif.keys.compact.select { |t| tags.include?(t) }
     end
 
     def [] tag
-      @exif[tag]
+      if tag.eql?('Model') and !@exif['Model'].nil? and !@exif['Make'].nil? and !@exif['Model'].include?(@exif['Make'])
+        @exif['Make']+' '+@exif['Model']
+      else
+        @exif[tag]
+      end
     end
 
     def self.from_binary(binary)
@@ -42,5 +46,8 @@ module Utils
       instance
     end
 
+    def exists?
+      !@exif.nil?
+    end
   end
 end
