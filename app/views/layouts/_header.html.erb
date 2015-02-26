@@ -16,6 +16,7 @@
     <div class="collapse navbar-collapse" id="navbar-main">
       <ul class="nav navbar-nav navbar-right ">
           <li><%= link_to t('articles.label.articles'), explorer_articles_path %></li>
+          <li><%= link_to t('articles.label.sandbox'), explorer_articles_in_sandbox_path %></li>
           <li><%= link_to t('photos.label.photos'), explorer_photos_path %></li>
           <li><%= link_to t('users.label.users'), users_path %></li>
           <% if signed_in? %>

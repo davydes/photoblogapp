@@ -114,6 +114,14 @@ class User < ActiveRecord::Base
     resource.can_be_destroyed_by?(self)
   end
 
+  def can_publish?(resource)
+    resource.can_be_published_by?(self)
+  end
+
+  def can_publish_to_sandbox?(resource)
+    resource.can_be_published_to_sandbox_by?(self)
+  end
+
   def recent_activities(limit)
     activities.order('created_at DESC').limit(limit)
   end

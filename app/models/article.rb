@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
-  scope :drafts, -> { where(published: false) }
+  scope :drafts, -> { where(published: false, sandbox: false) }
   scope :published, -> { where(published: true) }
+  scope :sandbox, -> { where(sandbox: true) }
 
   belongs_to :user
   has_and_belongs_to_many :photos
@@ -46,12 +47,29 @@ class Article < ActiveRecord::Base
     save
   end
 
+  def publish_to_sandbox
+    self.attributes = {:sandbox_at => Time.now, :sandbox => true}
+    save
+  end
+
+  def can_be_published_by?(user)
+    !self.published && user && user.publisher && user_id = user.id
+  end
+
+  def can_be_published_to_sandbox_by?(user)
+    !self.sandbox && user && user_id = user.id
+  end
+
   def is_draft?
-    !self.published
+    !self.published && !self.sandbox
   end
 
   def published_at
     read_attribute(:published_at) || self.created_at
+  end
+
+  def sandbox_at
+    read_attribute(:sandbox_at_at) || self.created_at
   end
 
   private

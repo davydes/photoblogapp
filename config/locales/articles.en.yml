@@ -6,9 +6,12 @@ en:
       edit: "Edit Article"
       preview: 'Preview'
       published_by: 'published by'
+      published_to_sandbox_by: 'published in sandbox by'
       draft_created_at: "draft crated at %{date}"
       your_drafts: "Your drafts"
       your_published: "Your public articles"
+      your_sandbox_published: "Your articles in sandbox"
       articles_of: "Articles of %{name}"
+      sandbox: "Sandbox"
     error:
       not_found: 'Article not found'

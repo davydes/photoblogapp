@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203082618) do
+ActiveRecord::Schema.define(version: 20150226105817) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id",      null: false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20141203082618) do
     t.boolean  "published",                default: false
     t.datetime "published_at"
     t.text     "intro",        limit: 255
+    t.boolean  "sandbox",                  default: false, null: false
+    t.datetime "sandbox_at"
   end
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
@@ -63,6 +65,13 @@ ActiveRecord::Schema.define(version: 20141203082618) do
 
   add_index "articles_photos", ["article_id", "photo_id"], name: "index_articles_photos_on_article_id_and_photo_id", unique: true
   add_index "articles_photos", ["photo_id"], name: "index_articles_photos_on_photo_id"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 20141203082618) do
     t.integer  "photo_upload_daily_limit"
     t.integer  "photo_upload_weekly_limit"
     t.datetime "last_login_time"
+    t.boolean  "publisher",                           default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

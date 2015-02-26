@@ -28,7 +28,12 @@ Rails.application.routes.draw do
     end
   end
   resources :albums
-  resources :articles, concerns: :commentable
+  resources :articles, concerns: :commentable do
+    member do
+      post :publish
+      post :publish_to_sandbox
+    end
+  end
   resources :sessions, only: [:index, :new, :create, :destroy]
   resources :activities, only: :index
 
@@ -44,6 +49,7 @@ Rails.application.routes.draw do
 
   get '/explorer/index'
   get '/explorer/articles'
+  get '/explorer/articles_in_sandbox'
   get '/explorer/photos'
 
   root 'explorer#index'

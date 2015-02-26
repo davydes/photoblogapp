@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
   include UserResourceable
+  before_action :set_article, only: [:publish, :publish_to_sandbox]
+  before_action :check_access, only: [:publish, :publish_to_sandbox]
   skip_before_action :signed_in_user, only: :show
   respond_to :html, :js
 
   def index
     @articles = current_user.articles.published.order('created_at DESC').limit(100)
-    @drafts = current_user.articles.drafts.order('created_at DESC')
+    @articles_in_sandbox = current_user.articles.sandbox.order('created_at DESC')
+    @articles_in_drafts = current_user.articles.drafts.order('created_at DESC')
   end
 
   def show
@@ -35,7 +38,21 @@ class ArticlesController < ApplicationController
     redirect_to articles_path, notice: 'Article was successfully destroyed.'
   end
 
+  def publish
+    @article.publish
+    redirect_to @article
+  end
+
+  def publish_to_sandbox
+    @article.publish_to_sandbox
+    redirect_to @article
+  end
+
   private
+
+  def set_article
+    set_resource
+  end
 
   def article_params
     params.require(:article).permit(:title, :intro, :content)

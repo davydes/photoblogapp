@@ -19,4 +19,9 @@ module UserResourceable
     association = controller_name.classify.downcase
     redirect_to root_path unless admin_or_current?(instance_variable_get("@#{association}").user)
   end
+
+  def check_access
+    association = controller_name.classify.downcase
+    access_denied unless current_user.send('can_'+action_name+'?', instance_variable_get("@#{association}"))
+  end
 end

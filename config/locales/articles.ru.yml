@@ -6,9 +6,12 @@ ru:
       edit: "Редактировать статью"
       preview: 'Предпросмотр'
       published_by: 'опубликовано'
+      published_to_sandbox_by: 'опубликовано в песочнице'
       draft_created_at: "черновик создан %{date}"
       your_drafts: "Ваши неопубликованные статьи"
       your_published: "Ваши опубликованные статьи"
+      your_sandbox_published: "Ваши опубликованные в песочнице статьи"
       articles_of: "Статьи %{name}"
+      sandbox: "Песочница"
     error:
       not_found: 'Статья не найдена'
