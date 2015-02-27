@@ -6,6 +6,7 @@ ru:
   to_english: "In English"
   unsaved_alert: 'Имеются несохраненные данные. Вы действительно хотите отменить все изменения?'
   at: 'в'
+  impressions: 'просмотров'
 
   button:
     close: 'Закрыть'

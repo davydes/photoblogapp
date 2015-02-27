@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     access_denied if @article.is_draft? && !admin_or_current?(@article.user)
+    log_impression
   end
 
   def new
@@ -49,6 +50,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def log_impression
+    @article.impressions.create(ip_address: request.remote_ip,user_id:current_user ? current_user.id : nil)
+  end
 
   def set_article
     set_resource

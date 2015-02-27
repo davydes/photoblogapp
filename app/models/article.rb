@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include Impressionable
+
   scope :drafts, -> { where(published: false, sandbox: false) }
   scope :published, -> { where(published: true) }
   scope :sandbox, -> { where(sandbox: true) }
@@ -53,11 +55,11 @@ class Article < ActiveRecord::Base
   end
 
   def can_be_published_by?(user)
-    !self.published && user && user.publisher && user_id = user.id
+    !self.published && user && user.publisher && user_id == user.id
   end
 
   def can_be_published_to_sandbox_by?(user)
-    !self.sandbox && user && user_id = user.id
+    !self.sandbox && user && user_id == user.id
   end
 
   def is_draft?

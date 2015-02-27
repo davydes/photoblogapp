@@ -6,6 +6,7 @@ en:
   to_english: "In English"
   unsaved_alert: 'You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?'
   at: 'at'
+  impressions: views
 
   button:
     close: 'Close'

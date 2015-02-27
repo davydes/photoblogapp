@@ -42,5 +42,8 @@
     <div class="article-text">
       <%= html_content_article(@article) %>
     </div>
+    <div class="text-right">
+      <%= t 'impressions' %> <%= @article.unique_impression_count %> / <%= @article.impression_count %>
+    </div>
     <%= render 'shared/comments', object: @article %>
 </div>
