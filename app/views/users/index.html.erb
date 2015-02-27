@@ -1,6 +1,9 @@
+<% page_title = t 'users.label.users' %>
+<%= title (page_title) %>
+
 <%- model_class = User -%>
 <div class="container-fluid">
-  <h3><%=t 'users.label.users' %></h3>
+  <h3><%= page_title %></h3>
   <% @users.each do |user| %>
     <%= render partial: 'users/user_card', locals: {user: user} %>
   <% end %>

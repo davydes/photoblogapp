@@ -3,6 +3,8 @@
     <%= stylesheet_link_tag 'custom/gallery', 'data-turbolinks-track' => true %>
 <% end %>
 
+<%= title (@photo.title) %>
+
 <%= render partial: 'shared/blueimp_controls' %>
 
 <%
