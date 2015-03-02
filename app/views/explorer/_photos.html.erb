@@ -12,8 +12,7 @@
             thumbnailDisplayInterval: 10,
             thumbnailDisplayTransition: true,
             theme: 'clean',
-            paginationMaxLinesPerPage: 1,
-            thumbnailHoverEffect: [{'name': 'scale120'}],
+            paginationMaxLinesPerPage: 10,
             i18n:{
                 paginationPrevious: '<%= t 'nanoGallery.paginationPrevious' %>',
                 paginationNext: '<%= t 'nanoGallery.paginationNext' %>'
@@ -23,7 +22,7 @@
     $(document).ready(loadLastFilm);
 </script>
 
-<h3><%= link_to (t 'photos.label.last100'), explorer_photos_path %></h3>
+<h3 class="text-center"><%= link_to (t 'photos.label.last100'), explorer_photos_path %></h3>
 <div id="lastFilm">
   <% @photos.each do |photo| %>
       <%= link_to photo.title, image_photo_url(photo, :original), 'data-ngdest' => photo_path(photo) ,'data-ngThumb' => image_photo_url(photo, :thumb) %>

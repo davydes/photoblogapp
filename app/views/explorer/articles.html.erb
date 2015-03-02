@@ -8,7 +8,5 @@
 
 <div class="container-fluid">
   <h3><%= page_title %></h3>
-  <div class="container-fluid">
-      <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
-  </div>
+  <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
 </div>

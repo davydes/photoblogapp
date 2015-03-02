@@ -4,7 +4,7 @@ ru:
       photos: "Фотографии"
       your_photos: "Ваши фотографии"
       photos_of: "Фотографии - %{name}"
-      last100: "Последние 100 фотографий"
+      last100: "Последние фото"
       last_photos: "Последние фотографии"
       upload: "Загрузить фото"
       return_to_context: "Вернуться в %{context}"
