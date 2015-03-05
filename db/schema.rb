@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227133249) do
+ActiveRecord::Schema.define(version: 20150305151452) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id",      null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150227133249) do
     t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "referer"
   end
 
   add_index "impressions", ["impressionable_type", "impressionable_id"], name: "index_impressions_on_impressionable_type_and_impressionable_id"

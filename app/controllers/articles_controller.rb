@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
   private
 
   def log_impression
-    @article.impressions.create(ip_address: request.remote_ip,user_id:current_user ? current_user.id : nil)
+    @article.impressions.create(ip_address: request.remote_ip,user_id:current_user ? current_user.id : nil, referer: request.referer)
   end
 
   def set_article
