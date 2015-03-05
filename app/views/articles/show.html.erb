@@ -27,12 +27,12 @@
       <% if @article.can_be_published_by?(current_user) %>
         <%= link_to publish_article_path(@article),
                       :method => "post", style: 'font-size: 1.2em; color: green; margin-left: 3px;' do %>
-          <span class='glyphicon glyphicon-ok'></span>
+          <span class='glyphicon glyphicon-check'></span>
         <% end  %>
       <% elsif @article.can_be_published_to_sandbox_by?(current_user) %>
         <%= link_to publish_to_sandbox_article_path(@article),
                     :method => "post", style: 'font-size: 1.2em; color: green; margin-left: 3px;' do %>
-          <span class='glyphicon glyphicon-send'></span>
+          <span class='glyphicon glyphicon-share'></span>
         <% end %>
       <% end %>
     </h5>

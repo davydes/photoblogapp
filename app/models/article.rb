@@ -55,11 +55,11 @@ class Article < ActiveRecord::Base
   end
 
   def can_be_published_by?(user)
-    !self.published && user && user.publisher && user_id == user.id
+    !self.published && user && user.publisher && (self.user_id == user.id || user.admin)
   end
 
   def can_be_published_to_sandbox_by?(user)
-    !self.sandbox && user && user_id == user.id
+    !self.published && !self.sandbox && user && user_id == user.id
   end
 
   def is_draft?

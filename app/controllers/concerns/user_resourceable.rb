@@ -10,8 +10,11 @@ module UserResourceable
   private
 
   def set_resource
-    association = controller_name.classify.downcase
-    resource = current_user.send(association.to_s.pluralize).find(params[:id])
+    klass = controller_name.classify
+    association = klass.downcase
+    resource = current_user.admin? ?
+        klass.constantize.find(params[:id]) :
+        current_user.send(association.to_s.pluralize).find(params[:id])
     instance_variable_set("@#{association}", resource)
   end
 
