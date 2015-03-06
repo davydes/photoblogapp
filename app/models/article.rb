@@ -40,7 +40,10 @@ class Article < ActiveRecord::Base
   end
 
   def unpublish
-    self.attributes = {:published_at => nil, :published => false}
+    self.attributes = {:published_at => nil,
+                       :published => false,
+                       :sandbox_at => nil,
+                       :sandbox => false}
     save
   end
 
@@ -54,12 +57,24 @@ class Article < ActiveRecord::Base
     save
   end
 
+  def can_be_edited_by?(user)
+    user && (self.user_id == user.id || user.admin?)
+  end
+
+  def can_be_destroyed_by?(user)
+    can_be_edited_by?(user)
+  end
+
   def can_be_published_by?(user)
-    !self.published && user && user.publisher && (self.user_id == user.id || user.admin)
+    !self.published && user && user.publisher && (self.user_id == user.id || user.admin?)
   end
 
   def can_be_published_to_sandbox_by?(user)
     !self.published && !self.sandbox && user && user_id == user.id
+  end
+
+  def can_be_unpublished_by?(user)
+    !is_draft? && user && user.admin?
   end
 
   def is_draft?

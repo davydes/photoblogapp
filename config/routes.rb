@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     member do
       post :publish
       post :publish_to_sandbox
+      post :unpublish
     end
   end
   resources :sessions, only: [:index, :new, :create, :destroy]

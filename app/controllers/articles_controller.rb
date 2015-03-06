@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   include UserResourceable
-  before_action :set_article, only: [:publish, :publish_to_sandbox]
-  before_action :check_access, only: [:publish, :publish_to_sandbox]
+  before_action :set_article, only: [:publish, :publish_to_sandbox, :unpublish]
+  before_action :check_access, only: [:edit, :update, :destroy, :publish, :publish_to_sandbox, :unpublish]
   skip_before_action :signed_in_user, only: :show
   respond_to :html, :js
 
@@ -49,10 +49,17 @@ class ArticlesController < ApplicationController
     redirect_to @article
   end
 
+  def unpublish
+    @article.unpublish
+    redirect_to @article
+  end
+
   private
 
   def log_impression
-    @article.impressions.create(ip_address: request.remote_ip,user_id:current_user ? current_user.id : nil, referer: request.referer)
+    @article.impressions.create(ip_address: request.remote_ip,
+                                user_id: current_user ? current_user.id : nil,
+                                referer: request.referer)
   end
 
   def set_article

@@ -110,20 +110,38 @@ class User < ActiveRecord::Base
     admin
   end
 
+  def recent_activities(limit)
+    activities.order('created_at DESC').limit(limit)
+  end
+
+  # Rights
+
   def can_destroy?(resource)
-    resource.can_be_destroyed_by?(self)
+    resource.send(:can_be_destroyed_by?, self) if resource.respond_to?(:can_be_destroyed_by?)
+  end
+
+  def can_edit?(resource)
+    resource.send(:can_be_edited_by?, self) if resource.respond_to?(:can_be_edited_by?)
+  end
+
+  def can_update?(resource)
+    if resource.respond_to?(:can_be_updated_by?)
+      resource.send(:can_be_updated_by?, self)
+    else
+      resource.can_be_edited_by?(self)
+    end
   end
 
   def can_publish?(resource)
-    resource.can_be_published_by?(self)
+    resource.send(:can_be_published_by?, self) if resource.respond_to?(:can_be_published_by?)
   end
 
   def can_publish_to_sandbox?(resource)
-    resource.can_be_published_to_sandbox_by?(self)
+    resource.send(:can_be_published_to_sandbox_by?, self) if resource.respond_to?(:can_be_published_to_sandbox_by?)
   end
 
-  def recent_activities(limit)
-    activities.order('created_at DESC').limit(limit)
+  def can_unpublish?(resource)
+    resource.send(:can_be_unpublished_by?, self) if resource.respond_to?(:can_be_unpublished_by?)
   end
 
   private
