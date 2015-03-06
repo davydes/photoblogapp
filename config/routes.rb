@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sitemap.xml' => 'sitemap#index', as: 'sitemap', defaults: { format: 'xml' }
+
   concern :paginatable do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
   end
@@ -64,5 +66,5 @@ Rails.application.routes.draw do
 
   # deprecated link
   get '/explorer/articles/:id', to: redirect('/articles/%{id}')
-  
+
 end
