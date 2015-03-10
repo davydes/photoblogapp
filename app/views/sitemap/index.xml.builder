@@ -14,9 +14,9 @@ xml.urlset(
       xml.loc "#{article_url(article)}"
       xml.lastmod article.updated_at.strftime("%F")
       xml.changefreq("weekly")
-      if article.photos_hash.any?
+      article.photos_hash.each do |key, value|
         xml.image :image do
-          xml.image :loc, image_photo_url(article.photos_hash.values[0])
+          xml.image :loc, image_photo_url(value)
         end
       end
     end
