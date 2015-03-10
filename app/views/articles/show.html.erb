@@ -1,7 +1,7 @@
 <%= title (@article.title) %>
 
 <div class="container">
-    <h2 class="article-header"><%= @article.title %></h2>
+    <h1 class="article-header"><%= @article.title %></h1>
     <h5 class="text-right">
       <% if @article.is_draft? %>
         <span class="text-warning"> <%= t 'articles.label.draft_created_at', date: l(@article.created_at, :format => :short) %></span>
