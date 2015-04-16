@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>4.2'
+gem 'rails', '4.1.10'
 gem 'jbuilder'
 gem 'sdoc', '~>0.4.0',          group: :doc
 gem 'bcrypt', '~>3.1.7'
@@ -13,7 +13,6 @@ gem 'twitter-bootstrap-rails', '3.2.0'
 gem 'bootstrap-datepicker-rails'
 gem 'paperclip', '~>4.2'
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'responders'
 
 gem 'spring',  group: :development
 gem 'sass-rails', '~> 4.0.2'
