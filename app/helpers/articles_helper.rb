@@ -1,3 +1,5 @@
+require 'loofah/helpers'
+
 module ArticlesHelper
   def _compile_photo_tags(article, text, photos_hash)
     text.gsub(Article::PHOTO_TAG) do
@@ -10,7 +12,7 @@ module ArticlesHelper
   end
 
   def markdown(text)
-    renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: true, escape_html: true)
     options = {
         autolink: true,
         no_intra_emphasis: true,
@@ -24,13 +26,12 @@ module ArticlesHelper
   end
 
   def html_content_article(article)
-    text = strip_tags(article.content)
-    text = markdown(text)
+    text = markdown(article.content)
     _compile_photo_tags(article, text, article.photos_hash).html_safe
   end
 
   def html_intro_article(article)
-    strip_tags(article.intro)
+    h article.intro
   end
 
 end

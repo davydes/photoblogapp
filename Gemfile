@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.10'
+gem 'rails', '~>4.2'
 gem 'jbuilder'
 gem 'sdoc', '~>0.4.0',          group: :doc
 gem 'bcrypt', '~>3.1.7'
@@ -24,6 +24,7 @@ gem "redcarpet"
 gem 'mini_exiftool_vendored'
 gem 'kaminari'
 gem 'i18n-inflector-rails'
+gem 'responders'
 
 group :test do
   gem 'codeclimate-test-reporter',  require: nil
