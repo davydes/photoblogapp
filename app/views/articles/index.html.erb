@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <% if @articles_in_drafts && @articles_in_drafts.any? %>
-    <h3><%= t 'articles.label.your_drafts' %></h3>
+    <h3><%= t('articles.label.your_drafts', count: @articles_in_drafts.count) %></h3>
     <%= render partial: 'articles/article_list', locals: {articles: @articles_in_drafts} %>
   <% end %>
   <% if @articles_in_sandbox && @articles_in_sandbox.any? %>
-    <h3><%= t('articles.label.your_sandbox_published') %></h3>
+    <h3><%= t('articles.label.your_sandbox_published', count: @articles_in_sandbox.count) %></h3>
     <%= render partial: 'articles/article_list', locals: {articles: @articles_in_sandbox} %>
   <% end %>
   <% if @articles && @articles.any? %>
-    <h3><%= t('articles.label.your_published') %></h3>
+    <h3><%= t('articles.label.your_published', count: @articles.count) %></h3>
     <%= render partial: 'articles/article_list', locals: {articles: @articles} %>
   <% end %>
 </div>

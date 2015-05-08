@@ -8,9 +8,9 @@ en:
       published_by: 'published by'
       published_to_sandbox_by: 'published in sandbox by'
       draft_created_at: "draft crated at %{date}"
-      your_drafts: "Your drafts"
-      your_published: "Your public articles"
-      your_sandbox_published: "Your articles in sandbox"
+      your_drafts: "Your drafts (%{count})"
+      your_published: "Your public articles (%{count})"
+      your_sandbox_published: "Your articles in sandbox (%{count})"
       articles_of: "Articles of %{name}"
       sandbox: "Sandbox"
     error:

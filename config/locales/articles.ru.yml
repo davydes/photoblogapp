@@ -8,9 +8,9 @@ ru:
       published_by: 'опубликовано'
       published_to_sandbox_by: 'опубликовано в песочнице'
       draft_created_at: "черновик создан %{date}"
-      your_drafts: "Ваши неопубликованные статьи"
-      your_published: "Ваши опубликованные статьи"
-      your_sandbox_published: "Ваши опубликованные в песочнице статьи"
+      your_drafts: "Ваши неопубликованные статьи (%{count})"
+      your_published: "Ваши опубликованные статьи (%{count})"
+      your_sandbox_published: "Ваши опубликованные в песочнице статьи (%{count})"
       articles_of: "Статьи %{name}"
       sandbox: "Песочница"
     error:
