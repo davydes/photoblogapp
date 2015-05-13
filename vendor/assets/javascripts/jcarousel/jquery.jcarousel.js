@@ -1,12 +1,12 @@
-/*! jCarousel - v0.3.1 - 2014-05-26
-* http://sorgalla.com/jcarousel
-* Copyright (c) 2014 Jan Sorgalla; Licensed MIT */
+/*! jCarousel - v0.3.3 - 2015-04-07
+* http://sorgalla.com/jcarousel/
+* Copyright (c) 2006-2015 Jan Sorgalla; Licensed MIT */
 (function($) {
     'use strict';
 
     var jCarousel = $.jCarousel = {};
 
-    jCarousel.version = '0.3.1';
+    jCarousel.version = '0.3.3';
 
     var rRelativeTarget = /^([+\-]=)?(.+)$/;
 
@@ -434,11 +434,12 @@
             }
 
             var wrap = this.options('wrap'),
-                end = this.items().length - 1;
+                end = this.items().length - 1,
+                check = this.options('center') ? this._target : this._last;
 
             return end >= 0 && !this.underflow &&
                 ((wrap && wrap !== 'first') ||
-                    (this.index(this._last) < end) ||
+                    (this.index(check) < end) ||
                     (this.tail && !this.inTail)) ? true : false;
         },
         hasPrev: function() {
@@ -1322,7 +1323,8 @@
                 idx      = 0,
                 page     = 1,
                 pages    = {},
-                curr;
+                curr,
+                dim;
 
             while (true) {
                 curr = items.eq(idx++);
@@ -1331,17 +1333,19 @@
                     break;
                 }
 
+                dim = carousel.dimension(curr);
+
+                if ((wh + dim) > clip) {
+                    page++;
+                    wh = 0;
+                }
+
+                wh += dim;
+
                 if (!pages[page]) {
                     pages[page] = curr;
                 } else {
                     pages[page] = pages[page].add(curr);
-                }
-
-                wh += carousel.dimension(curr);
-
-                if (wh >= clip) {
-                    page++;
-                    wh = 0;
                 }
             }
 
@@ -1357,8 +1361,26 @@
     });
 }(jQuery));
 
-(function($) {
+(function($, document) {
     'use strict';
+
+    var hiddenProp,
+        visibilityChangeEvent,
+        visibilityChangeEventNames = {
+            hidden: 'visibilitychange',
+            mozHidden: 'mozvisibilitychange',
+            msHidden: 'msvisibilitychange',
+            webkitHidden: 'webkitvisibilitychange'
+        }
+    ;
+
+    $.each(visibilityChangeEventNames, function(key, val) {
+        if (typeof document[key] !== 'undefined') {
+            hiddenProp = key;
+            visibilityChangeEvent = val;
+            return false;
+        }
+    });
 
     $.jCarousel.plugin('jcarouselAutoscroll', {
         _options: {
@@ -1367,6 +1389,7 @@
             autostart: true
         },
         _timer: null,
+        _started: false,
         _init: function () {
             this.onDestroy = $.proxy(function() {
                 this._destroy();
@@ -1374,23 +1397,42 @@
                     .one('jcarousel:createend', $.proxy(this._create, this));
             }, this);
 
-            this.onAnimateEnd = $.proxy(this.start, this);
+            this.onAnimateEnd = $.proxy(this._start, this);
+
+            this.onVisibilityChange = $.proxy(function() {
+                if (document[hiddenProp]) {
+                    this._stop();
+                } else {
+                    this._start();
+                }
+            }, this);
         },
         _create: function() {
             this.carousel()
                 .one('jcarousel:destroy', this.onDestroy);
+
+            $(document)
+                .on(visibilityChangeEvent, this.onVisibilityChange);
 
             if (this.options('autostart')) {
                 this.start();
             }
         },
         _destroy: function() {
-            this.stop();
+            this._stop();
+
             this.carousel()
                 .off('jcarousel:destroy', this.onDestroy);
+
+            $(document)
+                .off(visibilityChangeEvent, this.onVisibilityChange);
         },
-        start: function() {
-            this.stop();
+        _start: function() {
+            this._stop();
+
+            if (!this._started) {
+                return;
+            }
 
             this.carousel()
                 .one('jcarousel:animateend', this.onAnimateEnd);
@@ -1401,7 +1443,7 @@
 
             return this;
         },
-        stop: function() {
+        _stop: function() {
             if (this._timer) {
                 this._timer = clearTimeout(this._timer);
             }
@@ -1410,6 +1452,18 @@
                 .off('jcarousel:animateend', this.onAnimateEnd);
 
             return this;
+        },
+        start: function() {
+            this._started = true;
+            this._start();
+
+            return this;
+        },
+        stop: function() {
+            this._started = false;
+            this._stop();
+
+            return this;
         }
     });
-}(jQuery));
+}(jQuery, document));

@@ -16,7 +16,6 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require jcarousel/jquery.jcarousel
-//= require jcarousel/jquery.jcarousel-autoscroll
 //= require jquery.infinitescroll
 //= require custom/justified
 //= require_directory .
