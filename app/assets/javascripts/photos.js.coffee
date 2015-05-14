@@ -48,3 +48,6 @@ $(document).ready ->
       msgText: '<em>Loading...</em>'
     }
   }, () -> $('#justified-photos').justifiedGallery('norewind'))
+
+  window.onpopstate = (e) ->
+    location.reload();

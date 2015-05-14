@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
 
   respond_to :html, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   respond_to :json, only: [:create, :destroy]
-  respond_to :js,   only: [:unlink_album, :link_album, :available_albums]
+  respond_to :js,   only: [:show, :unlink_album, :link_album, :available_albums]
 
   def index
     @user = params[:user_id] ? User.find(params[:user_id]) : current_user

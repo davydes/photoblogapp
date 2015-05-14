@@ -1,0 +1,45 @@
+<%
+   _prev = photo.prev(@context)
+   _next = photo.next(@context)
+%>
+
+<div class="span7 text-center" id="photo-container">
+  <%= link_to_photo _prev, remote: true, context: @context do %>
+    <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
+  <% end if _prev %>
+  <%= link_to_photo _next, remote: true, context: @context do %>
+    <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
+  <% end if _next %>
+  <%= link_to image_photo_url(photo, :original), :title => photo.title, 'data-gallery' => '' do %>
+    <%= image_tag image_photo_url(photo, :medium), :alt => photo.title, :id => 'main-photo' %>
+    <%= link_to "#{url_for(@context)}##{photo_id(photo)}",
+                id: "return-link",
+                class: "bottom-link has-tooltip",
+                title: t('photos.label.return_to_context',
+                         context: @context.class.model_name.human),
+                data: {placement: "top"} do %>
+      <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    <% end if @context %>
+  <% end %>
+  <%= render 'shared/votes', object: photo %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6" id="context-user">
+      <%= render partial: 'photos/context/description' %>
+      <div class="modal fade" id="photo_modal_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">Loading...</div>
+      <div class="context-block">
+        <h4><%= t 'photos.label.uploaded_at', date: l(photo.created_at, :format => :short) %></h4>
+      </div>
+    </div>
+    <div class="col-sm-6 ">
+      <div class="context-block" id="context-albums">
+        <%= render partial: 'photos/context/albums' %>
+      </div>
+      <div class="context-block" id="context-exif">
+        <%= render partial: 'photos/context/exif' %>
+      </div>
+    </div>
+  </div>
+</div>
