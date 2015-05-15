@@ -6,5 +6,6 @@ $('#replaceable').hide(0, function() {
   $('body.photos-show').setFadeAble('#photo-container', '.votes');
   $('div.hidden-cache').cacheImages();
   <% href = @context ? in_photo_path(@photo, context_serialize(@context)) : photo_path(@photo) %>
-  window.history.pushState({page:"<%= href %>"}, "<%= @photo.title %>", "<%= href %>");
+  document.title = '<%= @photo.title.unpack('U*').map{ |i| "\\u" + i.to_s(16).rjust(4, '0') }.join %>';
+  window.history.pushState({page:"<%= href %>"}, document.title, "<%= href %>");
 }).show(0);
