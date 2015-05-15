@@ -15,3 +15,7 @@
  *= require custom/justified
  *= require_self
 */
+
+.hidden-cache {
+  display: none;
+}

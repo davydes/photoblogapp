@@ -10,6 +10,20 @@ setMaxBlogPhotoViewHeight = () ->
   $('div.blog-photo-view img.blog-photo-img').each ->
       $(this).setMaxHeight($(window).height() * 2/3)
 
+$.fn.cacheImages = () ->
+  array = []
+  list = []
+  $(this).find('a').each ->
+    array.push($(this).attr('href'))
+  for i in [0..array.length-1]
+    img = new Image();
+    img.onload = () ->
+      index = list.indexOf(this);
+      if (index != -1)
+        list.splice(index, 1)
+    list.push(img);
+    img.src = array[i]
+
 $(document).ready ->
   setMaxBlogPhotoViewHeight()
   setMaxMainPhotoHeight()
@@ -51,3 +65,12 @@ $(document).ready ->
 
   window.onpopstate = (e) ->
     location.reload();
+
+  $(document).keydown (e) ->
+    switch e.which
+      when 37
+        $('#prev').click();
+      when 39
+        $('#next').click();
+
+  $('div.hidden-cache').cacheImages();

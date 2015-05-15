@@ -4,10 +4,10 @@
 %>
 
 <div class="span7 text-center" id="photo-container">
-  <%= link_to_photo _prev, remote: true, context: @context do %>
+  <%= link_to_photo _prev, id: 'prev', remote: true, context: @context do %>
     <div class="nav prev"><span class="glyphicon glyphicon-chevron-left"></span></div>
   <% end if _prev %>
-  <%= link_to_photo _next, remote: true, context: @context do %>
+  <%= link_to_photo _next, id: 'next' ,remote: true, context: @context do %>
     <div class="nav next"><span class="glyphicon glyphicon-chevron-right"></span></div>
   <% end if _next %>
   <%= link_to image_photo_url(photo, :original), :title => photo.title, 'data-gallery' => '' do %>
@@ -42,4 +42,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="hidden-cache">
+  <%= link_to nil, image_photo_url(_prev, :medium) if _prev %>
+  <%= link_to nil, image_photo_url(_next, :medium) if _next %>
+  <%= link_to nil, image_photo_url(photo, :original)%>
 </div>

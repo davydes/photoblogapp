@@ -1,9 +1,10 @@
-$('#replaceable').fadeOut(200, function() {
+$('#replaceable').hide(0, function() {
   $('#replaceable').html("<%= j render('photo_with_context', photo: @photo) %>");
   $('#main-photo').setMaxHeight($(window).height()-85);
   $('body.photos-show').setFadeAble('div.context-item', 'a.control');
   $('body.photos-show').setFadeAble('#photo-container', '.nav span');
   $('body.photos-show').setFadeAble('#photo-container', '.votes');
+  $('div.hidden-cache').cacheImages();
   <% href = @context ? in_photo_path(@photo, context_serialize(@context)) : photo_path(@photo) %>
   window.history.pushState({page:"<%= href %>"}, "<%= @photo.title %>", "<%= href %>");
-}).fadeIn(200);
+}).show(0);
