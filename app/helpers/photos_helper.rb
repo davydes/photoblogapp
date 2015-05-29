@@ -4,7 +4,7 @@ module PhotosHelper
   end
 
   def photo_id (object)
-    object_id(object)
+    selector_id(object)
   end
 
   def context_serialize(context)

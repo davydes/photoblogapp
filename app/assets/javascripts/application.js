@@ -31,7 +31,7 @@
           var input = $('#'+model+'_'+field);
           input.closest('.form-group').addClass('has-error').find('.help-block').html(messages.join(' & '));
       }
-  });
+    });
   };
 
   $.fn.clearPreviousErrors = function(){
@@ -48,6 +48,7 @@
       function(){$(this).find(affectElementSelector).stop().fadeOut();}
     );
     $(this).find(affectElementSelector).stop().fadeOut();
+    return this;
   };
 
   $.fn.jumpToHash = function(hash, offsetY) {

@@ -9,7 +9,7 @@ module ApplicationHelper
     }[flash_type] || flash_type.to_s
   end
 
-  def object_id(object)
+  def selector_id(object)
     "#{object.class.name.downcase}-#{object.id}"
   end
 

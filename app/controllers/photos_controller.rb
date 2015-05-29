@@ -16,6 +16,9 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.contextual(@context).find(params[:id])
+    if request.format.js?
+      set_cache_buster
+    end
   end
 
   def new
