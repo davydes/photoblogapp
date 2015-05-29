@@ -15,14 +15,15 @@ $.fn.cacheImages = () ->
   list = []
   $(this).find('a').each ->
     array.push($(this).attr('href'))
-  for i in [0..array.length-1]
-    img = new Image();
-    img.onload = () ->
-      index = list.indexOf(this);
-      if (index != -1)
-        list.splice(index, 1)
-    list.push(img);
-    img.src = array[i]
+  if (array.length > 0)
+    for i in [0..array.length-1]
+      img = new Image();
+      img.onload = () ->
+        index = list.indexOf(this);
+        if (index != -1)
+          list.splice(index, 1)
+      list.push(img);
+      img.src = array[i]
 
 $(document).ready ->
   setMaxBlogPhotoViewHeight()
