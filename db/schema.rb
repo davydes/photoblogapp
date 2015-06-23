@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150305151452) do
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "user_id",      null: false
     t.string   "subject_type", null: false
     t.integer  "subject_id",   null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
   add_index "activities", ["subject_type", "subject_id"], name: "index_activities_on_subject_type_and_subject_id"
   add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
-  create_table "albums", force: true do |t|
+  create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.datetime "created_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id"
 
-  create_table "albums_photos", id: false, force: true do |t|
+  create_table "albums_photos", id: false, force: :cascade do |t|
     t.integer "album_id"
     t.integer "photo_id"
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
   add_index "albums_photos", ["album_id", "photo_id"], name: "index_albums_photos_on_album_id_and_photo_id", unique: true
   add_index "albums_photos", ["photo_id"], name: "index_albums_photos_on_photo_id"
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "content"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
-  create_table "articles_photos", id: false, force: true do |t|
+  create_table "articles_photos", id: false, force: :cascade do |t|
     t.integer "article_id"
     t.integer "photo_id"
   end
@@ -66,14 +66,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
   add_index "articles_photos", ["article_id", "photo_id"], name: "index_articles_photos_on_article_id_and_photo_id", unique: true
   add_index "articles_photos", ["photo_id"], name: "index_articles_photos_on_photo_id"
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "commentable_type"
     t.integer  "commentable_id"
@@ -85,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "impressions", force: true do |t|
+  create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
     t.integer  "user_id"
@@ -97,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
 
   add_index "impressions", ["impressionable_type", "impressionable_id"], name: "index_impressions_on_impressionable_type_and_impressionable_id"
 
-  create_table "photos", force: true do |t|
+  create_table "photos", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
@@ -112,7 +105,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
@@ -143,7 +136,7 @@ ActiveRecord::Schema.define(version: 20150305151452) do
   add_index "users", ["password_reset_token"], name: "index_users_on_password_reset_token", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "voteable_type"
     t.integer  "voteable_id"

@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'russian'
 gem 'twitter-bootstrap-rails', '3.2.0'
 gem 'bootstrap-datepicker-rails'
-gem 'paperclip', '~>4.2'
+gem 'paperclip', '~> 4.3'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'spring',  group: :development

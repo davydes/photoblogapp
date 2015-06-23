@@ -5,7 +5,7 @@ class AddPublishedToArticle < ActiveRecord::Migration
 
     reversible do |dir|
       dir.up do
-        Article.drafts.update_all "published = 't', published_at = created_at"
+        Article.update_all "published = 't', published_at = created_at"
       end
     end
   end
