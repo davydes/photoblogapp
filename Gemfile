@@ -45,5 +45,3 @@ group :production do
   gem 'fog' , :git => 'https://github.com/fog/fog.git'
   gem 'unicorn'
 end
-
-ruby '2.1.3'
