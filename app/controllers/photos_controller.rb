@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
     if request.format.js?
       set_cache_buster
     end
+    log_impression
   end
 
   def new
@@ -112,5 +113,11 @@ class PhotosController < ApplicationController
 
   def photo_update_params
     params.require(:photo).permit(:title, :description)
+  end
+
+  def log_impression
+    @article.impressions.create(ip_address: request.remote_ip,
+                                user_id: current_user ? current_user.id : nil,
+                                referer: request.referer)
   end
 end

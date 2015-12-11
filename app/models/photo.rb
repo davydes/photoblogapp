@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  include Impressionable
+
   default_scope { order('id desc') }
   scope :today, -> { where(:created_at => (Time.now.beginning_of_day..Time.now)) }
   scope :this_week, -> { where(:created_at => (Time.now.beginning_of_week..Time.now)) }
