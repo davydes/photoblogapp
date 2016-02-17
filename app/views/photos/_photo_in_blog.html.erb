@@ -1,7 +1,7 @@
 <div class="blog-sub-content">
     <div class="blog-photo-view" id="<%= photo_id(photo) %>">
         <%= link_to_photo(photo, context: article) do %>
-            <%= image_tag(image_photo_url(photo, :medium), class: 'blog-photo-img') %>
+            <%= image_tag(image_photo_url(photo, mobile? ? :s500 : :medium), class: 'blog-photo-img') %>
         <% end %>
         <div class="blog-photo-caption"><%= photo.title %></div>
         <% if photo.exif %>
