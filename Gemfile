@@ -14,7 +14,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'paperclip', '~> 4.3'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
-gem 'spring',  group: :development
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -37,6 +36,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem "ruby-prof"
+  gem 'spring'
 end
 
 group :production do
@@ -44,4 +44,5 @@ group :production do
   gem 'rails_12factor'
   gem 'fog' , :git => 'https://github.com/fog/fog.git'
   gem 'unicorn'
+  gem 'yui-compressor'
 end
