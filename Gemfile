@@ -2,19 +2,18 @@ source 'https://rubygems.org'
 
 gem 'rails', '~>4.2'
 gem 'jbuilder'
-gem 'sdoc', '~>0.4.0',          group: :doc
-gem 'bcrypt', '~>3.1.7'
+gem 'bcrypt', '~>3.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
 gem 'russian'
-gem 'twitter-bootstrap-rails', '3.2.0'
+gem 'twitter-bootstrap-rails', '~>3.0'
 gem 'bootstrap-datepicker-rails'
 gem 'paperclip', '~> 4.3'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
