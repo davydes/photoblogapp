@@ -41,7 +41,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'fog' , :git => 'https://github.com/fog/fog.git'
+  gem 'fog'
   gem 'unicorn'
   gem 'yui-compressor'
 end
