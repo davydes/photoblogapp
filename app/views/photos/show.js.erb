@@ -4,7 +4,8 @@ $('#replaceable').hide(0, function() {
   $('#main-photo').setMaxHeight($(window).height()-85);
   $('body.photos-show').setFadeAble('div.context-item', 'a.control')
     .setFadeAble('#photo-container', '.nav span')
-    .setFadeAble('#photo-container', '.votes');
+    .setFadeAble('#photo-container', '.votes')
+    .setFadeAble('#photo-container', '.impressions');
   $('div.hidden-cache').cacheImages();
 
   document.title = '<%= @photo.title.unpack('U*').map{ |i| "\\u" + i.to_s(16).rjust(4, '0') }.join %>';

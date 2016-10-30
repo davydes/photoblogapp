@@ -9,6 +9,10 @@
     <br>
     <div class="text-right">
       <%= render 'shared/votes', object: photo %>
+      <div class='impressions'>
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= photo.unique_impression_count %>
+      </div>
     </div>
   </div>
 </div>
