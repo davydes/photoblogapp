@@ -34,6 +34,7 @@ $(document).ready ->
     .setFadeAble('div.context-item', 'a.control')
     .setFadeAble('#photo-container', '.nav span')
     .setFadeAble('#photo-container', '.votes')
+    .setFadeAble('#photo-container', '.impressions')
   $('body.articles-show').setFadeAble('div.blog-photo-view', 'div.meta-info', 0.7)
 
   $("#justified-photos").justifiedGallery({
