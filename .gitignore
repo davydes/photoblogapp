@@ -17,5 +17,4 @@
 /tmp
 /public/system
 /coverage
-runspecs.sh
-/maintance
+.env

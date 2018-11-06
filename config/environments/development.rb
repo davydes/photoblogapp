@@ -35,9 +35,3 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
-
-Recaptcha.configure do |config|
-  config.public_key  = '6LfZnPwSAAAAAHvtLLYzUh9Z-Jq-4p8YRtipE3mt'
-  config.private_key = '6LfZnPwSAAAAAI9aGCcfYS8QE6IwMG1qlFcEWH6v'
-  #config.proxy = 'http://myproxy.com.au:8080'
-end
